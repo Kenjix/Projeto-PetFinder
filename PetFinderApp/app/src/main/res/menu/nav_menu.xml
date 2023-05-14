@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/nav_home"
+            android:title="Inicio"/>
+
+        <item
+            android:id="@+id/nav_search"
+            android:icon="@drawable/nav_search"
+            android:title="Realizar Busca"/>
+
+        <item
+            android:id="@+id/nav_add_to_post"
+            android:icon="@drawable/nav_add_to_post"
+            android:title="Criar Publicação"/>
+
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/nav_settings"
+            android:title="Configurações"/>
+
+        <item
+            android:id="@+id/nav_favorite"
+            android:icon="@drawable/post_favorite"
+            android:title="Favoritos"/>
+
+        <item
+            android:id="@+id/nav_donates"
+            android:icon="@drawable/nav_donates"
+            android:title="Doações"/>
+
+    </group>
+
+    <item
+        android:title="">
+
+        <menu>
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/nav_logout"
+                android:title="Sair"/>
+        </menu>
+    </item>
+
+
+
+
+</menu>
