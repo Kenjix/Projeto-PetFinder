@@ -3,6 +3,7 @@ package com.example.petfinderapp;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -106,5 +107,15 @@ public class Login extends AppCompatActivity {
                 fila.add(request);
             }
         });
+    }
+
+    public void CadastroClick(View view) {
+        Intent intent = new Intent(Login.this, CadastroUsuario.class);
+        startActivity(intent);
+    }
+
+    public void ResetSenhaClick(View view) {
+        Intent intent = new Intent(Login.this, RecuperaSenha.class);
+        startActivity(intent);
     }
 }

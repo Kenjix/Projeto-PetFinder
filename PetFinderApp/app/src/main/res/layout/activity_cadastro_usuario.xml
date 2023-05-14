@@ -86,6 +86,16 @@
                 android:inputType="textEmailAddress"
                 android:padding="16dp" />
             <EditText
+                android:id="@+id/editDataNasc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/black"
+                android:ems="10"
+                android:hint="Data de Nascimento"
+                android:layout_marginTop="25dp"
+                android:inputType="phone"
+                android:padding="16dp" />
+            <EditText
                 android:id="@+id/editCelular"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -95,6 +105,49 @@
                 android:layout_marginTop="25dp"
                 android:inputType="phone"
                 android:padding="16dp" />
+
+            <TextView
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:padding="7dp"
+                android:textSize="20sp"
+                android:text="Genero"
+                android:gravity="center"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:padding="16dp"
+                android:orientation="horizontal">
+
+                <RadioGroup
+                    android:id="@+id/radioGroupAtivo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_horizontal">
+
+                    <RadioButton
+                        android:id="@+id/radioButtonMasc"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="Masculino" />
+
+                    <RadioButton
+                        android:id="@+id/radioButtonFem"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="Feminino" />
+
+                    <RadioButton
+                        android:id="@+id/radioButtonOutros"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="Outros" />
+                </RadioGroup>
+            </LinearLayout>
             <EditText
                 android:id="@+id/editSenha"
                 android:layout_width="match_parent"
