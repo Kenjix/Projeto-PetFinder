@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Intent intent = new Intent(MainActivity.this, Login.class);
             startActivity(intent);
             finish();
-        } else { //Se o username já foi salvo, exibe o conteudo dos livros
+        } else { //Se o username já foi salvo, exibe o conteudo
             userSession.setText(username);
 
 
