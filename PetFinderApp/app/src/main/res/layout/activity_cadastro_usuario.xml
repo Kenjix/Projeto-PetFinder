@@ -93,8 +93,8 @@
                 android:ems="10"
                 android:hint="Data de Nascimento"
                 android:layout_marginTop="25dp"
-                android:inputType="phone"
-                android:padding="16dp" />
+                android:inputType="none"
+                android:padding="16dp"/>
             <EditText
                 android:id="@+id/editCelular"
                 android:layout_width="match_parent"
