@@ -86,7 +86,7 @@
 
 
                 <TextView
-                    android:id="@+id/textView6"
+                    android:id="@+id/textDescricao"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -98,7 +98,7 @@
                     android:layout_height="wrap_content">
 
                     <ImageButton
-                        android:id="@+id/imageButton"
+                        android:id="@+id/buttonCurtir"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_marginTop="20dp"
@@ -107,7 +107,7 @@
                         android:contentDescription="Curtir"/>
 
                     <ImageButton
-                        android:id="@+id/imageButton2"
+                        android:id="@+id/buttonCompartilhar"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_marginTop="20dp"
