@@ -185,7 +185,8 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="#4C5C43"
                 android:layout_marginTop="16dp"
-                android:text="Cadastrar" />
+                android:text="Cadastrar"
+                android:textColor="@color/white"/>
 
         </LinearLayout>
 
