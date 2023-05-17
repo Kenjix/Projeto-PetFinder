@@ -26,7 +26,7 @@ public class Login extends AppCompatActivity {
     private EditText editUser, editPassword;
     private TextView erroLogin;
     private Button buttonLogin;
-    private String url = "http://192.168.100.6/codigo/login.php";
+    private String url = "http://192.168.100.6:8000/login";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +72,7 @@ public class Login extends AppCompatActivity {
                             @Override
                             public void onResponse(JSONObject response) {
                                 try {
-                                    int resultado = response.getInt("resultado");
+                                    /*int resultado = response.getInt("resultado");
                                     int nivelAcesso = response.getInt("nivelAcesso");
                                     String nome = response.getString("nome");
                                     if (resultado == 0) {
@@ -88,7 +88,9 @@ public class Login extends AppCompatActivity {
                                         erroLogin.setText("Senha inválida");
                                     } else if (resultado == 2) {
                                         erroLogin.setText("Email não cadastrado");
-                                    }
+                                    }*/
+                                    String mgs = response.getString("message");
+                                    erroLogin.setText("msg: " + mgs);
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
