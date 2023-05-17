@@ -12,21 +12,25 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.petfinderapp.model.Usuario;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.nio.charset.StandardCharsets;
 
 public class Login extends AppCompatActivity {
     private EditText editUser, editPassword;
     private TextView erroLogin;
     private Button buttonLogin;
-    private String url = "http://192.168.100.6:8000/login";
+    private String url = "http://192.168.100.6:80/api/login";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,13 +76,20 @@ public class Login extends AppCompatActivity {
                             @Override
                             public void onResponse(JSONObject response) {
                                 try {
-                                    /*int resultado = response.getInt("resultado");
-                                    int nivelAcesso = response.getInt("nivelAcesso");
-                                    String nome = response.getString("nome");
+                                    int resultado = response.getInt("resultado");
+                                    JSONObject userObject = response.getJSONObject("user");
+                                    String nome = userObject.getString("nome");
+                                    String email = userObject.getString("email");
+                                    String password = userObject.getString("password");
+                                    int nivelAcesso = userObject.getInt("nivelAcesso");
+
+                                    Usuario user = new Usuario(nome, email, password, nivelAcesso);
+
+
                                     if (resultado == 0) {
                                         //Salva o nome do usuário em SharedPreferences
-                                        editor.putString("username", nome);
-                                        editor.putInt("nivelAcesso", nivelAcesso);
+                                        editor.putString("username", user.getNome());
+                                        editor.putInt("nivelAcesso", user.getNivelAcesso());
                                         editor.commit();
                                         // Login bem-sucedido, redirecionar para a próxima tela
                                         Intent intent = new Intent(Login.this, MainActivity.class);
@@ -88,9 +99,7 @@ public class Login extends AppCompatActivity {
                                         erroLogin.setText("Senha inválida");
                                     } else if (resultado == 2) {
                                         erroLogin.setText("Email não cadastrado");
-                                    }*/
-                                    String mgs = response.getString("message");
-                                    erroLogin.setText("msg: " + mgs);
+                                    }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
@@ -99,8 +108,20 @@ public class Login extends AppCompatActivity {
                         new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                                erroLogin.setText("Erro ao consultar: " + error.getMessage());
-                                //Toast.makeText(Login.this, "Erro ao consultar: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                                NetworkResponse networkResponse = error.networkResponse;
+                                if (networkResponse != null && networkResponse.data != null) {
+                                    String errorMessage = new String(networkResponse.data, StandardCharsets.UTF_8);
+                                    try {
+                                        JSONObject errorJson = new JSONObject(errorMessage);
+                                        String message = errorJson.getString("message");
+                                        erroLogin.setText(message);
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                        erroLogin.setText("Erro de autenticação");
+                                    }
+                                } else {
+                                    erroLogin.setText("Erro código 10. Contate o suporte");
+                                }
                             }
                         }
                 );

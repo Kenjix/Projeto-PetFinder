@@ -7,31 +7,21 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
-{
-    
+{    
     public function login(Request $request)
     {
-        // Validar os dados recebidos na requisição
-        $validatedData = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
+        $credenciais = $request->only('email', 'password');
 
-        // Obter os dados do objeto JSON enviado
-        $email = $validatedData['email'];
-        $password = $validatedData['password'];
-
-        // Tentar autenticar o usuário
-        if (Auth::attempt(['email' => $email, 'password' => $password])) {
-            // Autenticação bem-sucedida             
-            $token = $request->user()->createToken($request->token_name);
-
-            // Retornar uma resposta com o token de autenticação
-            return response()->json(['token' => $token], 200);
+        if (Auth::attempt($credenciais)) {
+            // Autenticação bem-sucedida
+            $user = Auth::user(); // Obter o usuário autenticado
+            return response()->json([
+                'user' => $user,
+                'resultado' => 0
+            ], 200);
         } else {
             // Autenticação falhou
             return response()->json(['message' => 'Credenciais inválidas'], 401);
         }
-        return response()->json(['message' => 'Credenciais inválidas'], 401);
     }
 }
