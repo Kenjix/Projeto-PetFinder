@@ -16,4 +16,4 @@ Os protótipos de tela foram desenvolvidos no Figma:
 - Lucas Schaefer
 
 ### Professor Avaliador:
-- Guilherme Kurtz Chagas
+- Guilherme Chagas Kurtz
