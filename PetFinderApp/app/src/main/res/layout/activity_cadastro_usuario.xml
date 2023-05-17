@@ -169,7 +169,7 @@
                 android:inputType="textPassword"
                 android:padding="16dp" />
 
-            <TextView
+            <CheckBox
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -178,7 +178,13 @@
                 android:text="Termos e Condições"
                 android:textColor="#0000FF"
                 android:gravity="center"/>
-
+            <TextView
+                android:id="@+id/erroCadastro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="#EDFF0000"
+                android:textStyle="bold"/>
             <Button
                 android:id="@+id/buttonCadastro"
                 android:layout_width="match_parent"
