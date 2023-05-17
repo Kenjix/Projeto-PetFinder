@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/card_view_bg"
-    app:cardBackgroundColor="#D9D9D9">
+    app:cardBackgroundColor="#F0F0F0">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -44,7 +44,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="10dp"
                                     android:layout_marginRight="10dp"
-                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginLeft="30dp"
                                     android:text="Orelhuro"
                                     android:textColor="@color/black"
                                     android:textSize="22sp"
@@ -71,16 +71,16 @@
                                     android:id="@+id/buttoEditar"
                                     android:layout_width="50dp"
                                     android:layout_height="50dp"
-                                    android:layout_marginRight="20dp"
-                                    android:background="#D9D9D9"
+                                    android:layout_marginRight="10dp"
+                                    android:background="#F0F0F0"
                                     app:srcCompat="@drawable/edit_note"
                                     android:contentDescription="Editar"/>
                                 <ImageButton
                                     android:id="@+id/buttonExcluir"
                                     android:layout_width="50dp"
                                     android:layout_height="50dp"
-                                    android:layout_marginRight="20dp"
-                                    android:background="#D9D9D9"
+                                    android:layout_marginRight="10dp"
+                                    android:background="#F0F0F0"
                                     app:srcCompat="@drawable/delete_forever"
                                     android:contentDescription="Excluir"/>
                             </LinearLayout>

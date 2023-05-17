@@ -84,7 +84,8 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="#4C5C43"
                 android:layout_marginTop="40dp"
-                android:text="Enviar" />
+                android:text="Enviar"
+                android:textColor="@color/white"/>
 
             <TextView
                 android:layout_width="100dp"
