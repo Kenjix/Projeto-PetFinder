@@ -1,14 +1,241 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="#D0E4CD"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".CriarPublicacaoFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardCornerRadius="20dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:gravity="center">
 
-</FrameLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="20dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Adicione uma foto"
+                    android:layout_gravity="left"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
+
+                <ImageView
+                    android:id="@+id/imagePet"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:src="@drawable/baseline_image_search" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/buttonAddFoto"
+                        android:layout_width="100dp"
+                        android:textSize="11sp"
+                        android:layout_height="wrap_content"
+                        android:text="adicionar"/>
+
+                    <Button
+                        android:id="@+id/buttonRemoveFoto"
+                        android:layout_width="100dp"
+                        android:textSize="11sp"
+                        android:layout_height="wrap_content"
+                        android:text="Remover"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nome"
+                android:layout_gravity="left"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
+            <EditText
+                android:id="@+id/editTextNome"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="Insira o nome do seu pet"
+                android:layout_marginBottom="12dp"
+                android:inputType="text"
+                android:background="#F5F5F5"
+                android:textSize="16sp"
+                android:padding="8dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Selecione o porte"
+                android:layout_gravity="left"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
+            <Spinner
+                android:id="@+id/spinnerPorte"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginBottom="12dp"
+                android:background="#F5F5F5"
+                android:textSize="16sp"
+                android:padding="8dp"
+                android:contentDescription="Selecione o porte"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Idade"
+                android:layout_gravity="left"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
+            <EditText
+                android:id="@+id/editTextIdade"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="Insira a idade do seu pet"
+                android:layout_marginBottom="12dp"
+                android:inputType="textAutoComplete"
+                android:background="#F5F5F5"
+                android:textSize="16sp"
+                android:padding="8dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Vacinas"
+                android:layout_gravity="left"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
+            <TextView
+                android:id="@+id/textVacinas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Informe as vacinas que o seu Pet possui..."
+                android:gravity="start"
+                android:textSize="16sp"
+                android:padding="8dp"
+                android:background="#F5F5F5"
+                android:scrollbars="vertical"
+                android:maxLines="3"
+                android:layout_marginBottom="12dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Castrado"
+                android:layout_gravity="left"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
+            <Spinner
+                android:id="@+id/spinnerCastrado"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginBottom="12dp"
+                android:background="#F5F5F5"
+                android:textSize="16sp"
+                android:padding="8dp"
+                android:contentDescription="Selecione a opção"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gênero"
+                android:layout_gravity="left"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
+            <Spinner
+                android:id="@+id/spinnerGenero"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginBottom="12dp"
+                android:background="#F5F5F5"
+                android:textSize="16sp"
+                android:padding="8dp"
+                android:contentDescription="Selecione o gênero"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tipo"
+                android:layout_gravity="left"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
+            <Spinner
+                android:id="@+id/spinnerTipo"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginBottom="12dp"
+                android:background="#F5F5F5"
+                android:textSize="16sp"
+                android:padding="8dp"
+                android:contentDescription="Selecione o tipo"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Descrição Comportamental"
+                android:layout_gravity="left"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
+            <TextView
+                android:id="@+id/textDescricao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Descreva o comportamento do seu Pet"
+                android:gravity="start"
+                android:textSize="16sp"
+                android:padding="8dp"
+                android:background="#F5F5F5"
+                android:scrollbars="vertical"
+                android:maxLines="3"
+                android:layout_marginBottom="12dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:paddingBottom="20dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/buttonCancelar"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:text="Cancelar" />
+                <Button
+                    android:id="@+id/buttonCadastrar"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:text="Cadastrar" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</ScrollView>
