@@ -31,13 +31,13 @@ class UserController extends Controller
             return response()->json(['errors'=>$validaDados->errors()], 422);
         }
 
-    $user = User::create([
-        'name' => $validaDados['name'],
-        'email' => $validaDados['email'],
-        'password' => bcrypt($validaDados['password']),
-        'dataNasc' => $validaDados['dataNasc'],
-        'genero' => $validaDados['genero'],
-        'telefone' => $validaDados['telefone'],
+    $user = User::create([        
+        'name' => $request->input('name'),
+        'email' => $request->input('email'),
+        'password' => $request->input('password'),
+        'dataNasc' => $request->input('dataNasc'),
+        'genero' => $request->input('genero'),
+        'telefone' => $request->input('telefone'),
     ]);
     if ($user) {
         return response()->json(['message' => 'Usuário cadastrado com sucesso'], 200);

@@ -26,7 +26,16 @@ public class Usuario {
         this.nivelAcesso = nivelAcesso;
         this.tentativasAcesso = tentativasAcesso;
     }
-
+    public Usuario(int id, String name, String email, String dataNasc, String genero, String telefone, int nivelAcesso, int tentativasAcesso) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.dataNasc = dataNasc;
+        this.genero = genero;
+        this.telefone = telefone;
+        this.nivelAcesso = nivelAcesso;
+        this.tentativasAcesso = tentativasAcesso;
+    }
     public Usuario(String name, String email, String password, String dataNasc, String genero, String telefone) {
         this.name = name;
         this.email = email;

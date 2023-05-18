@@ -17,8 +17,7 @@ class LoginController extends Controller
         if ($user && password_verify($credenciais['password'], $user->password)) {
             //autenticação bem-sucedida
             return response()->json([
-                'user' => $user,
-                'resultado' => 0
+                'user' => $user,                           
             ], 200);
         } else { //autenticação falhou
             // Buscar o usuário pelo email

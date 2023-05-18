@@ -3,6 +3,7 @@ package com.example.petfinderapp;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -69,7 +70,7 @@ public class Login extends AppCompatActivity {
                 JSONObject jsonObject = new JSONObject();
                 try {
                     jsonObject.put("email", username);
-                    jsonObject.put("senha", password);
+                    jsonObject.put("password", password);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -78,36 +79,26 @@ public class Login extends AppCompatActivity {
                             @Override
                             public void onResponse(JSONObject response) {
                                 try {
-                                    //int resultado = response.getInt("resultado");
                                     JSONObject userObject = response.getJSONObject("user");
-                                     /*int id = userObject.getInt("id");
-                                    String nome = userObject.getString("nome");
+                                    int id = userObject.getInt("id");
+                                    String nome = userObject.getString("name");
                                     String email = userObject.getString("email");
-                                    String password = userObject.getString("password");
                                     String dataNasc = userObject.getString("dataNasc");
                                     String genero = userObject.getString("genero");
                                     String telefone = userObject.getString("telefone");
-                                    String avatar = userObject.getString("avatar");
                                     int nivelAcesso = userObject.getInt("nivelAcesso");
                                     int tentativasAcesso = userObject.getInt("tentativasAcesso");
 
-                                    user = new Usuario(id, nome, email, password, dataNasc, genero, telefone, avatar, nivelAcesso, tentativasAcesso);
+                                    Usuario user = new Usuario(id, nome, email, dataNasc, genero, telefone, nivelAcesso, tentativasAcesso);
+                                    // Salva o nome do usuário em SharedPreferences
+                                    editor.putString("username", user.getName());
+                                    editor.putInt("nivelAcesso", user.getNivelAcesso());
+                                    editor.commit();
+                                    // Login bem-sucedido, redirecionar para a próxima tela
+                                    Intent intent = new Intent(Login.this, MainActivity.class);
+                                    startActivity(intent);
+                                    finish();
 
-
-                                   if (resultado == 0) {
-                                        //Salva o nome do usuário em SharedPreferences
-                                        editor.putString("username", user.getName());
-                                        editor.putInt("nivelAcesso", user.getNivelAcesso());
-                                        editor.commit();
-                                        // Login bem-sucedido, redirecionar para a próxima tela
-                                        Intent intent = new Intent(Login.this, MainActivity.class);
-                                        startActivity(intent);
-                                        finish();
-                                    } else if (resultado == 1) {
-                                        erroLogin.setText("Senha inválida");
-                                    } else if (resultado == 2) {
-                                        erroLogin.setText("Email não cadastrado");
-                                    }*/
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
@@ -117,6 +108,7 @@ public class Login extends AppCompatActivity {
                             @Override
                             public void onErrorResponse(VolleyError error) {
                                 NetworkResponse networkResponse = error.networkResponse;
+                                erroLogin.setText("Erro código 10. Contate o suporte");
                                 if (networkResponse != null && networkResponse.data != null) {
                                     String errorMessage = new String(networkResponse.data, StandardCharsets.UTF_8);
                                     try {
@@ -133,7 +125,7 @@ public class Login extends AppCompatActivity {
                             }
                         }
                 );
-                //adiciona a requisição à fila do Volley
+                // adiciona a requisição à fila do Volley
                 RequestQueue fila = Volley.newRequestQueue(this);
                 fila.add(request);
             }
