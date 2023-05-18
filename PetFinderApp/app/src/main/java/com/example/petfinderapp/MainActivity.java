@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         preferences = getSharedPreferences("sessao", MODE_PRIVATE);
         String username = preferences.getString("username", "");
-        int nivelAcesso = preferences.getInt("nivelAcesso", 1);
+        int nivelAcesso = preferences.getInt("nivelAcesso", 0);
         View headerView = navigationView.getHeaderView(0);
         userSession = headerView.findViewById(R.id.userSession);
 
@@ -111,14 +111,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DoacoesFragment()).commit();
                 break;
             case R.id.nav_logout:
-                SharedPreferences sharedPreferences = getSharedPreferences("sessao", MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.remove("loginUser");
-                editor.remove("senhaShared");
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.remove("username");
+                editor.remove("nivelAcesso");
                 editor.commit();
-                Intent intent = new Intent(MainActivity.this, Login.class);
-                startActivity(intent);
                 finish();
+                startActivity(getIntent());
                 break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);

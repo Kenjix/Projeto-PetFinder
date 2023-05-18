@@ -14,11 +14,10 @@ public class Usuario {
     private int nivelAcesso;
     private int tentativasAcesso;
 
-    public Usuario(int id, String name, String email, String password, String dataNasc, String genero, String telefone, String avatar, int nivelAcesso, int tentativasAcesso) {
+    public Usuario(int id, String name, String email, String dataNasc, String genero, String telefone, String avatar, int nivelAcesso, int tentativasAcesso) {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.password = password;
         this.dataNasc = dataNasc;
         this.genero = genero;
         this.telefone = telefone;

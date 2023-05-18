@@ -3,13 +3,11 @@ package com.example.petfinderapp;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -26,14 +24,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.nio.charset.StandardCharsets;
-import java.util.Date;
 
 public class Login extends AppCompatActivity {
     private EditText editUser, editPassword;
     private TextView erroLogin;
     private Button buttonLogin;
-    private String url = "http://192.168.100.6:80/api/login";
-    private Usuario user;
+    private final String url = "http://192.168.100.6:80/api/login";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,11 +82,12 @@ public class Login extends AppCompatActivity {
                                     String dataNasc = userObject.getString("dataNasc");
                                     String genero = userObject.getString("genero");
                                     String telefone = userObject.getString("telefone");
+                                    String avatar = userObject.getString("avatar");
                                     int nivelAcesso = userObject.getInt("nivelAcesso");
                                     int tentativasAcesso = userObject.getInt("tentativasAcesso");
 
-                                    Usuario user = new Usuario(id, nome, email, dataNasc, genero, telefone, nivelAcesso, tentativasAcesso);
-                                    // Salva o nome do usuário em SharedPreferences
+                                    Usuario user = new Usuario(id, nome, email, dataNasc, genero, telefone, avatar, nivelAcesso, tentativasAcesso);
+                                    //salva sessao do usuário em SharedPreferences
                                     editor.putString("username", user.getName());
                                     editor.putInt("nivelAcesso", user.getNivelAcesso());
                                     editor.commit();

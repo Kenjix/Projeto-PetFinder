@@ -1,12 +1,13 @@
 package com.example.petfinderapp;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -22,11 +23,12 @@ import org.json.JSONObject;
 
 public class CadastroUsuario extends AppCompatActivity {
 
+    private final String url = "http://192.168.100.6:8000/api/cadastro";
     private EditText editNome, editEmail, editDataNasc, editCelular, editSenha, editRepitaSenha;
     private RadioButton radioButtonMasc, radioButtonFem, radioButtonOutros;
     private Button buttonCadastro, ok_button;
     private TextView msgCadastro;
-    private String url = "http://192.168.100.6:8000/api/cadastro";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,15 +56,15 @@ public class CadastroUsuario extends AppCompatActivity {
             if (nome.isEmpty()) {
                 editNome.setError("Campo obrigatório!");
                 return;
-            } else if(email.isEmpty()){
+            } else if (email.isEmpty()) {
                 editEmail.setError("Campo obrigatório!");
                 return;
-            } else if(senha.isEmpty()){
+            } else if (senha.isEmpty()) {
                 editSenha.setError("Campo obrigatório!");
-            } else if(repeteSenha.isEmpty()){
+            } else if (repeteSenha.isEmpty()) {
                 editRepitaSenha.setError("Campo obrigatório!");
             }
-            if(validaSenha(senha, repeteSenha)){
+            if (validaSenha(senha, repeteSenha)) {
                 JSONObject jsonObject = new JSONObject();
                 Usuario user = new Usuario(nome, email, senha, dataNasc, genero, telefone);
                 try {
@@ -99,17 +101,18 @@ public class CadastroUsuario extends AppCompatActivity {
                 //adiciona a requisição à fila do Volley
                 RequestQueue fila = Volley.newRequestQueue(this);
                 fila.add(request);
+            } else {
+                msgCadastro.setText("A senha não confere");
             }
         });
     }
 
 
-    private boolean validaSenha(String senha1, String senha2){
-        if(senha1.equals(senha2)){
+    private boolean validaSenha(String senha1, String senha2) {
+        if (senha1.equals(senha2)) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
-
 }
