@@ -100,7 +100,7 @@
                 android:background="#F5F5F5"
                 android:textSize="16sp"
                 android:padding="8dp"
-                android:contentDescription="Selecione o porte"/>
+                android:contentDescription="porte"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -129,11 +129,11 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:textColor="@color/black"/>
-            <TextView
-                android:id="@+id/textVacinas"
+            <EditText
+                android:id="@+id/editTextVacinas"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Informe as vacinas que o seu Pet possui..."
+                android:layout_height="94dp"
+                android:hint="Informe as vacinas que o seu Pet possui..."
                 android:gravity="start"
                 android:textSize="16sp"
                 android:padding="8dp"
@@ -158,7 +158,7 @@
                 android:background="#F5F5F5"
                 android:textSize="16sp"
                 android:padding="8dp"
-                android:contentDescription="Selecione a opção"/>
+                android:contentDescription="castrado"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -176,7 +176,7 @@
                 android:background="#F5F5F5"
                 android:textSize="16sp"
                 android:padding="8dp"
-                android:contentDescription="Selecione o gênero"/>
+                android:contentDescription="genero"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -204,17 +204,17 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:textColor="@color/black"/>
-            <TextView
-                android:id="@+id/textDescricao"
+            <EditText
+                android:id="@+id/editTextDescricao"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Descreva o comportamento do seu Pet"
+                android:layout_height="134dp"
+                android:hint="Descreva o comportamento do seu Pet"
                 android:gravity="start"
                 android:textSize="16sp"
                 android:padding="8dp"
                 android:background="#F5F5F5"
                 android:scrollbars="vertical"
-                android:maxLines="3"
+                android:maxLines="4"
                 android:layout_marginBottom="12dp"/>
 
             <LinearLayout

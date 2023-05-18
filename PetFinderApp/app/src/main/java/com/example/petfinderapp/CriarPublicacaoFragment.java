@@ -18,8 +18,7 @@ public class CriarPublicacaoFragment extends Fragment {
 
     //Spinner é o ComboBox
     Spinner spinnerPorte, spinnerCastrado, spinnerTipo, spinnerGenero;
-    private EditText editTextNome, editTextIdade;
-    private TextView textVacinas, textDescricao;
+    private EditText editTextNome, editTextIdade, editTextVacinas, editTextDescricao;
     private ImageView imagePet;
     private Button buttonAddFoto, buttonRemoveFoto, buttonCancelar, buttonCadastrar;
     public CriarPublicacaoFragment() {
@@ -50,8 +49,8 @@ public class CriarPublicacaoFragment extends Fragment {
 
         editTextNome = view.findViewById(R.id.editTextNome);
         editTextIdade = view.findViewById(R.id.editTextIdade);
-        textVacinas = view.findViewById(R.id.textVacinas);
-        textDescricao = view.findViewById(R.id.textDescricao);
+        editTextVacinas = view.findViewById(R.id.editTextVacinas);
+        editTextDescricao = view.findViewById(R.id.editTextDescricao);
 
         imagePet = view.findViewById(R.id.imagePet);
         buttonAddFoto = view.findViewById(R.id.buttonAddFoto);
@@ -72,13 +71,13 @@ public class CriarPublicacaoFragment extends Fragment {
 
         ArrayAdapter<CharSequence> generoAdapter = ArrayAdapter.createFromResource(requireContext(),
                 R.array.generoPet, android.R.layout.simple_spinner_item);
-        porteAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerPorte.setAdapter(generoAdapter);
+        generoAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerGenero.setAdapter(generoAdapter);
 
         ArrayAdapter<CharSequence> castradoAdapter = ArrayAdapter.createFromResource(requireContext(),
                 R.array.castradoPet, android.R.layout.simple_spinner_item);
-        tipoAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerTipo.setAdapter(castradoAdapter);
+        castradoAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerCastrado.setAdapter(castradoAdapter);
 
         return view;
     }
