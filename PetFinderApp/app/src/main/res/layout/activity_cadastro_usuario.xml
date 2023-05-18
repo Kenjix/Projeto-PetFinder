@@ -33,13 +33,6 @@
         android:fontFamily="@font/inspiration_regular"
         android:textSize="55sp"
         android:textColor="@color/black" />
-    <TextView
-        android:id="@+id/erroLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textColor="#FF0000"
-        android:textStyle="bold" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -179,7 +172,7 @@
                 android:textColor="#0000FF"
                 android:gravity="center"/>
             <TextView
-                android:id="@+id/erroCadastro"
+                android:id="@+id/msgCadastro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""

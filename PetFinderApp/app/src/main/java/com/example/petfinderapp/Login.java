@@ -25,12 +25,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Date;
 
 public class Login extends AppCompatActivity {
     private EditText editUser, editPassword;
     private TextView erroLogin;
     private Button buttonLogin;
     private String url = "http://192.168.100.6:80/api/login";
+    private Usuario user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,17 +80,23 @@ public class Login extends AppCompatActivity {
                                 try {
                                     int resultado = response.getInt("resultado");
                                     JSONObject userObject = response.getJSONObject("user");
+                                    int id = userObject.getInt("id");
                                     String nome = userObject.getString("nome");
                                     String email = userObject.getString("email");
                                     String password = userObject.getString("password");
+                                    String dataNasc = userObject.getString("dataNasc");
+                                    String genero = userObject.getString("genero");
+                                    String telefone = userObject.getString("telefone");
+                                    String avatar = userObject.getString("avatar");
                                     int nivelAcesso = userObject.getInt("nivelAcesso");
+                                    int tentativasAcesso = userObject.getInt("tentativasAcesso");
 
-                                    Usuario user = new Usuario(nome, email, password, nivelAcesso);
+                                    user = new Usuario(id, nome, email, password, dataNasc, genero, telefone, avatar, nivelAcesso, tentativasAcesso);
 
 
                                     if (resultado == 0) {
                                         //Salva o nome do usuário em SharedPreferences
-                                        editor.putString("username", user.getNome());
+                                        editor.putString("username", user.getName());
                                         editor.putInt("nivelAcesso", user.getNivelAcesso());
                                         editor.commit();
                                         // Login bem-sucedido, redirecionar para a próxima tela
