@@ -9,12 +9,25 @@
     android:background="#D0E4CD">
 
 
-    <SearchView
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="@drawable/search_view_bg"
+        app:queryHint="Buscar..."
+        app:iconifiedByDefault="false">
+
+    </androidx.appcompat.widget.SearchView>
+    <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
-
-
-    </SearchView>
+        android:layout_height="wrap_content"
+        android:text="Busca personalizada"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:textSize="18sp"/>
     <!--TextView é o Espécie e Dentro do linear os checkbox-->
     <TextView
         android:layout_width="wrap_content"
