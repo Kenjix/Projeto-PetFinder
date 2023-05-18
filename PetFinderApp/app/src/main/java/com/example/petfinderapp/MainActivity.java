@@ -67,20 +67,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         }
-
-
-
-    /*
-        ISSO SE NÃO ME ENGANO É PRA MOSTRAR O NOME DO USUARIO QUE VEM DO BANCO DE DADOS PELO PHP,
-        NO CABEÇALHO DO MENU LATERAL, NÃO TENHO CERTEZA
-        View headerView = navigationView.getHeaderView(0);
-        TextView userSession = headerView.findViewById(R.id.userSession);
-
-        NÃO SERA USADO AGORA
-        SharedPreferences sharedPreferences = getSharedPreferences("sessao", MODE_PRIVATE);
-        String nome = sharedPreferences.getString("nome", "");
-        userSession.setText(nome);
-    */
     }
 
     @Override
