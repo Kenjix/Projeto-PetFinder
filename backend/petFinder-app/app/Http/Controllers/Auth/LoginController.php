@@ -13,29 +13,35 @@ class LoginController extends Controller
         $credenciais = $request->only('email', 'password');
 
         if (Auth::once($credenciais)) {
-            //autenticação bem-sucedida
+            // Autenticação bem-sucedida
             $user = Auth::user();
-            if ($user->ativo == 0) {
-                return response()->json(['message' => 'Usuário bloquado. Redefina a senha.'], 401);
-            } else{
+            
+            if ($user->ativo == 0 || $user->tentativasAcesso >= 5) {
+                return response()->json(['message' => 'Usuário bloqueado. Redefina a senha.'], 401);
+            } else {
+                $user = User::where('email', $credenciais['email'])->first();
+                $user->tentativasAcesso = 0;
+                $user->save();
                 return response()->json([
-                    'user' => $user,                           
+                    'user' => $user,
                 ], 200);
             }
-        } else { //autenticação falhou
+        } else { // Autenticação falhou
             // Buscar o usuário pelo email
-            $email = $credenciais['email'];
-            $user = User::where('email', $email)->first();
+            $user = User::where('email', $credenciais['email'])->first();
             if ($user && $user->ativo == 1) {
-                // Incrementar o número de tentativas de acesso
+                //incrementa o número de tentativas de acesso
                 $user->tentativasAcesso++;
                 $user->save();
-                return response()->json(['message' => 'Credenciais inválidas. Tentaivas de acesso restantes: '. $user->tentativasAcesso], 401);
+                if ($user->tentativasAcesso >= 5) {
+                    return response()->json(['message' => 'Tentativas de acesso excedidas. Usuário bloqueado.'], 401);
+                }
+                return response()->json(['message' => 'Credenciais inválidas. Tentativas de acesso restantes: '. (5 - $user->tentativasAcesso)], 401);
             } else {
-                return response()->json(['message' => 'Usuário bloquado. Redefina a senha.'], 401);
+                return response()->json(['message' => 'Credenciais inválidas.'], 401);
             }
-            return response()->json(['message' => 'Credenciais inválidas'], 401);
         }
     }
 }
+
 ?>
