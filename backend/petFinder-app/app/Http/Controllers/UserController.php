@@ -18,8 +18,13 @@ class UserController extends Controller
             'genero' => 'string',
             'telefone' => 'string'           
         ],
-        [
+        [   
+            "name.required" => "O nome é obrigatório",        
+            "email" => "Email inválido",
             "email.unique" => "Email já cadastrado",
+            "email.required" => "O email é obrigatório",
+            "password.required" => "A senha é obrigatória",
+            "password.min" => "A senha não atende os requisitos minimos",
         ]);
 
         if ($validaDados->fails()) {  
