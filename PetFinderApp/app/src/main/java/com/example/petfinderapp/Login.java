@@ -78,9 +78,9 @@ public class Login extends AppCompatActivity {
                             @Override
                             public void onResponse(JSONObject response) {
                                 try {
-                                    int resultado = response.getInt("resultado");
+                                    //int resultado = response.getInt("resultado");
                                     JSONObject userObject = response.getJSONObject("user");
-                                    int id = userObject.getInt("id");
+                                     /*int id = userObject.getInt("id");
                                     String nome = userObject.getString("nome");
                                     String email = userObject.getString("email");
                                     String password = userObject.getString("password");
@@ -94,7 +94,7 @@ public class Login extends AppCompatActivity {
                                     user = new Usuario(id, nome, email, password, dataNasc, genero, telefone, avatar, nivelAcesso, tentativasAcesso);
 
 
-                                    if (resultado == 0) {
+                                   if (resultado == 0) {
                                         //Salva o nome do usuário em SharedPreferences
                                         editor.putString("username", user.getName());
                                         editor.putInt("nivelAcesso", user.getNivelAcesso());
@@ -107,7 +107,7 @@ public class Login extends AppCompatActivity {
                                         erroLogin.setText("Senha inválida");
                                     } else if (resultado == 2) {
                                         erroLogin.setText("Email não cadastrado");
-                                    }
+                                    }*/
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }

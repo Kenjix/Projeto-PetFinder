@@ -12,18 +12,17 @@ class LoginController extends Controller
     {
         $credenciais = $request->only('email', 'password');
 
-        if (Auth::attempt($credenciais)) {
+        $user = User::where('email', $credenciais['email'])->first();
+
+        if ($user && password_verify($credenciais['password'], $user->password)) {
             //autenticação bem-sucedida
-            $user = Auth::user(); // Obter o usuário autenticado
             return response()->json([
                 'user' => $user,
                 'resultado' => 0
             ], 200);
-        } else {
-            //autenticação falhou
-            $email = $request->input('email');
-
+        } else { //autenticação falhou
             // Buscar o usuário pelo email
+            $email = $request->input('email');
             $user = User::where('email', $email)->first();
 
             if ($user) {
