@@ -2,7 +2,7 @@ package com.example.petfinderapp.model;
 
 public class Publicacao {
 
-    private long id;
+    private int id;
     private String descricao;
     private String nomePet;
     private String genero;
@@ -11,9 +11,10 @@ public class Publicacao {
     private int idade;
     private String vacinas;
     private String Castrado;
+    private String imagem;
     private int userId;
 
-    public Publicacao(long id, String descricao, String nomePet, String genero, String tipo, String porte, int idade, String vacinas, String castrado, int userId) {
+    public Publicacao(int id, String descricao, String nomePet, String genero, String tipo, String porte, int idade, String vacinas, String castrado, int userId) {
         this.id = id;
         this.descricao = descricao;
         this.nomePet = nomePet;
@@ -26,20 +27,21 @@ public class Publicacao {
         this.userId = userId;
     }
 
-    public Publicacao(String nomePet, String porte, int idade, String vacinas, String castrado, String genero, String tipo, String descricao, int userId) {
-
+    public Publicacao(int id, String descricao, String nomePet, String genero, String tipo, String porte, int idade, String vacinas, String castrado, String imagem, int userId) {
+        this.id = id;
+        this.descricao = descricao;
         this.nomePet = nomePet;
+        this.genero = genero;
+        this.tipo = tipo;
         this.porte = porte;
         this.idade = idade;
         this.vacinas = vacinas;
         Castrado = castrado;
-        this.genero = genero;
-        this.tipo = tipo;
-        this.descricao = descricao;
+        this.imagem = imagem;
         this.userId = userId;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
@@ -67,11 +69,16 @@ public class Publicacao {
         return idade;
     }
 
+    public String getVacinas() {
+        return vacinas;
+    }
+
     public String getCastrado() {
         return Castrado;
     }
-    public String getVacinas() {
-        return vacinas;
+
+    public String getImagem() {
+        return imagem;
     }
 
     public int getUserId() {

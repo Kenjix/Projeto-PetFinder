@@ -5,11 +5,14 @@ import static android.content.Context.MODE_PRIVATE;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,10 +37,12 @@ import com.example.petfinderapp.model.Usuario;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+
 
 public class CriarPublicacaoFragment extends Fragment {
 
-    private final String url = "http://192.168.100.6:8000/api/cadastroPublicacao";
+    private final String url = "http://192.168.0.115:8000/api/cadastroPublicacao";
     private Activity mActivity;
 
     //Spinner é o ComboBox
@@ -99,7 +104,64 @@ public class CriarPublicacaoFragment extends Fragment {
         spinnerCastrado.setAdapter(castradoAdapter);
 
         Button buttonCadastrar = view.findViewById(R.id.buttonCadastrar);
-        buttonCadastrar.setOnClickListener(new View.OnClickListener() {
+
+        buttonCadastrar.setOnClickListener(view ->{
+            //Pega os valores digitados nos campos de texto do XML
+            String nomePet = editTextNome.getText().toString();
+            String porte = spinnerPorte.getSelectedItem().toString();
+            int idade = Integer.parseInt(editTextIdade.getText().toString());
+            String vacinas = editTextVacinas.getText().toString();
+            String castrado = spinnerCastrado.getSelectedItem().toString();
+            String genero = spinnerGenero.getSelectedItem().toString();
+            String tipo = spinnerTipo.getSelectedItem().toString();
+            String descricao = editTextDescricao.getText().toString();
+
+            if (nomePet.isEmpty()) {
+                editTextNome.setError("Campo obrigatório!");
+                return;
+            }
+            //......
+            //VER O QUE É NECESSARIO VALIDAR
+
+            JSONObject jsonObject = new JSONObject();
+            int imagemStatus = Integer.parseInt(imagePet.getTag().toString());
+            if (imagemStatus == 1){
+                Publicacao publicacao = new Publicacao(0, String descricao, String nomePet, String genero, String tipo, String porte, int idade, String vacinas, String castrado, idUsuario);
+                try {
+                    jsonObject.put("descricao", publicacao.getDescricao());
+                    jsonObject.put("nomePet", publicacao.getNomePet());
+                    jsonObject.put("genero", publicacao.getGenero());
+                    jsonObject.put("tipo", publicacao.getTipo());
+                    jsonObject.put("porte", publicacao.getPorte());
+                    jsonObject.put("idade", publicacao.getIdade());
+                    jsonObject.put("vacinas", publicacao.getVacinas());
+                    jsonObject.put("castrado", publicacao.getCastrado());
+                } catch (JSONException e){
+                    e.printStackTrace();
+                }
+            } else {
+                Bitmap bitmap = ((BitmapDrawable) imagePet.getDrawable()).getBitmap();
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+                byte[] byteArray = byteArrayOutputStream.toByteArray();
+                String encodeImage = Base64.encodeToString(byteArray, Base64.DEFAULT);
+                Publicacao publicacao = new Publicacao(0, String descricao, String nomePet, String genero, String tipo, String porte, int idade, String vacinas, String castrado, String imagem, idUsuario);
+                try {
+                    jsonObject.put("descricao", publicacao.getDescricao());
+                    jsonObject.put("nomePet", publicacao.getNomePet());
+                    jsonObject.put("genero", publicacao.getGenero());
+                    jsonObject.put("tipo", publicacao.getTipo());
+                    jsonObject.put("porte", publicacao.getPorte());
+                    jsonObject.put("idade", publicacao.getIdade());
+                    jsonObject.put("vacinas", publicacao.getVacinas());
+                    jsonObject.put("castrado", publicacao.getCastrado());
+                    jsonObject.put("imagem", publicacao.getImagem());
+                } catch (JSONException e){
+                    e.printStackTrace();
+                }
+            }
+        });
+        /*buttonCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Pega os valores digitados nos campos de texto do XML
@@ -157,7 +219,7 @@ public class CriarPublicacaoFragment extends Fragment {
                         }
                 );
             }
-        });
+        });*/
 
         return view;
     }
