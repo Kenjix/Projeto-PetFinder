@@ -86,7 +86,7 @@
                 android:ems="10"
                 android:hint="Data de Nascimento"
                 android:layout_marginTop="25dp"
-                android:inputType="none"
+                android:inputType="date"
                 android:padding="16dp"/>
             <EditText
                 android:id="@+id/editCelular"
