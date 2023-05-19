@@ -17,8 +17,11 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.petfinderapp.model.Usuario;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
 
 
 public class CadastroUsuario extends AppCompatActivity {
@@ -71,9 +74,9 @@ public class CadastroUsuario extends AppCompatActivity {
                     jsonObject.put("name", user.getName());
                     jsonObject.put("email", user.getEmail());
                     jsonObject.put("password", user.getPassword());
-                    jsonObject.put("dataNasc", user.getDataNasc());
+                    /*jsonObject.put("dataNasc", user.getDataNasc());
                     jsonObject.put("genero", user.getGenero());
-                    jsonObject.put("telefone", user.getTelefone());
+                    jsonObject.put("telefone", user.getTelefone());*/
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -82,19 +85,47 @@ public class CadastroUsuario extends AppCompatActivity {
                         new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {
-                                try {
-                                    msgCadastro.setText(response.getString("message"));
-                                    finish();
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
+
                             }
                         },
                         new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                                msgCadastro.setText("Erro:" + error.getMessage());
+                                //verifica o código de resposta do servidor
+                                if (error.networkResponse != null && error.networkResponse.statusCode != 200) {
+                                    try {
+                                        String responseBody = new String(error.networkResponse.data, "utf-8");
+                                        JSONObject responseJson = new JSONObject(responseBody);
+                                        //verifica se a resposta contém o objeto "errors"
+                                        if (responseJson.has("errors")) {
+                                            JSONObject errors = responseJson.getJSONObject("errors");
 
+                                            //verifica se a chave "email" existe nos erros
+                                            if (errors.has("email")) {
+                                                JSONArray emailErrors = errors.getJSONArray("email");
+                                                if (emailErrors.length() > 0) {
+                                                    String emailErrorMessage = emailErrors.getString(0);
+                                                    msgCadastro.setText(emailErrorMessage);
+                                                }
+                                            }
+
+                                            //verifica se a chave "password" existe nos erros
+                                            if (errors.has("password")) {
+                                                JSONArray passwordErrors = errors.getJSONArray("password");
+                                                if (passwordErrors.length() > 0) {
+                                                    String passwordErrorMessage = passwordErrors.getString(0);
+                                                    msgCadastro.setText(passwordErrorMessage);
+                                                }
+                                            }
+                                        }
+                                    } catch (UnsupportedEncodingException | JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                } else {
+                                    //outros erros
+
+                                    msgCadastro.setText("Erro: " + error.getMessage());
+                                }
                             }
                         }
                 );
@@ -106,7 +137,6 @@ public class CadastroUsuario extends AppCompatActivity {
             }
         });
     }
-
 
     private boolean validaSenha(String senha1, String senha2) {
         if (senha1.equals(senha2)) {

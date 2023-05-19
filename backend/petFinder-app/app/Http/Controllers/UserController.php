@@ -35,9 +35,9 @@ class UserController extends Controller
         'name' => $request->input('name'),
         'email' => $request->input('email'),
         'password' => $request->input('password'),
-        'dataNasc' => $request->input('dataNasc'),
+        /*'dataNasc' => $request->input('dataNasc'),
         'genero' => $request->input('genero'),
-        'telefone' => $request->input('telefone'),
+        'telefone' => $request->input('telefone'),*/
     ]);
     if ($user) {
         return response()->json(['message' => 'Usuário cadastrado com sucesso'], 200);
