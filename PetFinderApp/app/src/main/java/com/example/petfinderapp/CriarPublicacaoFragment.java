@@ -161,6 +161,7 @@ public class CriarPublicacaoFragment extends Fragment {
                     jsonObject.put("idade", publicacao.getIdade());
                     jsonObject.put("vacinas", publicacao.getVacinas());
                     jsonObject.put("castrado", publicacao.getCastrado());
+                    
                 } catch (JSONException e){
                     e.printStackTrace();
                 }
