@@ -88,6 +88,7 @@ public class Login extends AppCompatActivity {
                                     //salva sessao do usuário em SharedPreferences
                                     editor.putString("username", user.getName());
                                     editor.putInt("nivelAcesso", user.getNivelAcesso());
+                                    editor.putLong("idUsuario", user.getId());
                                     editor.commit();
                                     // Login bem-sucedido, redirecionar para a próxima tela
                                     Intent intent = new Intent(Login.this, MainActivity.class);
