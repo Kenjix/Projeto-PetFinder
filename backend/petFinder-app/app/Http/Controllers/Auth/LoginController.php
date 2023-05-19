@@ -13,21 +13,21 @@ class LoginController extends Controller
         $credenciais = $request->only('email', 'password');
 
         if (Auth::once($credenciais)) {
-            // Autenticação bem-sucedida
+            //autenticação bem-sucedida
             $user = Auth::user();
             
             if ($user->ativo == 0 || $user->tentativasAcesso >= 5) {
                 return response()->json(['message' => 'Usuário bloqueado. Redefina a senha.'], 401);
             } else {
-                $user = User::where('email', $credenciais['email'])->first();
+                /** @var \App\Models\User $user **/
                 $user->tentativasAcesso = 0;
                 $user->save();
                 return response()->json([
                     'user' => $user,
                 ], 200);
             }
-        } else { // Autenticação falhou
-            // Buscar o usuário pelo email
+        } else { //autenticação falhou
+            //busca o usuário pelo email
             $user = User::where('email', $credenciais['email'])->first();
             if ($user && $user->ativo == 1) {
                 //incrementa o número de tentativas de acesso
@@ -43,5 +43,4 @@ class LoginController extends Controller
         }
     }
 }
-
 ?>

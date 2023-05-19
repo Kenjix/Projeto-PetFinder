@@ -8,9 +8,8 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
-
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -19,17 +18,16 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.petfinderapp.model.Usuario;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.nio.charset.StandardCharsets;
+
 
 public class Login extends AppCompatActivity {
     private EditText editUser, editPassword;
     private TextView erroLogin;
     private Button buttonLogin;
-    private final String url = "http://192.168.0.115:8000/api/login";
+    private final String url = "http://192.168.100.6:80/api/login";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,9 +118,9 @@ public class Login extends AppCompatActivity {
                                     erroLogin.setText("Erro código 10. Contate o suporte");
                                 }
                             }
-                        }
-                );
-                // adiciona a requisição à fila do Volley
+                        });
+                request.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 0,
+                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
                 RequestQueue fila = Volley.newRequestQueue(this);
                 fila.add(request);
             }
