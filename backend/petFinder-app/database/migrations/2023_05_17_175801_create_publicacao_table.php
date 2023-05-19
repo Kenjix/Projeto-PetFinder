@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('publicacoes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('titulo', 60)->nullable(false);
-            $table->string('descricao', 150)->nullable(false);
             $table->string('nomePet', 60)->nullable(false);
-            $table->char('genero')->nullable(false);
-            $table->string('especie', 60)->nullable(false);
             $table->string('porte', 60)->nullable(false);
             $table->integer('idade');
             $table->string('vacinas', 255);
+            $table->string('castrado', 3)->nullable(false);
+            $table->char('genero')->nullable(false);
+            $table->string('especie', 60)->nullable(false);
+            $table->string('descricao', 255)->nullable(false);
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');      
             $table->timestamp('created_at')->nullable();
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('publicacao');
+        Schema::dropIfExists('publicacoes');
     }
 };
