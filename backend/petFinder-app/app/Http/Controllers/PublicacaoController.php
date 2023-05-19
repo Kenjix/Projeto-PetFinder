@@ -17,18 +17,24 @@ class PublicacaoController extends Controller
             'genero' => 'required|string',
             'especie' => 'required|string',
             'descricao' => 'string',
-            'user_id' => 'required|integer'         
+            'user_id' => 'required|integer',
+            //a imagem vem em formato de String do JAVA
+            'imagem' => 'required|string'         
         ],
         [   
             "nomePet.required" => "O nome é obrigatório",        
             "porte.required" => "O porte é obrigatório",
             "genero.required" => "O gênero é obrigatório",
             "especie.required" => "O tipo é obrigatório",
+            "imagem.required" => "A imagem é obrigatória",
+            "imagem.string" => "A imagem deve estar em formato de string"
         ]);
 
-        if ($validaDados->fails()) {  
-            return response()->json(['errors'=>$validaDados->errors()], 422);
+        if ($validaDados->fails()) {
+            return response()->json(['errors' => $validaDados->errors()], 422);
         }
+
+        $decodedImagem = base64_decode($request->input('imagem'));
 
         $publicacao = Publicacoes::create([        
             'nomePet' => $request->input('nomePet'),
@@ -39,13 +45,14 @@ class PublicacaoController extends Controller
             'genero' => $request->input('genero'),
             'especie' => $request->input('especie'),
             'descricao' => $request->input('descricao'),
-            'user_id'=>$request->input('user_id')
+            'user_id' => $request->input('user_id'),
+            'imagem' => $decodedImagem
         ]);
 
         if ($publicacao) {
             return response()->json(['message' => 'Publicação cadastrada com sucesso'], 200);
         }
 
-        return response()->json(['message' => 'Falha ao cadastrar a publicação'], 500);        
+        return response()->json(['message' => 'Falha ao cadastrar a publicação'], 500);
     }
 }
