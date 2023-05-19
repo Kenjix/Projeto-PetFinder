@@ -9,6 +9,8 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
@@ -23,6 +25,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -44,7 +47,7 @@ public class CriarPublicacaoFragment extends Fragment {
 
     private final String url = "http://192.168.0.115:8000/api/cadastroPublicacao";
     private Activity mActivity;
-
+    private ActivityResultLauncher<String> mGetContent;
     //Spinner é o ComboBox
     Spinner spinnerPorte, spinnerCastrado, spinnerTipo, spinnerGenero;
     private EditText editTextNome, editTextIdade, editTextVacinas, editTextDescricao;
@@ -105,7 +108,7 @@ public class CriarPublicacaoFragment extends Fragment {
 
         Button buttonCadastrar = view.findViewById(R.id.buttonCadastrar);
 
-        buttonCadastrar.setOnClickListener(view ->{
+        buttonCadastrar.setOnClickListener(clickView ->{
             //Pega os valores digitados nos campos de texto do XML
             String nomePet = editTextNome.getText().toString();
             String porte = spinnerPorte.getSelectedItem().toString();
@@ -124,9 +127,12 @@ public class CriarPublicacaoFragment extends Fragment {
             //VER O QUE É NECESSARIO VALIDAR
 
             JSONObject jsonObject = new JSONObject();
+
+            //A INSERCÃO DA IMAGEM DEVE DER OBRIGÁTORIA, POREM ESSE CÓDIGO É PRA CASO O USUARIO NÃO INSIRA (E TESTE NO BACKEND)
+            //DESATIVAR QUANDO ESTIVER TUDO CERTO
             int imagemStatus = Integer.parseInt(imagePet.getTag().toString());
             if (imagemStatus == 1){
-                Publicacao publicacao = new Publicacao(0, String descricao, String nomePet, String genero, String tipo, String porte, int idade, String vacinas, String castrado, idUsuario);
+                Publicacao publicacao = new Publicacao(0, descricao, nomePet, genero, tipo, porte, idade, vacinas, castrado, idUsuario);
                 try {
                     jsonObject.put("descricao", publicacao.getDescricao());
                     jsonObject.put("nomePet", publicacao.getNomePet());
@@ -145,7 +151,7 @@ public class CriarPublicacaoFragment extends Fragment {
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
                 byte[] byteArray = byteArrayOutputStream.toByteArray();
                 String encodeImage = Base64.encodeToString(byteArray, Base64.DEFAULT);
-                Publicacao publicacao = new Publicacao(0, String descricao, String nomePet, String genero, String tipo, String porte, int idade, String vacinas, String castrado, String imagem, idUsuario);
+                Publicacao publicacao = new Publicacao(0, descricao, nomePet, genero, tipo, porte, idade, vacinas, castrado, encodeImage, idUsuario);
                 try {
                     jsonObject.put("descricao", publicacao.getDescricao());
                     jsonObject.put("nomePet", publicacao.getNomePet());
@@ -155,72 +161,50 @@ public class CriarPublicacaoFragment extends Fragment {
                     jsonObject.put("idade", publicacao.getIdade());
                     jsonObject.put("vacinas", publicacao.getVacinas());
                     jsonObject.put("castrado", publicacao.getCastrado());
-                    jsonObject.put("imagem", publicacao.getImagem());
                 } catch (JSONException e){
                     e.printStackTrace();
                 }
             }
-        });
-        /*buttonCadastrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Pega os valores digitados nos campos de texto do XML
-                String nomePet = editTextNome.getText().toString();
-                String porte = spinnerPorte.getSelectedItem().toString();
-                int idade = Integer.parseInt(editTextIdade.getText().toString());
-                String vacinas = editTextVacinas.getText().toString();
-                String castrado = spinnerCastrado.getSelectedItem().toString();
-                String genero = spinnerGenero.getSelectedItem().toString();
-                String tipo = spinnerTipo.getSelectedItem().toString();
-                String descricao = editTextDescricao.getText().toString();
 
-                if (nomePet.isEmpty()) {
-                    editTextNome.setError("Campo obrigatório!");
-                    return;
-                }
-                //......
-                //VER O QUE É NECESSARIO VALIDAR
-
-                JSONObject jsonObject = new JSONObject();
-                Publicacao publicacao = new Publicacao(nomePet, porte, idade, vacinas, castrado, genero, tipo, descricao, idUsuario);
-                try {
-                    jsonObject.put("nomePet", publicacao.getNomePet());
-                    jsonObject.put("porte", publicacao.getPorte());
-                    jsonObject.put("idade", publicacao.getIdade());
-                    jsonObject.put("vacinas", publicacao.getVacinas());
-                    jsonObject.put("castrado", publicacao.getCastrado());
-                    jsonObject.put("genero", publicacao.getGenero());
-                    jsonObject.put("tipo", publicacao.getTipo());
-                    jsonObject.put("descricao", publicacao.getDescricao());
-                    jsonObject.put("userId", idUsuario);
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-                JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, jsonObject,
-                        new Response.Listener<JSONObject>() {
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                try {
-                                    msgCadastro.setText(response.getString("message"));
-                                    mActivity.finish();
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        },
-                        new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                msgCadastro.setText("Erro:" + error.getMessage());
-
+            JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, jsonObject,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                Toast.makeText(getContext(), response.getString("resultado"), Toast.LENGTH_SHORT).show();
+                            } catch (JSONException e) {
+                                e.printStackTrace();
                             }
                         }
-                );
-            }
-        });*/
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
 
+                        }
+                    }
+            );
+            RequestQueue fila = Volley.newRequestQueue(getContext());
+            fila.add(request);
+        });
+
+        mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(), uri -> {
+            imagePet.setImageURI(uri);
+        });
+
+
+        buttonAddFoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mGetContent.launch("image/*");
+                imagePet.setTag(2);
+            }
+        });
+
+        buttonRemoveFoto.setOnClickListener(clickView -> {
+            imagePet.setImageResource(R.drawable.semfoto);
+            imagePet.setTag(getResources().getInteger(R.integer.image_tag));
+        });
         return view;
     }
 
