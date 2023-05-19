@@ -1,12 +1,16 @@
 package com.example.petfinderapp;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
@@ -145,4 +149,31 @@ public class CadastroUsuario extends AppCompatActivity {
             return false;
         }
     }
+
+    public void showTermsAndConditionsDialog(View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.PopupDialog);
+
+        LayoutInflater inflater = getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.terms_and_conditions_dialog, null);
+
+        // Configurar o conteúdo do pop-up
+        TextView termsTextView = dialogView.findViewById(R.id.termsTextView);
+        // Defina o texto dos termos e condições no TextView termsTextView
+
+        builder.setView(dialogView);
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+        Button okButton = dialogView.findViewById(R.id.okButton);
+        okButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+    }
+
+
+
 }

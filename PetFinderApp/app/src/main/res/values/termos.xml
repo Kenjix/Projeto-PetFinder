@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="bemVindo">Bem-vindo ao nosso aplicativo móvel de doações e adoções de cães. Antes de criar uma conta e utilizar nossos serviços, pedimos que você leia atentamente e concorde com os seguintes termos e condições. Ao criar uma conta neste aplicativo, você estará indicando que compreende e aceita integralmente os termos aqui apresentados.</string>
+
+    <string name="titulo1">Uso Responsável:</string>
+    <string name="paragrafo1">1.1. Ao utilizar nosso aplicativo, você concorda em utilizar os
+        serviços de forma responsável e em conformidade com todas as leis e regulamentos aplicáveis.
+        1.2. Você é responsável por qualquer conteúdo que publicar no aplicativo, incluindo fotos,
+        descrições e informações sobre os cães disponíveis para adoção. Você declara que possui todos
+        os direitos necessários para compartilhar esse conteúdo e que ele não viola quaisquer direitos
+        de terceiros.</string>
+
+    <string name="titulo2">Conta de Usuário:</string>
+    <string name="paragrafo2">2.1. Para criar uma conta neste aplicativo, você deve fornecer informações
+        precisas e atualizadas, incluindo seu número de telefone, nome e uma foto de perfil. 2.2. Você
+        é responsável por manter a confidencialidade dos dados de sua conta e por todas as atividades
+        realizadas por meio dela. Caso suspeite de qualquer uso não autorizado de sua conta, notifique-nos
+        imediatamente.</string>
+
+    <string name="titulo3">Privacidade e Proteção de Dados:</string>
+    <string name="paragrafo3">3.1. Nós valorizamos sua privacidade e tratamos seus dados pessoais de
+        acordo com nossa Política de Privacidade. Ao utilizar nosso aplicativo, você concorda com a
+        coleta, uso e armazenamento de suas informações pessoais conforme estabelecido em nossa Política
+        de Privacidade. 3.2. Suas informações de contato, como número de telefone, serão compartilhadas
+        com os interessados nas doações e adoções, a fim de facilitar o processo de contato e de colocação
+        dos cães disponíveis.</string>
+
+    <string name="titulo4">Conteúdo e Propriedade Intelectual:</string>
+    <string name="paragrafo4">4.1. Todo o conteúdo presente no aplicativo, incluindo imagens, textos,
+        logotipos e design, é protegido por direitos autorais e outros direitos de propriedade intelectual
+        pertencentes ao nosso aplicativo ou a terceiros licenciadores. Você concorda em não reproduzir,
+        modificar, distribuir ou utilizar qualquer conteúdo sem autorização expressa. 4.2. O conteúdo
+        compartilhado pelos usuários, como fotos e descrições dos cães, é de sua responsabilidade. No
+        entanto, reservamo-nos o direito de remover qualquer conteúdo que consideremos inadequado,
+        ofensivo ou que viole os direitos de terceiros.</string>
+
+    <string name="titulo5">Responsabilidade e Isenção de Garantias:</string>
+    <string name="paragrafo5">5.1. Nosso aplicativo é fornecido "no estado em que se encontra" e "conforme
+        disponível", sem qualquer garantia expressa ou implícita de qualquer natureza. Não nos responsabilizamos
+        por quaisquer danos ou prejuízos decorrentes do uso ou da incapacidade de uso do aplicativo.
+        5.2. Você reconhece que qualquer interação, doação ou adoção de cães é realizada por sua conta
+        e risco. Recomendamos que você realize todas as verificações necessárias e tome as precauções
+        adequadas antes de realizar qualquer transação ou encontro pessoal.</string>
+
+    <string name="titulo6">Alterações nos Termos e Condições:</string>
+    <string name="paragrafo6">6.1. Reservamo-nos o direito de modificar estes Termos e Condições a
+        qualquer momento, mediante aviso prévio por meio do aplicativo ou de nossos canais de comunicação.
+        6.2. É responsabilidade do usuário revisar regularmente os Termos e Condições atualizados. O uso
+        continuado do aplicativo após as alterações terem sido publicadas será considerado como aceitação
+        das novas condições.</string>
+
+    <string name="fim">Ao criar uma conta neste aplicativo, você concorda em cumprir todos os termos e
+        condições mencionados acima. Caso não concorde com algum destes termos, solicitamos que não
+        prossiga com a criação da conta. Em caso de dúvidas, entre em contato com nossa equipe de suporte.
+        Agradecemos por fazer parte da nossa comunidade de doações e adoções de cães.</string>
+
+</resources>
