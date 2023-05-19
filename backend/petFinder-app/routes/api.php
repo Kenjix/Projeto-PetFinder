@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PublicacaoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +23,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/cadastro', [UserController::class, 'userCadastro'])->name('user_cadastro');
+Route::post('/cadastroPublicacao', [PublicacaoController::class, 'publicacaoCadastro'])->name('publicacao_cadastro');
