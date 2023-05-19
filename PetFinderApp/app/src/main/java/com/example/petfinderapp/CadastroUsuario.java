@@ -26,7 +26,7 @@ import java.io.UnsupportedEncodingException;
 
 public class CadastroUsuario extends AppCompatActivity {
 
-    private final String url = "http://192.168.100.6:80/api/cadastro";
+    private final String url = "http://192.168.100.6:8000/api/cadastro";
     private EditText editNome, editEmail, editDataNasc, editCelular, editSenha, editRepitaSenha;
     private RadioButton radioButtonMasc, radioButtonFem, radioButtonOutros;
     private Button buttonCadastro, ok_button;

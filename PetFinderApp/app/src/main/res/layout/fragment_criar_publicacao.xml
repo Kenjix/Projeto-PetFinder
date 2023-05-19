@@ -216,6 +216,15 @@
                 android:scrollbars="vertical"
                 android:maxLines="4"
                 android:layout_marginBottom="12dp"/>
+            <TextView
+                android:id="@+id/msgCadastro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" "
+                android:layout_gravity="center"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#F13D3D"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
