@@ -132,7 +132,7 @@ public class CadastroUsuario extends AppCompatActivity {
                 msgCadastro.setText("Termos não aceitos");
             } else if (validaSenha(senha, repeteSenha)) {
                 JSONObject jsonObject = new JSONObject();
-                Usuario user = new Usuario(nome, email, senha, dataFormatada, genero, telefone);
+                Usuario user = new Usuario(nome, email, senha, dataFormatada, genero, telefone.replaceAll("[^0-9]", ""));
                 try {
                     jsonObject.put("name", user.getName());
                     jsonObject.put("email", user.getEmail());

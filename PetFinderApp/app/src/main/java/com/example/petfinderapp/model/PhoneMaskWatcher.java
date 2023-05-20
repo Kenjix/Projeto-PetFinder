@@ -21,15 +21,15 @@ public class PhoneMaskWatcher implements TextWatcher {
     public void afterTextChanged(Editable s) {
         String text = s.toString();
 
-        // Remove todos os caracteres não numéricos
+        //remove todos os caracteres não numéricos
         String digitsOnly = text.replaceAll("[^0-9]", "");
 
-        // Verifica se o número de caracteres não excede o limite máximo (14)
+        //verifica se o número de caracteres não excede o limite máximo (11)
         if (digitsOnly.length() > 11) {
             digitsOnly = digitsOnly.substring(0, 11);
         }
 
-        // Formata o número de telefone
+        //formata o número de telefone
         StringBuilder formatted = new StringBuilder();
         int digitCount = 0;
         for (int i = 0; i < digitsOnly.length(); i++) {
@@ -45,7 +45,7 @@ public class PhoneMaskWatcher implements TextWatcher {
             digitCount++;
         }
 
-        // Define o texto formatado no EditText
+        //define o texto formatado no EditText
         editText.removeTextChangedListener(this);
         editText.setText(formatted.toString());
         editText.setSelection(formatted.length());
