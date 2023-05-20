@@ -58,7 +58,7 @@ public class CriarPublicacaoFragment extends Fragment {
     private final String url = "http://192.168.0.115:8000/api/cadastroPublicacao";
 
     //Spinner é o ComboBox
-    Spinner spinnerPorte, spinnerCastrado, spinnerTipo, spinnerGenero;
+    Spinner spinnerPorte, spinnerCastrado, spinnerEspecie, spinnerGenero;
     private EditText editTextNome, editTextIdade, editTextVacinas, editTextDescricao;
     private ImageView meuImageView;
     private Button buttonCancelar, buttonCadastrar;
@@ -81,7 +81,7 @@ public class CriarPublicacaoFragment extends Fragment {
 
         spinnerPorte = view.findViewById(R.id.spinnerPorte);
         spinnerCastrado = view.findViewById(R.id.spinnerCastrado);
-        spinnerTipo = view.findViewById(R.id.spinnerTipo);
+        spinnerEspecie = view.findViewById(R.id.spinnerEspecie);
         spinnerGenero = view.findViewById(R.id.spinnerGenero);
 
         editTextNome = view.findViewById(R.id.editTextNome);
@@ -93,6 +93,7 @@ public class CriarPublicacaoFragment extends Fragment {
         buttonCadastrar = view.findViewById(R.id.buttonCadastrar);
 
         photoImageView = view.findViewById(R.id.photoImageView);
+        msgCadastro = view.findViewById(R.id.msgCadastro);
 
         Button selectPhotoButton = view.findViewById(R.id.selectPhotoButton);
         selectPhotoButton.setOnClickListener(new View.OnClickListener() {
@@ -114,10 +115,10 @@ public class CriarPublicacaoFragment extends Fragment {
         porteAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerPorte.setAdapter(porteAdapter);
 
-        ArrayAdapter<CharSequence> tipoAdapter = ArrayAdapter.createFromResource(requireContext(),
-                R.array.tipoPet, android.R.layout.simple_spinner_item);
-        tipoAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerTipo.setAdapter(tipoAdapter);
+        ArrayAdapter<CharSequence> especieAdapter = ArrayAdapter.createFromResource(requireContext(),
+                R.array.especiePet, android.R.layout.simple_spinner_item);
+        especieAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerEspecie.setAdapter(especieAdapter);
 
         ArrayAdapter<CharSequence> generoAdapter = ArrayAdapter.createFromResource(requireContext(),
                 R.array.generoPet, android.R.layout.simple_spinner_item);
@@ -138,7 +139,7 @@ public class CriarPublicacaoFragment extends Fragment {
             String vacinas = editTextVacinas.getText().toString();
             String castrado = spinnerCastrado.getSelectedItem().toString();
             String genero = spinnerGenero.getSelectedItem().toString();
-            String tipo = spinnerTipo.getSelectedItem().toString();
+            String especie = spinnerEspecie.getSelectedItem().toString();
             String descricao = editTextDescricao.getText().toString();
 
             if (nomePet.isEmpty()) {
@@ -148,14 +149,14 @@ public class CriarPublicacaoFragment extends Fragment {
             JSONObject jsonObject = new JSONObject();
 
             try {
-                jsonObject.put("descricao", descricao);
                 jsonObject.put("nomePet", nomePet);
-                jsonObject.put("genero", genero);
-                jsonObject.put("tipo", tipo);
                 jsonObject.put("porte", porte);
                 jsonObject.put("idade", idade);
                 jsonObject.put("vacinas", vacinas);
                 jsonObject.put("castrado", castrado);
+                jsonObject.put("genero", genero);
+                jsonObject.put("especie", especie);
+                jsonObject.put("descricao", descricao);
                 jsonObject.put("user_id", 1);
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -251,17 +252,14 @@ public class CriarPublicacaoFragment extends Fragment {
                     new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
-                            try {
-                                String message = response.getString("message");
-                                Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show();
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
+                            Intent intent = new Intent(getActivity(), InicioFragment.class);
+                            startActivity(intent);
                         }
                     },
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
+                            msgCadastro.setText("Erro ao cadastrar");
                             Toast.makeText(getContext(), "Erro no envio da imagem", Toast.LENGTH_SHORT).show();
                         }
                     });

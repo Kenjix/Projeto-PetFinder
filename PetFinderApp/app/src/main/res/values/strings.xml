@@ -17,7 +17,7 @@
         <item>Macho</item>
         <item>Fêmea</item>
     </string-array>
-    <string-array name="tipoPet">
+    <string-array name="especiePet">
         <item>Cachorro</item>
         <item>Gato</item>
         <item>Peixe</item>
