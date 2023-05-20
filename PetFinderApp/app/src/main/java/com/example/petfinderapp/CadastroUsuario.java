@@ -3,9 +3,7 @@ package com.example.petfinderapp;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.Handler;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -73,14 +71,17 @@ public class CadastroUsuario extends AppCompatActivity {
                 editEmail.setError("Campo obrigatório!");
                 return;
             } else if (senha.isEmpty()) {
+                editSenha.requestFocus();
                 editSenha.setError("Campo obrigatório!");
+                return;
             } else if (repeteSenha.isEmpty()) {
+                editRepitaSenha.requestFocus();
                 editRepitaSenha.setError("Campo obrigatório!");
+                return;
             }
-            if(!checkTermos.isChecked()){
+            if (!checkTermos.isChecked()) {
                 msgCadastro.setText("Termos não aceitos");
-            }
-            else if (validaSenha(senha, repeteSenha)) {
+            } else if (validaSenha(senha, repeteSenha)) {
                 JSONObject jsonObject = new JSONObject();
                 Usuario user = new Usuario(nome, email, senha, dataNasc, genero, telefone);
                 try {
@@ -177,7 +178,6 @@ public class CadastroUsuario extends AppCompatActivity {
         });
     }
 
-
     private boolean validaSenha(String senha1, String senha2) {
         if (senha1.equals(senha2)) {
             return true;
@@ -205,7 +205,4 @@ public class CadastroUsuario extends AppCompatActivity {
         });
         builder.show();
     }
-
-
-
 }
