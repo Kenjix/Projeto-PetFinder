@@ -38,30 +38,23 @@
                     android:textColor="@color/black"/>
 
                 <ImageView
-                    android:id="@+id/imagePet"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:src="@drawable/baseline_image_search" />
+                    android:id="@+id/photoImageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
                     <Button
-                        android:id="@+id/buttonAddFoto"
-                        android:layout_width="100dp"
-                        android:textSize="11sp"
+                        android:id="@+id/selectPhotoButton"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="adicionar"/>
+                        android:text="Selecionar Foto"
+                        android:onClick="selectPhotoClick" />
 
-                    <Button
-                        android:id="@+id/buttonRemoveFoto"
-                        android:layout_width="100dp"
-                        android:textSize="11sp"
-                        android:layout_height="wrap_content"
-                        android:text="Remover"/>
                 </LinearLayout>
             </LinearLayout>
 

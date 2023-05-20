@@ -9,7 +9,7 @@ class PublicacaoController extends Controller
 {
     public function publicacaoCadastro(Request $request)
     {
-        $validaDados = Validator::make($request->all(), [     
+        $validaDados = Validator::make($request->all(), [
             'nomePet' => 'required|string',
             'porte' => 'required|string',
             'idade' => 'required|integer',
@@ -19,14 +19,14 @@ class PublicacaoController extends Controller
             'descricao' => 'string',
             'user_id' => 'required|integer',
             //a imagem vem em formato de String do JAVA
-            'imagem' => 'required|string'         
+            'imagem' => 'string'
         ],
-        [   
-            "nomePet.required" => "O nome é obrigatório",        
+        [
+            "nomePet.required" => "O nome é obrigatório",
             "porte.required" => "O porte é obrigatório",
             "genero.required" => "O gênero é obrigatório",
             "especie.required" => "O tipo é obrigatório",
-            "imagem.required" => "A imagem é obrigatória",
+            //"imagem.required" => "A imagem é obrigatória",
             "imagem.string" => "A imagem deve estar em formato de string"
         ]);
 
@@ -34,9 +34,9 @@ class PublicacaoController extends Controller
             return response()->json(['errors' => $validaDados->errors()], 422);
         }
 
-        $decodedImagem = base64_decode($request->input('imagem'));
+        //$decodedImagem = base64_decode($request->input('imagem'));
 
-        $publicacao = Publicacoes::create([        
+        $publicacao = Publicacoes::create([
             'nomePet' => $request->input('nomePet'),
             'porte' => $request->input('porte'),
             'idade' => $request->input('idade'),
@@ -46,7 +46,7 @@ class PublicacaoController extends Controller
             'especie' => $request->input('especie'),
             'descricao' => $request->input('descricao'),
             'user_id' => $request->input('user_id'),
-            'imagem' => $decodedImagem
+            //'imagem' => $decodedImagem
         ]);
 
         if ($publicacao) {
