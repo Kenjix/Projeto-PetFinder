@@ -1,211 +1,214 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    android:background="#D0E4CD"
     android:gravity="center"
-    tools:context=".CadastroUsuario"
-    android:background="#D0E4CD">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center">
+    tools:context=".CadastroUsuario">
 
-
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/imageView2"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:scaleType="centerCrop"
-        android:layout_marginTop="20dp"
-        android:src="@drawable/logo"
-        app:shapeAppearanceOverlay="@style/RoundedShapeAppearance" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Pet Finder"
-        android:textStyle="bold"
-        android:fontFamily="@font/inspiration_regular"
-        android:textSize="55sp"
-        android:textColor="@color/black" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        app:cardBackgroundColor="@android:color/white"
-        app:cardCornerRadius="20dp">
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imageView2"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="20dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/logo"
+            app:shapeAppearanceOverlay="@style/RoundedShapeAppearance" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inspiration_regular"
+            android:text="Pet Finder"
+            android:textColor="@color/black"
+            android:textSize="55sp"
+            android:textStyle="bold" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp"
-            android:gravity="center">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Cadastro"
-                android:textSize="28sp"
-                android:layout_margin="10dp"
-                android:gravity="center"
-                android:textColor="@color/black"/>
-
-            <EditText
-                android:id="@+id/editNome"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/black"
-                android:ems="10"
-                android:hint="Nome Completo"
-                android:layout_marginTop="25dp"
-                android:inputType="text"
-                android:padding="16dp" />
-            <EditText
-                android:id="@+id/editEmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/black"
-                android:ems="10"
-                android:hint="E-mail"
-                android:layout_marginTop="25dp"
-                android:inputType="textEmailAddress"
-                android:padding="16dp" />
-            <EditText
-                android:id="@+id/editDataNasc"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/black"
-                android:ems="10"
-                android:hint="Data de Nascimento"
-                android:layout_marginTop="25dp"
-                android:inputType="date"
-                android:padding="16dp"/>
-            <EditText
-                android:id="@+id/editCelular"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/black"
-                android:ems="10"
-                android:hint="Celular"
-                android:layout_marginTop="25dp"
-                android:inputType="phone"
-                android:padding="16dp" />
-
-            <TextView
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:padding="7dp"
-                android:textSize="20sp"
-                android:text="Genero"
-                android:gravity="center"/>
+            android:layout_margin="16dp"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardCornerRadius="20dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:padding="16dp"
-                android:orientation="horizontal">
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="16dp">
 
-                <RadioGroup
-                    android:id="@+id/radioGroupAtivo"
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_horizontal">
-
-                    <RadioButton
-                        android:id="@+id/radioButtonMasc"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:text="Masculino" />
-
-                    <RadioButton
-                        android:id="@+id/radioButtonFem"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:text="Feminino" />
-
-                    <RadioButton
-                        android:id="@+id/radioButtonOutros"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:text="Outros" />
-                </RadioGroup>
-            </LinearLayout>
-            <EditText
-                android:id="@+id/editSenha"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/black"
-                android:ems="10"
-                android:hint="Senha"
-                android:layout_marginTop="25dp"
-                android:inputType="textPassword"
-                android:padding="16dp" />
-            <EditText
-                android:id="@+id/editRepitaSenha"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/black"
-                android:ems="10"
-                android:hint="Repita a Senha"
-                android:layout_marginTop="25dp"
-                android:inputType="textPassword"
-                android:padding="16dp" />
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <CheckBox
-                    android:id="@+id/checkTermos"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:padding="7dp"
-                    android:text=""
-                    android:textColor="#0000FF"
-                    android:gravity="center"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:padding="7dp"
-                    android:text="Termos e Condições"
-                    android:textColor="#0000FF"
+                    android:layout_margin="10dp"
                     android:gravity="center"
-                    android:clickable="true"
-                    android:onClick="showTermsAndConditionsDialog" />
+                    android:text="Cadastro"
+                    android:textColor="@color/black"
+                    android:textSize="28sp" />
 
+                <EditText
+                    android:id="@+id/editNome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:backgroundTint="@color/black"
+                    android:ems="10"
+                    android:hint="Nome Completo"
+                    android:inputType="text"
+                    android:padding="16dp" />
+
+                <EditText
+                    android:id="@+id/editEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:backgroundTint="@color/black"
+                    android:ems="10"
+                    android:hint="E-mail"
+                    android:inputType="textEmailAddress"
+                    android:padding="16dp" />
+
+                <EditText
+                    android:id="@+id/editDataNasc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:backgroundTint="@color/black"
+                    android:ems="10"
+                    android:hint="Data de Nascimento"
+                    android:inputType="date"
+                    android:padding="16dp" />
+
+                <EditText
+                    android:id="@+id/editCelular"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:backgroundTint="@color/black"
+                    android:ems="10"
+                    android:hint="Celular"
+                    android:inputType="phone"
+                    android:padding="16dp" />
+
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:padding="7dp"
+                    android:text="Genero"
+                    android:textSize="20sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal"
+                    android:padding="16dp">
+
+                    <RadioGroup
+                        android:id="@+id/radioGroupAtivo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/radioButtonMasc"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:text="Masculino" />
+
+                        <RadioButton
+                            android:id="@+id/radioButtonFem"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:text="Feminino" />
+
+                        <RadioButton
+                            android:id="@+id/radioButtonOutros"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:text="Outros" />
+                    </RadioGroup>
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/editSenha"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:backgroundTint="@color/black"
+                    android:ems="10"
+                    android:hint="Senha"
+                    android:inputType="textPassword"
+                    android:padding="16dp" />
+
+                <EditText
+                    android:id="@+id/editRepitaSenha"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:backgroundTint="@color/black"
+                    android:ems="10"
+                    android:hint="Repita a Senha"
+                    android:inputType="textPassword"
+                    android:padding="16dp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <CheckBox
+                        android:id="@+id/checkTermos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:gravity="center"
+                        android:text=""
+                        android:textColor="#0000FF" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:clickable="true"
+                        android:gravity="center"
+                        android:onClick="showTermsAndConditionsDialog"
+                        android:text="Termos e Condições"
+                        android:textColor="#0000FF" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/msgCadastro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:text=""
+                    android:textColor="#EDFF0000"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/buttonCadastro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:backgroundTint="#4C5C43"
+                    android:text="Cadastrar"
+                    android:textColor="@color/white" />
             </LinearLayout>
-
-            <TextView
-                android:id="@+id/msgCadastro"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_marginTop="10dp"
-                android:text=""
-                android:textColor="#EDFF0000"
-                android:textStyle="bold"/>
-            <Button
-                android:id="@+id/buttonCadastro"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#4C5C43"
-                android:layout_marginTop="16dp"
-                android:text="Cadastrar"
-                android:textColor="@color/white"/>
-
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-</LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
 </ScrollView>

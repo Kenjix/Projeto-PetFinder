@@ -65,9 +65,11 @@ public class CadastroUsuario extends AppCompatActivity {
             String repeteSenha = editRepitaSenha.getText().toString().trim();
 
             if (nome.isEmpty()) {
+                editNome.requestFocus();
                 editNome.setError("Campo obrigatório!");
                 return;
             } else if (email.isEmpty()) {
+                editEmail.requestFocus();
                 editEmail.setError("Campo obrigatório!");
                 return;
             } else if (senha.isEmpty()) {
