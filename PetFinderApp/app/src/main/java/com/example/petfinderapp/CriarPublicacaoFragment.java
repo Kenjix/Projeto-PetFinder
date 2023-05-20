@@ -175,6 +175,9 @@ public class CriarPublicacaoFragment extends Fragment {
                 }
             }
 
+            Log.d("JSON_ENVIADO", "JSON enviado para o servidor: " + jsonObject.toString());
+
+
             JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, jsonObject,
                     new Response.Listener<JSONObject>() {
                         @Override

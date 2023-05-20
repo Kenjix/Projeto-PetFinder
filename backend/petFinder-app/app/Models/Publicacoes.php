@@ -20,5 +20,6 @@ class Publicacoes extends Model
         'especie',
         'descricao',
         'user_id',
+        'imagem',
     ];
 }

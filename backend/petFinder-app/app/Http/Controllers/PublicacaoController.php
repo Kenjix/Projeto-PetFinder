@@ -34,7 +34,8 @@ class PublicacaoController extends Controller
             return response()->json(['errors' => $validaDados->errors()], 422);
         }
 
-        //$decodedImagem = base64_decode($request->input('imagem'));
+        $base64Image = $request->input('imagem');
+        $imageData = base64_decode($base64Image);
 
         $publicacao = Publicacoes::create([
             'nomePet' => $request->input('nomePet'),
@@ -46,7 +47,7 @@ class PublicacaoController extends Controller
             'especie' => $request->input('especie'),
             'descricao' => $request->input('descricao'),
             'user_id' => $request->input('user_id'),
-            //'imagem' => $decodedImagem
+            'imagem' => $imageData
         ]);
 
         if ($publicacao) {
