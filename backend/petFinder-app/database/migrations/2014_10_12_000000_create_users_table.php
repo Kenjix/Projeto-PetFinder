@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name', 30)->nullable(false);
             $table->string('email', 80)->unique()->nullable(false);
             $table->string('password', 80)->nullable(false);
-            $table->dateTime('dataNasc')->nullable();
+            $table->date('dataNasc')->nullable();
             $table->char('genero')->nullable();
             $table->string('telefone', 14)->nullable();
             $table->binary('avatar')->nullable();

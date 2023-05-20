@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
@@ -21,6 +22,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.petfinderapp.model.DatePickerDialog;
 import com.example.petfinderapp.model.Usuario;
 
 import org.json.JSONArray;
@@ -28,6 +30,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public class CadastroUsuario extends AppCompatActivity {
@@ -37,9 +42,10 @@ public class CadastroUsuario extends AppCompatActivity {
     //G
     //private final String url = "http://192.168.0.115:8000/api/cadastro";
     private EditText editNome, editEmail, editDataNasc, editCelular, editSenha, editRepitaSenha;
-    private RadioButton radioButtonMasc, radioButtonFem, radioButtonOutros;
+    RadioGroup radioGroupGenero;
+    RadioButton radioButtonMasc, radioButtonFem, radioButtonOutros;
     private CheckBox checkTermos;
-    private Button buttonCadastro, ok_button;
+    private Button buttonCadastro;
     private TextView msgCadastro;
 
     @Override
@@ -57,16 +63,43 @@ public class CadastroUsuario extends AppCompatActivity {
         buttonCadastro = findViewById(R.id.buttonCadastro);
         msgCadastro = findViewById(R.id.msgCadastro);
         checkTermos = findViewById(R.id.checkTermos);
+        radioGroupGenero = findViewById(R.id.radioGroupGenero);
+        radioButtonMasc = findViewById(R.id.radioButtonMasc);
+        radioButtonFem = findViewById(R.id.radioButtonFem);
+        radioButtonOutros = findViewById(R.id.radioButtonOutros);
+
+        editDataNasc.setOnClickListener(view -> {
+            DatePickerDialog datePickerDialog = new DatePickerDialog(CadastroUsuario.this, editDataNasc);
+            datePickerDialog.showDatePickerDialog();
+        });
 
         buttonCadastro.setOnClickListener(view -> {
             String nome = editNome.getText().toString().trim();
             String email = editEmail.getText().toString().trim();
             String dataNasc = editDataNasc.getText().toString().trim();
+            String dataFormatada = "";
+            SimpleDateFormat formatoEntrada = new SimpleDateFormat("dd/MM/yyyy");
+            SimpleDateFormat formatoSaida = new SimpleDateFormat("yyyy-MM-dd");
+            try {
+                Date data = formatoEntrada.parse(dataNasc);
+                dataFormatada = formatoSaida.format(data);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
             String telefone = editCelular.getText().toString().trim();
             String genero = "";
+            int selectedRadioButtonId = radioGroupGenero.getCheckedRadioButtonId();
+            if (selectedRadioButtonId != -1) {
+                if (selectedRadioButtonId == radioButtonMasc.getId()) {
+                    genero = "M";
+                } else if (selectedRadioButtonId == radioButtonFem.getId()) {
+                    genero = "F";
+                } else if (selectedRadioButtonId == radioButtonOutros.getId()) {
+                    genero = "O";
+                }
+            }
             String senha = editSenha.getText().toString().trim();
             String repeteSenha = editRepitaSenha.getText().toString().trim();
-
             if (nome.isEmpty()) {
                 editNome.requestFocus();
                 editNome.setError("Campo obrigatório!");
@@ -75,6 +108,13 @@ public class CadastroUsuario extends AppCompatActivity {
                 editEmail.requestFocus();
                 editEmail.setError("Campo obrigatório!");
                 return;
+            } else if (dataNasc.isEmpty()) {
+                editDataNasc.requestFocus();
+                editDataNasc.setError("Campo obrigatório!");
+                return;
+            } else if (telefone.isEmpty()) {
+                editCelular.requestFocus();
+                editCelular.setError("Campo obrigatório!");
             } else if (senha.isEmpty()) {
                 editSenha.requestFocus();
                 editSenha.setError("Campo obrigatório!");
@@ -84,18 +124,19 @@ public class CadastroUsuario extends AppCompatActivity {
                 editRepitaSenha.setError("Campo obrigatório!");
                 return;
             }
+
             if (!checkTermos.isChecked()) {
                 msgCadastro.setText("Termos não aceitos");
             } else if (validaSenha(senha, repeteSenha)) {
                 JSONObject jsonObject = new JSONObject();
-                Usuario user = new Usuario(nome, email, senha, dataNasc, genero, telefone);
+                Usuario user = new Usuario(nome, email, senha, dataFormatada, genero, telefone);
                 try {
                     jsonObject.put("name", user.getName());
                     jsonObject.put("email", user.getEmail());
                     jsonObject.put("password", user.getPassword());
-                    /*jsonObject.put("dataNasc", user.getDataNasc());
+                    jsonObject.put("dataNasc", user.getDataNasc());
                     jsonObject.put("genero", user.getGenero());
-                    jsonObject.put("telefone", user.getTelefone());*/
+                    jsonObject.put("telefone", user.getTelefone());
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -105,17 +146,16 @@ public class CadastroUsuario extends AppCompatActivity {
                             @Override
                             public void onResponse(JSONObject response) {
                                 buttonCadastro.setEnabled(false);
-                                msgCadastro.setText("Cadastrado com sucesso! \nRedirecionando em 5 segundos...");
-
                                 final int delayMilissegundos = 1000; //intervalo de atualização em milissegundos
                                 final Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
                                     int segundosRestantes = 5;
+
                                     @Override
                                     public void run() {
                                         msgCadastro.setText("Cadastrado com sucesso! \nRedirecionando em " + segundosRestantes + " segundos...");
                                         segundosRestantes--;
-
+                                        
                                         if (segundosRestantes >= 0) {
                                             handler.postDelayed(this, delayMilissegundos);
                                         } else {
