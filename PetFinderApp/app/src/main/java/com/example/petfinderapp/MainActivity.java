@@ -85,9 +85,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getSupportActionBar().setTitle("Criar Publicação");
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new CriarPublicacaoFragment()).commit();
                 break;
-            case R.id.nav_settings:
-                getSupportActionBar().setTitle("Configurações");
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ConfigFragment()).commit();
+            case R.id.nav_message:
+                getSupportActionBar().setTitle("Minhas Conversas");
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MeuPerfilFragment()).commit();
                 break;
             case R.id.nav_favorite:
                 getSupportActionBar().setTitle("Favoritos");
@@ -96,6 +96,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_donates:
                 getSupportActionBar().setTitle("Doações");
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DoacoesFragment()).commit();
+                break;
+            case R.id.nav_perfil:
+                getSupportActionBar().setTitle("Meu Perfil");
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MeuPerfilFragment()).commit();
+                break;
+            case R.id.nav_settings:
+                Intent intent = new Intent(this, ConfiguracaoActivity.class);
+                startActivity(intent);
                 break;
             case R.id.nav_logout:
                 SharedPreferences.Editor editor = preferences.edit();

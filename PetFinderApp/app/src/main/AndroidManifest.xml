@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools" >
 
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
@@ -16,25 +15,25 @@
         android:supportsRtl="true"
         android:theme="@style/FullScreen"
         android:usesCleartextTraffic="true"
-        tools:targetApi="31">
+        tools:targetApi="31" >
+        <activity
+            android:name=".ConfiguracaoActivity"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".Login"
             android:exported="false" />
-
         <activity
             android:name=".CadastroUsuario"
             android:exported="false" />
-
         <activity
             android:name=".RecuperaSenha"
             android:exported="false" />
@@ -43,7 +42,7 @@
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.petfinderapp.fileprovider"
             android:exported="false"
-            android:grantUriPermissions="true">
+            android:grantUriPermissions="true" >
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />

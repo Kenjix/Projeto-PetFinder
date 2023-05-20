@@ -87,6 +87,11 @@
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E8E8E8" />
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>
