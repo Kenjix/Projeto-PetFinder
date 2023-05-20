@@ -102,8 +102,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MeuPerfilFragment()).commit();
                 break;
             case R.id.nav_settings:
-                Intent intent = new Intent(this, ConfiguracaoActivity.class);
-                startActivity(intent);
+                getSupportActionBar().setTitle("Configurações");
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ConfiguracaoFragment()).commit();
                 break;
             case R.id.nav_logout:
                 SharedPreferences.Editor editor = preferences.edit();
