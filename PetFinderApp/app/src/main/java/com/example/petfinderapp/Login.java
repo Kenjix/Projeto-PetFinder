@@ -90,7 +90,7 @@ public class Login extends AppCompatActivity {
                                     editor.putInt("nivelAcesso", user.getNivelAcesso());
                                     editor.putLong("idUsuario", user.getId());
                                     editor.commit();
-                                    // Login bem-sucedido, redirecionar para a próxima tela
+                                    //login bem-sucedido, redireciona para a próxima tela
                                     Intent intent = new Intent(Login.this, MainActivity.class);
                                     startActivity(intent);
                                     finish();

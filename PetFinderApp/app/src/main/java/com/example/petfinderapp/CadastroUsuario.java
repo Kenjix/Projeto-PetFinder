@@ -1,7 +1,10 @@
 package com.example.petfinderapp;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
@@ -89,7 +92,27 @@ public class CadastroUsuario extends AppCompatActivity {
                         new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {
+                                buttonCadastro.setEnabled(false);
+                                msgCadastro.setText("Cadastrado com sucesso! \nRedirecionando em 5 segundos...");
 
+                                final int delayMilissegundos = 1000; //intervalo de atualização em milissegundos
+                                final Handler handler = new Handler();
+                                handler.postDelayed(new Runnable() {
+                                    int segundosRestantes = 5;
+                                    @Override
+                                    public void run() {
+                                        msgCadastro.setText("Cadastrado com sucesso! \nRedirecionando em " + segundosRestantes + " segundos...");
+                                        segundosRestantes--;
+
+                                        if (segundosRestantes >= 0) {
+                                            handler.postDelayed(this, delayMilissegundos);
+                                        } else {
+                                            Intent intent = new Intent(CadastroUsuario.this, MainActivity.class);
+                                            startActivity(intent);
+                                            finish();
+                                        }
+                                    }
+                                }, delayMilissegundos);
                             }
                         },
                         new Response.ErrorListener() {
@@ -112,7 +135,6 @@ public class CadastroUsuario extends AppCompatActivity {
                                                     msgCadastro.setText(emailErrorMessage);
                                                 }
                                             }
-
                                             //verifica se a chave "password" existe nos erros
                                             if (errors.has("password")) {
                                                 JSONArray passwordErrors = errors.getJSONArray("password");
@@ -121,14 +143,21 @@ public class CadastroUsuario extends AppCompatActivity {
                                                     msgCadastro.setText(passwordErrorMessage);
                                                 }
                                             }
+                                            //verifica se a chave "name" existe nos erros
+                                            if (errors.has("name")) {
+                                                JSONArray passwordErrors = errors.getJSONArray("name");
+                                                if (passwordErrors.length() > 0) {
+                                                    String nameErrorMessage = passwordErrors.getString(0);
+                                                    msgCadastro.setText(nameErrorMessage);
+                                                }
+                                            }
                                         }
                                     } catch (UnsupportedEncodingException | JSONException e) {
                                         e.printStackTrace();
                                     }
                                 } else {
                                     //outros erros
-
-                                    msgCadastro.setText("Erro: " + error.getMessage());
+                                    msgCadastro.setText("Erro código 20. Contate o suporte");
                                 }
                             }
                         }
