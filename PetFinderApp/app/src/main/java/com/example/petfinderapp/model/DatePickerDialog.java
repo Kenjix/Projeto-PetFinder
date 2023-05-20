@@ -44,15 +44,15 @@ public class DatePickerDialog {
 
         dayPicker.setMinValue(minDay);
         dayPicker.setMaxValue(maxDay);
-        dayPicker.setValue(selectedDay);
+        dayPicker.setValue(minDay);
 
         monthPicker.setMinValue(minMonth);
         monthPicker.setMaxValue(maxMonth);
-        monthPicker.setValue(selectedMonth);
+        monthPicker.setValue(minMonth);
 
         yearPicker.setMinValue(minYear);
         yearPicker.setMaxValue(maxYear);
-        yearPicker.setValue(selectedYear);
+        yearPicker.setValue(maxYear);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setView(dialogView)

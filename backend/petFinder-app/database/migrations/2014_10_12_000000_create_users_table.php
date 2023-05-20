@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('password', 80)->nullable(false);
             $table->date('dataNasc')->nullable();
             $table->char('genero')->nullable();
-            $table->string('telefone', 14)->nullable();
+            $table->string('telefone', 14)->nullable(false);
             $table->binary('avatar')->nullable();
             $table->integer('nivelAcesso')->default(0);
             $table->integer('tentativasAcesso')->default(0);

@@ -23,6 +23,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.petfinderapp.model.DatePickerDialog;
+import com.example.petfinderapp.model.PhoneMaskWatcher;
 import com.example.petfinderapp.model.Usuario;
 
 import org.json.JSONArray;
@@ -72,6 +73,8 @@ public class CadastroUsuario extends AppCompatActivity {
             DatePickerDialog datePickerDialog = new DatePickerDialog(CadastroUsuario.this, editDataNasc);
             datePickerDialog.showDatePickerDialog();
         });
+
+        editCelular.addTextChangedListener(new PhoneMaskWatcher(editCelular));
 
         buttonCadastro.setOnClickListener(view -> {
             String nome = editNome.getText().toString().trim();
@@ -155,7 +158,7 @@ public class CadastroUsuario extends AppCompatActivity {
                                     public void run() {
                                         msgCadastro.setText("Cadastrado com sucesso! \nRedirecionando em " + segundosRestantes + " segundos...");
                                         segundosRestantes--;
-                                        
+
                                         if (segundosRestantes >= 0) {
                                             handler.postDelayed(this, delayMilissegundos);
                                         } else {
