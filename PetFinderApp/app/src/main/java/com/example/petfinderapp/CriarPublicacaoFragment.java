@@ -13,6 +13,7 @@ import android.os.Bundle;
 
 import android.provider.MediaStore;
 import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,8 +51,11 @@ public class CriarPublicacaoFragment extends Fragment {
 
     private ImageView photoImageView;
 
-    //private final String url = "http://192.168.0.115:8000/api/cadastroPublicacao";
-    private final String url = "http://192.168.100.6:8000/api/cadastroPublicacao";
+    //D
+    //private final String url = "http://192.168.100.6:8000/api/cadastroPublicacao";
+
+    //G
+    private final String url = "http://192.168.0.115:8000/api/cadastroPublicacao";
 
     //Spinner é o ComboBox
     Spinner spinnerPorte, spinnerCastrado, spinnerTipo, spinnerGenero;
@@ -71,7 +75,7 @@ public class CriarPublicacaoFragment extends Fragment {
         SharedPreferences sharedPreferences = context.getSharedPreferences("sessao", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         String sessao = sharedPreferences.getString("username", "");
-        //int idUsuario = sharedPreferences.getInt("idUsuario", 0);
+        //long idUsuario = sharedPreferences.getInt("idUsuario", 0);
         //Log.d("ID_USUARIO", "Id do usuário logado: " + idUsuario);
         View view = inflater.inflate(R.layout.fragment_criar_publicacao, container, false);
 
@@ -152,7 +156,7 @@ public class CriarPublicacaoFragment extends Fragment {
                 jsonObject.put("idade", idade);
                 jsonObject.put("vacinas", vacinas);
                 jsonObject.put("castrado", castrado);
-                jsonObject.put("sessao", 1);
+                jsonObject.put("user_id", 1);
             } catch (JSONException e) {
                 e.printStackTrace();
             }

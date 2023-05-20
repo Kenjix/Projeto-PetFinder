@@ -27,7 +27,11 @@ public class Login extends AppCompatActivity {
     private EditText editUser, editPassword;
     private TextView erroLogin;
     private Button buttonLogin;
-    private final String url = "http://192.168.100.6:8000/api/login";
+    //D
+    //private final String url = "http://192.168.100.6:8000/api/login";
+
+    //G
+    private final String url = "http://192.168.0.115:8000/api/login";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
