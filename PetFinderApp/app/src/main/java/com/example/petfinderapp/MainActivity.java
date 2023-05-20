@@ -101,6 +101,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.remove("username");
                 editor.remove("nivelAcesso");
+                editor.remove("idUsuario");
                 editor.commit();
                 finish();
                 startActivity(getIntent());
