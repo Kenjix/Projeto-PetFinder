@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -36,6 +37,7 @@ public class CadastroUsuario extends AppCompatActivity {
     private final String url = "http://192.168.100.6:8000/api/cadastro";
     private EditText editNome, editEmail, editDataNasc, editCelular, editSenha, editRepitaSenha;
     private RadioButton radioButtonMasc, radioButtonFem, radioButtonOutros;
+    private CheckBox checkTermos;
     private Button buttonCadastro, ok_button;
     private TextView msgCadastro;
 
@@ -53,6 +55,7 @@ public class CadastroUsuario extends AppCompatActivity {
         editRepitaSenha = findViewById(R.id.editRepitaSenha);
         buttonCadastro = findViewById(R.id.buttonCadastro);
         msgCadastro = findViewById(R.id.msgCadastro);
+        checkTermos = findViewById(R.id.checkTermos);
 
         buttonCadastro.setOnClickListener(view -> {
             String nome = editNome.getText().toString().trim();
@@ -74,7 +77,10 @@ public class CadastroUsuario extends AppCompatActivity {
             } else if (repeteSenha.isEmpty()) {
                 editRepitaSenha.setError("Campo obrigatório!");
             }
-            if (validaSenha(senha, repeteSenha)) {
+            if(!checkTermos.isChecked()){
+                msgCadastro.setText("Termos não aceitos");
+            }
+            else if (validaSenha(senha, repeteSenha)) {
                 JSONObject jsonObject = new JSONObject();
                 Usuario user = new Usuario(nome, email, senha, dataNasc, genero, telefone);
                 try {
@@ -171,6 +177,7 @@ public class CadastroUsuario extends AppCompatActivity {
         });
     }
 
+
     private boolean validaSenha(String senha1, String senha2) {
         if (senha1.equals(senha2)) {
             return true;
@@ -180,27 +187,23 @@ public class CadastroUsuario extends AppCompatActivity {
     }
 
     public void showTermsAndConditionsDialog(View view) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.PopupDialog);
-
-        LayoutInflater inflater = getLayoutInflater();
-        View dialogView = inflater.inflate(R.layout.terms_and_conditions_dialog, null);
-
-        // Configurar o conteúdo do pop-up
-        TextView termsTextView = dialogView.findViewById(R.id.termsTextView);
-        // Defina o texto dos termos e condições no TextView termsTextView
-
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View dialogView = getLayoutInflater().inflate(R.layout.terms_and_conditions_dialog, null);
         builder.setView(dialogView);
-
-        AlertDialog dialog = builder.create();
-        dialog.show();
-
-        Button okButton = dialogView.findViewById(R.id.okButton);
-        okButton.setOnClickListener(new View.OnClickListener() {
+        //configura os botoes
+        builder.setPositiveButton("ACEITAR", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(DialogInterface dialogInterface, int i) {
+                checkTermos.setChecked(true);
+            }
+        });
+        builder.setNegativeButton("RECUSAR", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                checkTermos.setChecked(false);
                 dialog.dismiss();
             }
         });
+        builder.show();
     }
 
 
