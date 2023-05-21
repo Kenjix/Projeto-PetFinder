@@ -213,7 +213,7 @@
                 android:id="@+id/msgRetorno"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" "
+                android:text=""
                 android:layout_gravity="center"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -230,12 +230,16 @@
                     android:id="@+id/buttonCancelar"
                     android:layout_width="130dp"
                     android:layout_height="wrap_content"
-                    android:text="Cancelar" />
+                    android:text="Cancelar"
+                    android:textColor="@color/white"
+                    android:backgroundTint="#4C5C43"/>
                 <Button
                     android:id="@+id/buttonCadastrar"
                     android:layout_width="130dp"
                     android:layout_height="wrap_content"
-                    android:text="Cadastrar" />
+                    android:text="Cadastrar"
+                    android:textColor="@color/white"
+                    android:backgroundTint="#4C5C43"/>
 
             </LinearLayout>
         </LinearLayout>
