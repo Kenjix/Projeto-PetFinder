@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="#D0E4CD"
+    android:gravity="center"
+    tools:context=".VerMaisPublicacaoFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            app:cardCornerRadius="10dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/imageViewPerfil"
+                        android:layout_width="54dp"
+                        android:layout_height="54dp"
+                        android:layout_marginRight="10dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/fotoperfil"
+                        app:shapeAppearanceOverlay="@style/RoundedShapeAppearance" />
+
+
+                    <TextView
+                        android:id="@+id/textNomeUser"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="Fulano de Tal da Silva"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/imagemView"
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp"
+                    android:contentDescription="imagem"
+                    android:src="@drawable/semfoto"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:textColor="@color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:text="Nome:"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        android:singleLine="true"
+                        android:ellipsize="marquee"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:id="@+id/nomePet"
+                        android:textColor="@color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:text="Nome do Pet"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginTop="10dp"
+                        android:singleLine="true"
+                        android:ellipsize="marquee"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:textColor="@color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:text="Porte: "
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        android:singleLine="true"
+                        android:ellipsize="marquee"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:id="@+id/portePet"
+                        android:textColor="@color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:text="Médio"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginTop="10dp"
+                        android:singleLine="true"
+                        android:ellipsize="marquee"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:textColor="@color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:text="Idade: "
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        android:singleLine="true"
+                        android:ellipsize="marquee"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:id="@+id/idadePet"
+                        android:textColor="@color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:text="2 meses"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginTop="10dp"
+                        android:singleLine="true"
+                        android:ellipsize="marquee"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:textColor="@color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:text="Vacinas: "
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        android:singleLine="true"
+                        android:ellipsize="marquee"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:id="@+id/vacinasPet"
+                        android:textColor="@color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:text="Raiva, Leitmaneshoe"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="10dp"
+                        android:singleLine="true"
+                        android:ellipsize="marquee"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:textColor="@color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:text="Castrado: "
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        android:singleLine="true"
+                        android:ellipsize="marquee"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:id="@+id/castradoPet"
+                        android:textColor="@color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:text="Sim"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginTop="10dp"
+                        android:singleLine="true"
+                        android:ellipsize="marquee"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:textColor="@color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:text="Gênero: "
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        android:singleLine="true"
+                        android:ellipsize="marquee"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:id="@+id/generoPet"
+                        android:textColor="@color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:text="Macho"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginTop="10dp"
+                        android:singleLine="true"
+                        android:ellipsize="marquee"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:textColor="@color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:text="Espécie: "
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        android:singleLine="true"
+                        android:ellipsize="marquee"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:id="@+id/especiePet"
+                        android:textColor="@color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:text="Cachorro"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginTop="10dp"
+                        android:singleLine="true"
+                        android:ellipsize="marquee"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:textColor="@color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:text="Descrição comportamental: "
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        android:singleLine="true"
+                        android:ellipsize="marquee"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:id="@+id/descricaoPet"
+                        android:textColor="@color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:text=""
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="10dp"
+                        android:maxLines="5"
+                        android:ellipsize="marquee"/>
+
+                </LinearLayout>
+                <Button
+                    android:id="@+id/buttonLogin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Enviar Mensagem"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:backgroundTint="#4C5C43"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </ScrollView>
+
+</ScrollView>
