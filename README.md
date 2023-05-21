@@ -66,7 +66,7 @@ DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_DATABASE=petfinder
-DB_USERNAME=root
+DB_USERNAME=aqui voce coloca o username do seu banco
 DB_PASSWORD=aqui voce coloca a senha do seu banco
 ```
 
