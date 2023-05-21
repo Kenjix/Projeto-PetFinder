@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="16dp"
-        app:cardCornerRadius="20dp">
+        app:cardCornerRadius="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,6 +28,23 @@
                 android:padding="10dp"
                 android:drawableStart="@drawable/manage_accounts"
                 android:text="  Editar Perfil"
+                android:textColor="#000000"
+                android:textSize="18sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#E8E8E8" />
+
+            <TextView
+                android:id="@+id/txtEditRedefinirSenha"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
+                android:padding="10dp"
+                android:drawableStart="@drawable/ic_password"
+                android:text="  Redefinir Senha"
                 android:textColor="#000000"
                 android:textSize="18sp" />
 

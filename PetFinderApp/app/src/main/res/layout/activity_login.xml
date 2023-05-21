@@ -9,7 +9,6 @@
     tools:context=".Login"
     android:background="#D0E4CD">
 
-
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imageView2"
         android:layout_width="150dp"
