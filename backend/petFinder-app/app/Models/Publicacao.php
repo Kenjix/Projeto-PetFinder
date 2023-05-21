@@ -9,7 +9,9 @@ use Illuminate\Database\Eloquent\Model;
 class Publicacao extends Model
 {
     use HasFactory, HasTimestamps;
+
     protected $table = 'publicacoes';
+    
     protected $fillable = [
         'nomePet',
         'porte',

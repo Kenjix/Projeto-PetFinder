@@ -3,8 +3,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use App\Models\Publicacao;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Publicacao;
 
 class PublicacaoController extends Controller
 {
@@ -18,9 +18,9 @@ class PublicacaoController extends Controller
             'castrado' => 'boolean',
             'genero' => 'required|string',
             'especie' => 'required|string',
-            'descricao' => 'nullable|string',  
+            'descricao' => 'nullable|string',
             'user_id' => 'integer',
-            'image' => 'required'
+            'image' => 'required',
         ],
         [
             "nomePet.required" => "O nome é obrigatório",
