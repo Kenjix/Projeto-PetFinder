@@ -52,10 +52,10 @@ public class CriarPublicacaoFragment extends Fragment {
     private ImageView photoImageView;
 
     //D
-    //private final String url = "http://192.168.100.6:8000/api/cadastroPublicacao";
+    private final String url = "http://192.168.100.6:8000/api/cadastroPublicacao";
 
     //G
-    private final String url = "http://192.168.0.115:8000/api/cadastroPublicacao";
+    //private final String url = "http://192.168.0.115:8000/api/cadastroPublicacao";
 
     //Spinner é o ComboBox
     Spinner spinnerPorte, spinnerCastrado, spinnerEspecie, spinnerGenero;

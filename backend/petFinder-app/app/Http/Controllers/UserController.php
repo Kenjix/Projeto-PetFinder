@@ -16,7 +16,7 @@ class UserController extends Controller
             'password' => 'required|min:6',
             'dataNasc' => 'date',
             'genero' => 'string',
-            'telefone' => 'string'           
+            'telefone' => 'string|required'           
         ],
         [   
             "name.required" => "O nome é obrigatório",        
@@ -25,6 +25,8 @@ class UserController extends Controller
             "email.required" => "O email é obrigatório",
             "password.required" => "A senha é obrigatória",
             "password.min" => "A senha não atende os requisitos minimos",
+            "telefone.required" => "O número de celular é obrigatório",
+
         ]);
 
         if ($validaDados->fails()) {  

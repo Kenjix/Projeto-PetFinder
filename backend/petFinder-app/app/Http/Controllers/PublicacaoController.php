@@ -57,3 +57,4 @@ class PublicacaoController extends Controller
         return response()->json(['message' => 'Falha ao cadastrar a publicação'], 500);
     }
 }
+?>

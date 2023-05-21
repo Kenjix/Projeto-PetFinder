@@ -28,10 +28,10 @@ public class Login extends AppCompatActivity {
     private TextView erroLogin;
     private Button buttonLogin;
     //D
-    //private final String url = "http://192.168.100.6:8000/api/login";
+    private final String url = "http://192.168.100.6:8000/api/login";
 
     //G
-    private final String url = "http://192.168.0.115:8000/api/login";
+    //private final String url = "http://192.168.0.115:8000/api/login";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,6 +114,7 @@ public class Login extends AppCompatActivity {
                                     try {
                                         JSONObject errorJson = new JSONObject(errorMessage);
                                         String message = errorJson.getString("message");
+                                        message = message.replace("\\n", "\n");
                                         erroLogin.setText(message);
                                     } catch (JSONException e) {
                                         e.printStackTrace();

@@ -16,8 +16,11 @@ class LoginController extends Controller
             //autenticação bem-sucedida
             $user = Auth::user();
             
-            if ($user->ativo == 0 || $user->tentativasAcesso >= 5) {
-                return response()->json(['message' => 'Usuário bloqueado. Redefina a senha.'], 401);
+            if ($user->ativo == 0) {
+                return response()->json(['message' => 'Conta Desativada. \\nRedefina a senha para reabilitar.'], 401);
+            } 
+            if($user->tentativasAcesso >= 5) {
+                return response()->json(['message' => 'Tentativas de acesso excedidas. \\nConta bloqueada.'], 401);            
             } else {
                 /** @var \App\Models\User $user **/
                 $user->tentativasAcesso = 0;
@@ -34,9 +37,9 @@ class LoginController extends Controller
                 $user->tentativasAcesso++;
                 $user->save();
                 if ($user->tentativasAcesso >= 5) {
-                    return response()->json(['message' => 'Tentativas de acesso excedidas. Usuário bloqueado.'], 401);
+                    return response()->json(['message' => 'Tentativas de acesso excedidas. \\nConta bloqueada.'], 401);
                 }
-                return response()->json(['message' => 'Credenciais inválidas. Tentativas de acesso restantes: '. (5 - $user->tentativasAcesso)], 401);
+                return response()->json(['message' => 'Credenciais inválidas. \\nTentativas de acesso restantes: '. (5 - $user->tentativasAcesso)], 401);
             } else {
                 return response()->json(['message' => 'Credenciais inválidas.'], 401);
             }
