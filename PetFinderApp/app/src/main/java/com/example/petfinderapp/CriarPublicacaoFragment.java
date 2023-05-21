@@ -37,6 +37,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.petfinderapp.model.DatePickerDialog;
 import com.example.petfinderapp.model.Publicacao;
 
 import org.json.JSONArray;
@@ -82,6 +83,11 @@ public class CriarPublicacaoFragment extends Fragment {
 
         photoImageView = view.findViewById(R.id.photoImageView);
         msgRetorno = view.findViewById(R.id.msgRetorno);
+
+        editTextIdade.setOnClickListener(view2 -> {
+            DatePickerDialog datePickerDialog = new DatePickerDialog(requireContext(), editTextIdade);
+            datePickerDialog.showDatePickerDialog();
+        });
 
         Button selectPhotoButton = view.findViewById(R.id.selectPhotoButton);
         selectPhotoButton.setOnClickListener(new View.OnClickListener() {

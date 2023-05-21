@@ -112,7 +112,8 @@
                 android:inputType="numberDecimal"
                 android:background="#F5F5F5"
                 android:textSize="16sp"
-                android:padding="8dp"/>
+                android:padding="8dp"
+                android:focusable="false"/>
 
             <TextView
                 android:layout_width="wrap_content"

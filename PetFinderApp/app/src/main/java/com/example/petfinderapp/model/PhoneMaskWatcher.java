@@ -2,6 +2,7 @@ package com.example.petfinderapp.model;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.EditText;
 
 public class PhoneMaskWatcher implements TextWatcher {
@@ -9,6 +10,19 @@ public class PhoneMaskWatcher implements TextWatcher {
 
     public PhoneMaskWatcher(EditText editText) {
         this.editText = editText;
+        editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    String text = editText.getText().toString();
+                    String digitsOnly = text.replaceAll("[^0-9]", "");
+
+                    if (digitsOnly.length() < 11) {
+                        editText.setText("");
+                    }
+                }
+            }
+        });
     }
 
     @Override

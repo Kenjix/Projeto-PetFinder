@@ -235,7 +235,7 @@ public class CadastroUsuario extends AppCompatActivity {
 
     public void showTermsAndConditionsDialog(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        View dialogView = getLayoutInflater().inflate(R.layout.terms_and_conditions_dialog, null);
+        View dialogView = getLayoutInflater().inflate(R.layout.dialog_terms_and_conditions, null);
         builder.setView(dialogView);
         //configura os botoes
         builder.setPositiveButton("ACEITAR", new DialogInterface.OnClickListener() {
