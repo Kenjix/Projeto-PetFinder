@@ -5,8 +5,12 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.PopupMenu;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +18,9 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class MeuPerfilFragment extends Fragment {
+
+    private ImageView imageViewPerfil;
+    private ImageView editIconImageView;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -56,9 +63,53 @@ public class MeuPerfilFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_meu_perfil, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_meu_perfil, container, false);
+
+        imageViewPerfil = view.findViewById(R.id.imageViewPerfil);
+        editIconImageView = view.findViewById(R.id.editIcon);
+
+        // Definir clique na imagem do perfil
+        imageViewPerfil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPopupMenu();
+            }
+        });
+
+        // Definir clique no ícone de edição
+        editIconImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPopupMenu();
+            }
+        });
+
+        return view;
+    }
+
+    private void showPopupMenu() {
+        PopupMenu popupMenu = new PopupMenu(getActivity(), imageViewPerfil);
+        popupMenu.getMenuInflater().inflate(R.menu.popup_menu, popupMenu.getMenu());
+
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.editImageOption:
+                        // Ação para editar imagem
+                        Toast.makeText(getActivity(), "Editar imagem selecionado", Toast.LENGTH_SHORT).show();
+                        return true;
+                    case R.id.removeImageOption:
+                        // Ação para remover imagem
+                        Toast.makeText(getActivity(), "Remover imagem selecionado", Toast.LENGTH_SHORT).show();
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+        });
+
+        popupMenu.show();
     }
 }

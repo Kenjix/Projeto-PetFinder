@@ -2,6 +2,6 @@
 <!--Arquivo para definir bordas no CardView -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <solid android:color="@color/white"/>
-    <corners android:radius="32dp"/>
+    <solid android:color="#C6D3C3"/>
+    <corners android:radius="15dp"/>
 </shape>

@@ -13,30 +13,43 @@
         android:id="@+id/linear"
         android:background="#D0E4CD">
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/imageViewPerfil"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_margin="20dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/fotoperfil"
-            app:shapeAppearanceOverlay="@style/RoundedShapeAppearance" />
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imageViewPerfil"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="20dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/fotoperfil"
+                app:shapeAppearanceOverlay="@style/RoundedShapeAppearance" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="center">
-            <TextView
-                android:id="@+id/textNomeUser"
-                android:layout_width="wrap_content"
+
+            <ImageView
+                android:id="@+id/editIcon"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_editarperfil"
+                android:layout_gravity="bottom|end"
+                android:layout_marginBottom="16dp"
+                android:layout_marginEnd="16dp" />
+        </FrameLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Fulano de Tal da Silva"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-        </LinearLayout>
-
+                android:orientation="vertical"
+                android:layout_gravity="center">
+                <TextView
+                    android:id="@+id/textNomeUser"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fulano de Tal da Silva"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+            </LinearLayout>
     </LinearLayout>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_inicio"

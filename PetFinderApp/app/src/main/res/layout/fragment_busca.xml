@@ -19,154 +19,165 @@
         app:iconifiedByDefault="false">
 
     </androidx.appcompat.widget.SearchView>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Busca personalizada"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        android:textSize="18sp"/>
-    <!--TextView é o Espécie e Dentro do linear os checkbox-->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Espécie"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:layout_margin="10dp"
-        android:textSize="18sp"/>
-    <LinearLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <CheckBox
-            android:id="@+id/checkBoxCachorro"
-            android:layout_width="80dp"
-            android:layout_height="48dp"
-            android:layout_weight="1"
-            android:text="Cachorro"
-            android:background="@color/white"
-            android:layout_margin="10dp"/>
-
-        <CheckBox
-            android:id="@+id/checkBoxGato"
-            android:layout_width="80dp"
-            android:layout_height="48dp"
-            android:layout_weight="1"
-            android:text="Gato"
-            android:background="@color/white"
-            android:layout_margin="10dp"/>
-
-        <CheckBox
-            android:id="@+id/checkBoxOutros"
-            android:layout_width="80dp"
-            android:layout_height="48dp"
-            android:layout_weight="1"
-            android:text="Outros"
-            android:background="@color/white"
-            android:layout_margin="10dp"/>
-    </LinearLayout>
-
-    <!--TextView é o Gênero e Dentro do linear os checkbox-->
-    <TextView
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Genêro"
-        android:textColor="@color/black"
-        android:textStyle="bold"
         android:layout_margin="10dp"
-        android:textSize="18sp"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        app:cardCornerRadius="10dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Busca personalizada"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:textSize="18sp"/>
+            <!--TextView é o Espécie e Dentro do linear os checkbox-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Espécie"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_margin="10dp"
+                android:textSize="18sp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <CheckBox
-            android:id="@+id/checkBoxMacho"
-            android:layout_width="118dp"
-            android:layout_height="48dp"
-            android:text="Macho"
-            android:background="@color/white"
-            android:layout_margin="10dp"/>
+                <CheckBox
+                    android:id="@+id/checkBoxCachorro"
+                    android:layout_width="80dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:text="Cachorro"
+                    android:layout_margin="10dp"/>
 
-        <CheckBox
-            android:id="@+id/checkBoxFemea"
-            android:layout_width="118dp"
-            android:layout_height="48dp"
-            android:text="Fêmea"
-            android:background="@color/white"
-            android:layout_margin="10dp"/>
-    </LinearLayout>
+                <CheckBox
+                    android:id="@+id/checkBoxGato"
+                    android:layout_width="80dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:text="Gato"
+                    android:layout_margin="10dp"/>
 
-    <!--TextView é o Porte e Dentro do linear os checkbox-->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Porte"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:layout_margin="10dp"
-        android:textSize="18sp"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+                <CheckBox
+                    android:id="@+id/checkBoxOutros"
+                    android:layout_width="80dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:text="Outros"
+                    android:layout_margin="10dp"/>
+            </LinearLayout>
 
-        <CheckBox
-            android:id="@+id/checkBoxPequeno"
-            android:layout_width="80dp"
-            android:layout_height="48dp"
-            android:layout_weight="1"
-            android:text="Pequeno"
-            android:background="@color/white"
-            android:layout_margin="10dp"/>
+            <!--TextView é o Gênero e Dentro do linear os checkbox-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Genêro"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_margin="10dp"
+                android:textSize="18sp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <CheckBox
-            android:id="@+id/checkBoxMedio"
-            android:layout_width="80dp"
-            android:layout_height="48dp"
-            android:layout_weight="1"
-            android:text="Medio"
-            android:background="@color/white"
-            android:layout_margin="10dp"/>
+                <CheckBox
+                    android:id="@+id/checkBoxMacho"
+                    android:layout_width="110dp"
+                    android:layout_height="48dp"
+                    android:text="Macho"
+                    android:layout_margin="10dp"/>
 
-        <CheckBox
-            android:id="@+id/checkBoxGrande"
-            android:layout_width="80dp"
-            android:layout_height="48dp"
-            android:layout_weight="1"
-            android:text="Grande"
-            android:background="@color/white"
-            android:layout_margin="10dp"/>
-    </LinearLayout>
-    <!--TextView é o Castrado e dentro do linear os checkbox-->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Castrado"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:layout_margin="10dp"
-        android:textSize="18sp"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+                <CheckBox
+                    android:id="@+id/checkBoxFemea"
+                    android:layout_width="118dp"
+                    android:layout_height="48dp"
+                    android:text="Fêmea"
+                    android:layout_margin="10dp"/>
+            </LinearLayout>
 
-        <CheckBox
-            android:id="@+id/checkBoxSim"
-            android:layout_width="118dp"
-            android:layout_height="48dp"
-            android:text="Sim"
-            android:background="@color/white"
-            android:layout_margin="10dp"/>
+            <!--TextView é o Porte e Dentro do linear os checkbox-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Porte"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_margin="10dp"
+                android:textSize="18sp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <CheckBox
-            android:id="@+id/checkBoxNao"
-            android:layout_width="118dp"
-            android:layout_height="48dp"
-            android:text="Não"
-            android:background="@color/white"
-            android:layout_margin="10dp"/>
+                <CheckBox
+                    android:id="@+id/checkBoxPequeno"
+                    android:layout_width="80dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:text="Pequeno"
+                    android:layout_margin="10dp"/>
 
-    </LinearLayout>
+                <CheckBox
+                    android:id="@+id/checkBoxMedio"
+                    android:layout_width="80dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:text="Medio"
+                    android:layout_margin="10dp"/>
+
+                <CheckBox
+                    android:id="@+id/checkBoxGrande"
+                    android:layout_width="80dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:text="Grande"
+                    android:layout_margin="10dp"/>
+            </LinearLayout>
+            <!--TextView é o Castrado e dentro do linear os checkbox-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Castrado"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_margin="10dp"
+                android:textSize="18sp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <CheckBox
+                    android:id="@+id/checkBoxSim"
+                    android:layout_width="110dp"
+                    android:layout_height="48dp"
+                    android:text="Sim"
+                    android:layout_margin="10dp"/>
+
+                <CheckBox
+                    android:id="@+id/checkBoxNao"
+                    android:layout_width="118dp"
+                    android:layout_height="48dp"
+                    android:text="Não"
+                    android:layout_margin="10dp"/>
+
+            </LinearLayout>
+            <Button
+                android:id="@+id/buttonBuscarPerso"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:backgroundTint="#4C5C43"
+                android:layout_gravity="center"
+                android:text="Buscar"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 </LinearLayout>
