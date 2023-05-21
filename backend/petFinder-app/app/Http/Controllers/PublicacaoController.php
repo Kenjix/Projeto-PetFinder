@@ -14,11 +14,11 @@ class PublicacaoController extends Controller
             'nomePet' => 'required|string',
             'porte' => 'required|string',
             'idade' => 'required|integer',
-            'vacinas' => 'string',
+            'vacinas' => 'nullable|string',
             'castrado' => 'boolean',
             'genero' => 'required|string',
             'especie' => 'required|string',
-            'descricao' => 'string',  
+            'descricao' => 'nullable|string',  
             'user_id' => 'integer',
             'image' => 'required'
         ],
@@ -38,7 +38,7 @@ class PublicacaoController extends Controller
         $decodedImage = base64_decode($base64Image);
         $fileName = 'imagens/' . uniqid() . '.png';
         Storage::disk('local')->put($fileName, $decodedImage);  
-        $url = asset('storage/' . $fileName);        
+        $url = asset('storage/' . $fileName);
 
         $publicacao = Publicacao::create([
             'nomePet' => $request->input('nomePet'),

@@ -138,11 +138,16 @@ public class CriarPublicacaoFragment extends Fragment {
             try {
                 idade = Integer.parseInt(editTextIdade.getText().toString());
             } catch (NumberFormatException e) {
-                e.printStackTrace(); // Ou qualquer outra lógica para tratar o erro
+                e.printStackTrace();
             }
             String vacinas = editTextVacinas.getText().toString();
-            boolean castrado = (spinnerCastrado.getSelectedItem().toString() != null && spinnerCastrado.getSelectedItem().toString().equals("Sim")) ? true :
-                    (spinnerCastrado.getSelectedItem().toString() != null && spinnerCastrado.getSelectedItem().toString().equals("Não")) ? false : null;
+            boolean castrado = false;
+            String selectedItem = spinnerCastrado.getSelectedItem().toString();
+            if (selectedItem.equals("Sim")) {
+                castrado = true;
+            } else if (selectedItem.equals("Não")) {
+                castrado = false;
+            }
             String genero = spinnerGenero.getSelectedItem().toString();
             String especie = spinnerEspecie.getSelectedItem().toString();
             String descricao = editTextDescricao.getText().toString();
@@ -158,7 +163,7 @@ public class CriarPublicacaoFragment extends Fragment {
                 editTextIdade.requestFocus();
                 editTextIdade.setError("Campo obrigatório!");
                 return;
-            } else if(spinnerCastrado.getSelectedItem().toString().equals("Selecione")) {
+            } else if (selectedItem.equals("Selecione")) {
                 msgRetorno.setText("Selecione se o pet é castrado");
                 return;
             } else if(genero.equals("Selecione")) {
@@ -167,12 +172,16 @@ public class CriarPublicacaoFragment extends Fragment {
             } else if(especie.equals("Selecione")) {
                 msgRetorno.setText("Selecione a espécie");
                 return;
+            } else if(descricao.isEmpty()) {
+                editTextDescricao.requestFocus();
+                editTextDescricao.setError("Campo obrigatório!");
+                return;
             } else if (photoImageView.getDrawable() == null) {
                 msgRetorno.setText("Selecione uma foto do pet");
                 return;
             }
             JSONObject jsonObject = new JSONObject();
-            /*//converte a imagem em Base64
+            /*//converte a imagem em Base64 sem redimencionamento
             Bitmap imageBitmap = ((BitmapDrawable) photoImageView.getDrawable()).getBitmap();
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
@@ -195,9 +204,6 @@ public class CriarPublicacaoFragment extends Fragment {
             String base64Image = Base64.encodeToString(byteArray, Base64.DEFAULT);
 
             Publicacao publicacao = new Publicacao(descricao, nomePet, genero, especie, porte, idade, vacinas, castrado, idUsuario);
-            /*msgRetorno.setText("DESC: " + publicacao.getDescricao() + "\nnome pet: " + publicacao.getNomePet() + "\ngenero: " + publicacao.getGenero()
-                    + "\nespecie: " + publicacao.getEspecie() + "\nporte: " + publicacao.getPorte() + "\nidade: " + publicacao.getIdade()
-                    + "\nvacinas: " + publicacao.getVacinas() + "\nCastado: " + publicacao.isCastrado() + "\nUID: " + idUsuario + "\nIMG: " + base64Image);*/
             try {
                 jsonObject.put("nomePet", publicacao.getNomePet());
                 jsonObject.put("porte", publicacao.getPorte());
@@ -219,6 +225,12 @@ public class CriarPublicacaoFragment extends Fragment {
                         public void onResponse(JSONObject response) {
                             try {
                                 msgRetorno.setText(response.getString("message"));
+                                //cria uma Intent para iniciar a atividade principal
+                                Intent intent = new Intent(getActivity(), MainActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(intent);
+                                //finalizar a activity atual
+                                getActivity().finish();
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
