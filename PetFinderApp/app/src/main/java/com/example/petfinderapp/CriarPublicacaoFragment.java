@@ -195,9 +195,9 @@ public class CriarPublicacaoFragment extends Fragment {
             String base64Image = Base64.encodeToString(byteArray, Base64.DEFAULT);
 
             Publicacao publicacao = new Publicacao(descricao, nomePet, genero, especie, porte, idade, vacinas, castrado, idUsuario);
-            msgRetorno.setText("DESC: " + publicacao.getDescricao() + "\nnome pet: " + publicacao.getNomePet() + "\ngenero: " + publicacao.getGenero()
+            /*msgRetorno.setText("DESC: " + publicacao.getDescricao() + "\nnome pet: " + publicacao.getNomePet() + "\ngenero: " + publicacao.getGenero()
                     + "\nespecie: " + publicacao.getEspecie() + "\nporte: " + publicacao.getPorte() + "\nidade: " + publicacao.getIdade()
-                    + "\nvacinas: " + publicacao.getVacinas() + "\nCastado: " + publicacao.isCastrado() + "\nUID: " + idUsuario + "\nIMG: " + base64Image);
+                    + "\nvacinas: " + publicacao.getVacinas() + "\nCastado: " + publicacao.isCastrado() + "\nUID: " + idUsuario + "\nIMG: " + base64Image);*/
             try {
                 jsonObject.put("nomePet", publicacao.getNomePet());
                 jsonObject.put("porte", publicacao.getPorte());

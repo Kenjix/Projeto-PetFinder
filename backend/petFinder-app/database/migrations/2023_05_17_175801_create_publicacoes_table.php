@@ -10,18 +10,18 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {
+    {   
         Schema::create('publicacoes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nomePet', 60)->nullable(false);
-            $table->string('porte', 60)->nullable(false);
+            $table->string('nomePet', 60);
+            $table->string('porte', 60);
             $table->integer('idade');
             $table->string('vacinas', 255);
-            //$table->boolean('castrado');
-            $table->string('genero', 20)->nullable(false);
-            $table->string('especie', 60)->nullable(false);
-            $table->string('descricao', 255)->nullable(false);
-            $table->string('image_path');
+            $table->boolean('castrado');
+            $table->string('genero', 20);
+            $table->string('especie', 60);
+            $table->string('descricao', 255);
+            $table->string('image_path', 120);
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

@@ -3,7 +3,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use App\Models\Publicacoes;
+use App\Models\Publicacao;
 use Illuminate\Support\Facades\Storage;
 
 class PublicacaoController extends Controller
@@ -15,11 +15,11 @@ class PublicacaoController extends Controller
             'porte' => 'required|string',
             'idade' => 'required|integer',
             'vacinas' => 'string',
-            'castrado' => 'boolval',
+            'castrado' => 'boolean',
             'genero' => 'required|string',
             'especie' => 'required|string',
             'descricao' => 'string',  
-            'user_id' => 'long',
+            'user_id' => 'integer',
             'image' => 'required'
         ],
         [
@@ -36,11 +36,11 @@ class PublicacaoController extends Controller
 
         $base64Image = $request->input('image');
         $decodedImage = base64_decode($base64Image);
-        $fileName = uniqid() . '.png';
-        Storage::disk('local')->put($fileName, $decodedImage);        
+        $fileName = 'imagens/' . uniqid() . '.png';
+        Storage::disk('local')->put($fileName, $decodedImage);  
         $url = asset('storage/' . $fileName);        
 
-        $publicacao = Publicacoes::create([
+        $publicacao = Publicacao::create([
             'nomePet' => $request->input('nomePet'),
             'porte' => $request->input('porte'),
             'idade' => $request->input('idade'),
