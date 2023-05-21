@@ -34,16 +34,6 @@
                 android:text="Fulano de Tal da Silva"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
-
-            <ImageButton
-                android:id="@+id/buttonEditarPerfil"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginRight="20dp"
-                android:background="#D0E4CD"
-                android:layout_gravity="end"
-                app:srcCompat="@drawable/manage_accounts"
-                android:contentDescription="Excluir"/>
         </LinearLayout>
 
     </LinearLayout>

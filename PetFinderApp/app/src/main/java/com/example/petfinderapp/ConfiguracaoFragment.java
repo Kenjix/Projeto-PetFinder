@@ -11,6 +11,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 public class ConfiguracaoFragment extends Fragment {
 
@@ -26,6 +28,7 @@ public class ConfiguracaoFragment extends Fragment {
 
         // Find views by ID
         TextView txtEditProfile = view.findViewById(R.id.txtEditProfile);
+        TextView txtEditRedefinirSenha = view.findViewById(R.id.txtEditRedefinirSenha);
         Switch switchNotifications = view.findViewById(R.id.switchNotifications);
         TextView txtDeleteAccount = view.findViewById(R.id.txtDeleteAccount);
 
@@ -33,8 +36,27 @@ public class ConfiguracaoFragment extends Fragment {
         txtEditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Handle click on Edit Profile
-                Toast.makeText(getActivity(), "Editar Perfil", Toast.LENGTH_SHORT).show();
+                // Substituir o fragmento atual pelo fragmento EditarPerfilFragment
+                Fragment editarPerfilFragment = new EditarPerfilFragment();
+                FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, editarPerfilFragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
+
+
+        txtEditRedefinirSenha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Substituir o fragmento atual pelo fragmento EditarPerfilFragment
+                Fragment redefinirSenhaFragment = new RedefinirSenhaFragment();
+                FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, redefinirSenhaFragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
             }
         });
 

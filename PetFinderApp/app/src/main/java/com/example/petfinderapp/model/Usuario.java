@@ -44,6 +44,12 @@ public class Usuario {
         this.telefone = telefone;
     }
 
+    public Usuario(String name, String email, String telefone) {
+        this.name = name;
+        this.email = email;
+        this.telefone = telefone;
+    }
+
     public long getId() {
         return id;
     }
