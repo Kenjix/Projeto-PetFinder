@@ -16,9 +16,87 @@ Os protótipos de tela foram desenvolvidos no Figma:
 
 ### Instalação
 
-## PHP 8.2.6
+## Primeiros passos
+
+Antes de mais nada você deve clonar o repositório
+
+### #1 PHP 8.2.6
 
 Você pode acessar este [link](https://windows.php.net/download/) para baixar. E também assistir ao [video](https://www.youtube.com/watch?v=KwEilZK5d04) para instalar.
+
+### #2 Composer
+
+Após ter instalado a versão do PHP 8.2.6, agora você pode instalar o [Composer](https://getcomposer.org/download/) e selecionar o caminho do php instalado anteriormente quando solicitado, e então, OK para todos os passos.
+
+### #3 Abrindo o Projeto no VSCODE
+
+> Primeiramente você deve ir até a raiz do seu PHP 8.2.6 e procurar o arquivo php.ini e descomentar os seguintes itens:
+
+```
+extension=fileinfo
+extension=pdo_msql
+extension=zip
+```
+
+Após ter realizado esses passos, você pode ir até a pasta que foi clonada e abrir a pasta Projeto-PetFinder/backend -> e selecionar a pasta petFinder-app e abrir com o VS Code
+
+### #4 Instalando o Composer
+
+No terminal do VS Code você deve executar o comando:
+
+```
+composer install
+```
+### #5 Abrindo o MySQL Workbench
+
+Para a criação das tabelas, abra o seu MySQL
+
+### #6 Fazendo a conexão do migrations com o MySQL
+
+Para fazer a criação das tabelas no banco de dados você deve criar um arquivo .env na raiz da pasta petFinder-app
+
+Em seguida abrir o arquivo .env.example e copiar tudo
+
+Colar no arquivo .env que você a recém criou
+
+Para conectar com o seu banco de dados você deve mudar essa parte do código no arquivo .env e colocar seu username e senha para o seu banco de dados no MySQL
+
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=petfinder
+DB_USERNAME=root
+DB_PASSWORD=laboratorio
+```
+
+### #7 Criando as tabelas
+
+Finalizando, para a criação das tabelas você executa esse comando:
+
+```
+php artisan migrate
+```
+
+### #8 Conectando os Android Studio no PHP
+
+Recomendo você iniciar o servidor no terminal do VS Code dessa forma:
+
+```
+php artisan serve --host=seuip --port=8000
+```
+Exemplo: Se meu IP é igual a 192.168.0.02 então eu inicio o server assim: 
+```
+php artisan serve --host=192.168.0.02 --port=8000
+```
+
+### Observação
+
+Lembre-se de trocar a url de requisição nos arquivos do Android Studio são eles (Por enquanto):
+
+- Login
+- CadastroUsuario
+- CriarPublicacaoFragment
 
 ### Desenvolvedores:
 - Douglas Kenji Kihara
