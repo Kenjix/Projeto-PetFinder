@@ -18,8 +18,8 @@ class Publicacoes extends Model
         'castrado',
         'genero',
         'especie',
-        'descricao',
+        'descricao',        
+        'image_path',
         'user_id',
-        'imagem',
     ];
 }

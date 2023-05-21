@@ -5,26 +5,29 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string-array name="portePet">
+        <item>Selecione</item>
         <item>Pequeno</item>
         <item>Médio</item>
         <item>Grande</item>
     </string-array>
     <string-array name="castradoPet">
+        <item>Selecione</item>
         <item>Sim</item>
         <item>Não</item>
     </string-array>
     <string-array name="generoPet">
+        <item>Selecione</item>
         <item>Macho</item>
         <item>Fêmea</item>
     </string-array>
     <string-array name="especiePet">
+        <item>Selecione</item>
         <item>Cachorro</item>
         <item>Gato</item>
         <item>Peixe</item>
         <item>Pássaros</item>
         <item>Hamster</item>
         <item>Coelho</item>
-        <item>Tartaruga</item>
         <item>Répteis</item>
     </string-array>
 </resources>

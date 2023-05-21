@@ -78,7 +78,7 @@ public class Login extends AppCompatActivity {
                             public void onResponse(JSONObject response) {
                                 try {
                                     JSONObject userObject = response.getJSONObject("user");
-                                    int id = userObject.getInt("id");
+                                    long id = userObject.getInt("id");
                                     String nome = userObject.getString("name");
                                     String email = userObject.getString("email");
                                     String dataNasc = userObject.getString("dataNasc");

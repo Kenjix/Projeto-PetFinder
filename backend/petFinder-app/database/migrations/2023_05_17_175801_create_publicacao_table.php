@@ -17,15 +17,14 @@ return new class extends Migration
             $table->string('porte', 60)->nullable(false);
             $table->integer('idade');
             $table->string('vacinas', 255);
-            $table->string('castrado', 3)->nullable(false);
+            //$table->boolean('castrado');
             $table->string('genero', 20)->nullable(false);
             $table->string('especie', 60)->nullable(false);
             $table->string('descricao', 255)->nullable(false);
-            $table->binary('imagem');
+            $table->string('image_path');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->timestamp('created_at')->nullable();
-            $table->timestamp('updated_at')->nullable();
+            $table->timestamps();
         });
     }
 

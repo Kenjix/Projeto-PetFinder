@@ -16,7 +16,6 @@ public class RecuperaSenha extends AppCompatActivity {
     }
 
     public void LoginClick(View view) {
-        Intent intent = new Intent(RecuperaSenha.this, Login.class);
-        startActivity(intent);
+        finish();
     }
 }

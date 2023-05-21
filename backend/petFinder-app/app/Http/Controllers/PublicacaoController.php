@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Publicacoes;
+use Illuminate\Support\Facades\Storage;
 
 class PublicacaoController extends Controller
 {
@@ -14,28 +15,30 @@ class PublicacaoController extends Controller
             'porte' => 'required|string',
             'idade' => 'required|integer',
             'vacinas' => 'string',
+            'castrado' => 'boolval',
             'genero' => 'required|string',
             'especie' => 'required|string',
-            'descricao' => 'string',
-            'user_id' => 'required|integer',
-            //a imagem vem em formato de String do JAVA
-            'imagem' => 'string'
+            'descricao' => 'string',  
+            'user_id' => 'long',
+            'image' => 'required'
         ],
         [
             "nomePet.required" => "O nome é obrigatório",
             "porte.required" => "O porte é obrigatório",
             "genero.required" => "O gênero é obrigatório",
             "especie.required" => "O tipo é obrigatório",
-            //"imagem.required" => "A imagem é obrigatória",
-            "imagem.string" => "A imagem deve estar em formato de string"
+            "image.required" => "A imagem é obrigatória",
         ]);
 
         if ($validaDados->fails()) {
             return response()->json(['errors' => $validaDados->errors()], 422);
         }
 
-        $base64Image = $request->input('imagem');
-        $imageData = base64_decode($base64Image);
+        $base64Image = $request->input('image');
+        $decodedImage = base64_decode($base64Image);
+        $fileName = uniqid() . '.png';
+        Storage::disk('local')->put($fileName, $decodedImage);        
+        $url = asset('storage/' . $fileName);        
 
         $publicacao = Publicacoes::create([
             'nomePet' => $request->input('nomePet'),
@@ -45,9 +48,9 @@ class PublicacaoController extends Controller
             'castrado' => $request->input('castrado'),
             'genero' => $request->input('genero'),
             'especie' => $request->input('especie'),
-            'descricao' => $request->input('descricao'),
+            'descricao' => $request->input('descricao'),  
+            'image_path' => $url,
             'user_id' => $request->input('user_id'),
-            'imagem' => $imageData
         ]);
 
         if ($publicacao) {

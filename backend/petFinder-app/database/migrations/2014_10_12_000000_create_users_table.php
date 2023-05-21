@@ -23,8 +23,7 @@ return new class extends Migration
             $table->integer('nivelAcesso')->default(0);
             $table->integer('tentativasAcesso')->default(0);
             $table->boolean('ativo')->default(true);
-            $table->timestamp('created_at')->nullable();
-            $table->timestamp('updated_at')->nullable();
+            $table->timestamps();
         });
     }
 

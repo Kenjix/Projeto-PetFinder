@@ -6,37 +6,35 @@ public class Publicacao {
     private String descricao;
     private String nomePet;
     private String genero;
-    private String tipo;
+    private String especie;
     private String porte;
     private int idade;
     private String vacinas;
-    private String Castrado;
+    private boolean Castrado;
     private String imagem;
-    private int userId;
+    private long userId;
 
-    public Publicacao(int id, String descricao, String nomePet, String genero, String tipo, String porte, int idade, String vacinas, String castrado, int userId) {
-        this.id = id;
+    public Publicacao(String descricao, String nomePet, String genero, String especie, String porte, int idade, String vacinas, boolean castrado, long userId) {
         this.descricao = descricao;
         this.nomePet = nomePet;
         this.genero = genero;
-        this.tipo = tipo;
+        this.especie = especie;
         this.porte = porte;
         this.idade = idade;
         this.vacinas = vacinas;
-        Castrado = castrado;
+        this.Castrado = castrado;
         this.userId = userId;
     }
 
-    public Publicacao(int id, String descricao, String nomePet, String genero, String tipo, String porte, int idade, String vacinas, String castrado, String imagem, int userId) {
-        this.id = id;
+    public Publicacao(String descricao, String nomePet, String genero, String especie, String porte, int idade, String vacinas, boolean castrado, String imagem, long userId) {
         this.descricao = descricao;
         this.nomePet = nomePet;
         this.genero = genero;
-        this.tipo = tipo;
+        this.especie = especie;
         this.porte = porte;
         this.idade = idade;
         this.vacinas = vacinas;
-        Castrado = castrado;
+        this.Castrado = castrado;
         this.imagem = imagem;
         this.userId = userId;
     }
@@ -57,8 +55,8 @@ public class Publicacao {
         return genero;
     }
 
-    public String getTipo() {
-        return tipo;
+    public String getEspecie() {
+        return especie;
     }
 
     public String getPorte() {
@@ -73,15 +71,14 @@ public class Publicacao {
         return vacinas;
     }
 
-    public String getCastrado() {
+    public boolean isCastrado() {
         return Castrado;
     }
-
     public String getImagem() {
         return imagem;
     }
 
-    public int getUserId() {
+    public long getUserId() {
         return userId;
     }
 }

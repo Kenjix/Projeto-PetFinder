@@ -14,7 +14,7 @@ public class Usuario {
     private int nivelAcesso;
     private int tentativasAcesso;
 
-    public Usuario(int id, String name, String email, String dataNasc, String genero, String telefone, String avatar, int nivelAcesso, int tentativasAcesso) {
+    public Usuario(long id, String name, String email, String dataNasc, String genero, String telefone, String avatar, int nivelAcesso, int tentativasAcesso) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -25,7 +25,7 @@ public class Usuario {
         this.nivelAcesso = nivelAcesso;
         this.tentativasAcesso = tentativasAcesso;
     }
-    public Usuario(int id, String name, String email, String dataNasc, String genero, String telefone, int nivelAcesso, int tentativasAcesso) {
+    public Usuario(long id, String name, String email, String dataNasc, String genero, String telefone, int nivelAcesso, int tentativasAcesso) {
         this.id = id;
         this.name = name;
         this.email = email;
