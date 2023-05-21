@@ -67,7 +67,7 @@ DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_DATABASE=petfinder
 DB_USERNAME=root
-DB_PASSWORD=laboratorio
+DB_PASSWORD=aqui voce coloca a senha do seu banco
 ```
 
 ### #7 Criando as tabelas
