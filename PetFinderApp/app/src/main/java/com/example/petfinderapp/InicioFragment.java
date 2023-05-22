@@ -38,15 +38,10 @@ public class InicioFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_inicio, container, false);
 
-
-        //cria uma lista de publicações (você pode buscar as publicações do banco de dados ou de uma API)
         List<Publicacao> publicacoes = obterPublicacoes();
         rvPublicacao = rootView.findViewById(R.id.recycler_view_inicio);
         rvPublicacao.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new PublicacaoAdapter(publicacoes);
-        rvPublicacao.setAdapter(adapter);
-        //cria uma instância do PublicacaoAdapter e defina-o no RecyclerView
-        PublicacaoAdapter adapter = new PublicacaoAdapter(publicacoes);
         rvPublicacao.setAdapter(adapter);
         return rootView;
     }
@@ -59,7 +54,6 @@ public class InicioFragment extends Fragment {
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-                        Toast.makeText(getContext(), "ok", Toast.LENGTH_SHORT).show();
                         //processar a resposta JSON e cria objeto Publicacao
                         try {
                             for (int i = 0; i < response.length(); i++) {
@@ -72,16 +66,15 @@ public class InicioFragment extends Fragment {
                                 String porte = jsonPublicacao.getString("porte");
                                 String idade = jsonPublicacao.getString("idade");
                                 String vacinas = jsonPublicacao.getString("vacinas");
-                                boolean castrado = jsonPublicacao.getBoolean("castrado");
+                                String castradoStr = jsonPublicacao.getString("castrado");
+                                boolean castrado = castradoStr.equals("1") ? true : false;
                                 String imagem = jsonPublicacao.getString("base64_imagem");
-                                long userId = jsonPublicacao.getLong("userId");
-
+                                long userId = jsonPublicacao.getLong("user_id");
                                 Publicacao publicacao = new Publicacao(id, descricao, nomePet, genero, especie, porte, idade, vacinas, castrado, imagem, userId);
                                 publicacoes.add(publicacao);
                             }
                             //atualiza o adaptador com a lista de publicações obtida
                             adapter.notifyDataSetChanged();
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
