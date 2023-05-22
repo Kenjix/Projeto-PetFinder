@@ -32,17 +32,22 @@ import java.util.List;
 public class InicioFragment extends Fragment {
     private final String url = "http://192.168.100.6:8000/api/publicacoes";
     //private final String url = "http://192.168.100.6:8000/api/publicacoes";
+
+    private PublicacaoAdapter adapter;
+    private RecyclerView rvPublicacao;
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_inicio, container, false);
-        RecyclerView recyclerView = rootView.findViewById(R.id.recycler_view_inicio);
+
 
         //cria uma lista de publicações (você pode buscar as publicações do banco de dados ou de uma API)
         List<Publicacao> publicacoes = obterPublicacoes();
-
+        rvPublicacao = rootView.findViewById(R.id.recycler_view_inicio);
+        rvPublicacao.setLayoutManager(new LinearLayoutManager(getContext()));
+        adapter = new PublicacaoAdapter(publicacoes);
+        rvPublicacao.setAdapter(adapter);
         //cria uma instância do PublicacaoAdapter e defina-o no RecyclerView
         PublicacaoAdapter adapter = new PublicacaoAdapter(publicacoes);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+        rvPublicacao.setAdapter(adapter);
         return rootView;
     }
 
@@ -75,8 +80,6 @@ public class InicioFragment extends Fragment {
                                 publicacoes.add(publicacao);
                             }
                             //atualiza o adaptador com a lista de publicações obtida
-                            PublicacaoAdapter adapter = new PublicacaoAdapter(publicacoes);
-                            adapter.setPublicacoes(publicacoes);
                             adapter.notifyDataSetChanged();
 
                         } catch (JSONException e) {
