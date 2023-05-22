@@ -50,7 +50,7 @@
                     android:inputType="text"
                     android:padding="16dp" />
 
-                <EditText
+                <!--<EditText
                     android:id="@+id/editEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -59,7 +59,7 @@
                     android:ems="10"
                     android:hint="E-mail"
                     android:inputType="textEmailAddress"
-                    android:padding="16dp" />
+                    android:padding="16dp"/>-->
 
                 <EditText
                     android:id="@+id/editCelular"
@@ -70,7 +70,7 @@
                     android:ems="10"
                     android:hint="Celular"
                     android:inputType="phone"
-                    android:padding="16dp" />
+                    android:padding="16dp"/>
 
                 <TextView
                     android:id="@+id/msgErro"
