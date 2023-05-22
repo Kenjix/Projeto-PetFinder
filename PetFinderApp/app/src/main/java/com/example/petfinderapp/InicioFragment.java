@@ -1,64 +1,102 @@
 package com.example.petfinderapp;
 
+
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link InicioFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.petfinderapp.model.Publicacao;
+import com.example.petfinderapp.model.PublicacaoAdapter;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class InicioFragment extends Fragment {
+    private final String url = "http://192.168.100.6:8000/api/publicacoes";
+    //private final String url = "http://192.168.100.6:8000/api/publicacoes";
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_inicio, container, false);
+        RecyclerView recyclerView = rootView.findViewById(R.id.recycler_view_inicio);
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+        //cria uma lista de publicações (você pode buscar as publicações do banco de dados ou de uma API)
+        List<Publicacao> publicacoes = obterPublicacoes();
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public InicioFragment() {
-        // Required empty public constructor
+        //cria uma instância do PublicacaoAdapter e defina-o no RecyclerView
+        PublicacaoAdapter adapter = new PublicacaoAdapter(publicacoes);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+        return rootView;
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment InicioFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static InicioFragment newInstance(String param1, String param2) {
-        InicioFragment fragment = new InicioFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    private List<Publicacao> obterPublicacoes() {
+        List<Publicacao> publicacoes = new ArrayList<>();
+        RequestQueue requestQueue = Volley.newRequestQueue(requireContext());
+        //cria uma solicitação GET para a URL da API
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        Toast.makeText(getContext(), "ok", Toast.LENGTH_SHORT).show();
+                        //processar a resposta JSON e cria objeto Publicacao
+                        try {
+                            for (int i = 0; i < response.length(); i++) {
+                                JSONObject jsonPublicacao = response.getJSONObject(i);
+                                long id = jsonPublicacao.getLong("id");
+                                String descricao = jsonPublicacao.getString("descricao");
+                                String nomePet = jsonPublicacao.getString("nomePet");
+                                String genero = jsonPublicacao.getString("genero");
+                                String especie = jsonPublicacao.getString("especie");
+                                String porte = jsonPublicacao.getString("porte");
+                                String idade = jsonPublicacao.getString("idade");
+                                String vacinas = jsonPublicacao.getString("vacinas");
+                                boolean castrado = jsonPublicacao.getBoolean("castrado");
+                                String imagem = jsonPublicacao.getString("base64_imagem");
+                                long userId = jsonPublicacao.getLong("userId");
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+                                Publicacao publicacao = new Publicacao(id, descricao, nomePet, genero, especie, porte, idade, vacinas, castrado, imagem, userId);
+                                publicacoes.add(publicacao);
+                            }
+                            //atualiza o adaptador com a lista de publicações obtida
+                            PublicacaoAdapter adapter = new PublicacaoAdapter(publicacoes);
+                            adapter.setPublicacoes(publicacoes);
+                            adapter.notifyDataSetChanged();
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_inicio, container, false);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getContext(), "Erro: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                        error.printStackTrace();
+                    }
+                });
+
+        // Adicione a solicitação à RequestQueue
+        requestQueue.add(jsonArrayRequest);
+
+        return publicacoes;
     }
 }
+
+

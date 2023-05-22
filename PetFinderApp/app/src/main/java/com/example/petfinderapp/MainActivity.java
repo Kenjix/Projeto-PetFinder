@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
 
         if (savedInstanceState == null) {
-            // Inicia o primeiro fragmento padrão
+            //inicia o primeiro fragmento padrão
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new InicioFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_home);
         }
@@ -65,8 +65,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             finish();
         } else { //Se o username já foi salvo, exibe o conteudo
             userSession.setText(username);
-
-
         }
     }
 

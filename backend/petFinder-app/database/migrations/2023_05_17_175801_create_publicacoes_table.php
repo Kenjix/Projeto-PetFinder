@@ -15,7 +15,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('nomePet', 60)->nullable(false);
             $table->string('porte', 60)->nullable(false);
-            $table->integer('idade');
+            $table->string('idade');
             $table->string('vacinas', 255)->nullable(true);
             $table->boolean('castrado');
             $table->string('genero', 20)->nullable(false);

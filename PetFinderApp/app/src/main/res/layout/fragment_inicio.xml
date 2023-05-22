@@ -12,7 +12,7 @@
         android:background="@color/white"
         android:layout_width="match_parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/publicacao_item"
+        tools:listitem="@layout/item_publicacao"
         android:layout_height="match_parent"/>
 
 </RelativeLayout>

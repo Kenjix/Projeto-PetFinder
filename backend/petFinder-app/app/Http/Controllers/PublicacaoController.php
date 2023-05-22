@@ -8,12 +8,20 @@ use App\Models\Publicacao;
 
 class PublicacaoController extends Controller
 {
+    public function index()
+    {
+        $publicacoes = Publicacao::all();
+
+        //retorna a resposta JSON com as publicações com o atributo virtual 'base64_imagem'
+        return response()->json($publicacoes);
+    }
+
     public function publicacaoCadastro(Request $request)
     {
         $validaDados = Validator::make($request->all(), [
             'nomePet' => 'required|string',
             'porte' => 'required|string',
-            'idade' => 'required|integer',
+            'idade' => 'required|string',
             'vacinas' => 'nullable|string',
             'castrado' => 'boolean',
             'genero' => 'required|string',
@@ -38,8 +46,8 @@ class PublicacaoController extends Controller
         $decodedImage = base64_decode($base64Image);
         $fileName = 'imagens/' . uniqid() . '.png';
         Storage::disk('local')->put($fileName, $decodedImage);  
-        $url = asset('storage/' . $fileName);
-
+        $url = $fileName;
+        
         $publicacao = Publicacao::create([
             'nomePet' => $request->input('nomePet'),
             'porte' => $request->input('porte'),

@@ -51,9 +51,9 @@ import java.util.Iterator;
 public class CriarPublicacaoFragment extends Fragment {
     private static final int REQUEST_STORAGE_PERMISSION = 100;
     //D
-    //private final String url = "http://192.168.100.6:8000/api/cadastroPublicacao";
+    private final String url = "http://192.168.100.6:8000/api/cadastroPublicacao";
     //G
-    private final String url = "http://192.168.0.115:8000/api/cadastroPublicacao";
+    //private final String url = "http://192.168.0.115:8000/api/cadastroPublicacao";
     //Spinner é o ComboBox
     Spinner spinnerPorte, spinnerCastrado, spinnerEspecie, spinnerGenero;
     private ImageView photoImageView;
@@ -61,6 +61,7 @@ public class CriarPublicacaoFragment extends Fragment {
     private Button buttonCancelar, buttonCadastrar;
     private TextView msgRetorno;
     private SharedPreferences preferences;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         preferences = requireContext().getSharedPreferences("sessao", Context.MODE_PRIVATE);
@@ -140,12 +141,7 @@ public class CriarPublicacaoFragment extends Fragment {
             //pega os valores digitados nos campos de texto do XML
             String nomePet = editTextNome.getText().toString();
             String porte = spinnerPorte.getSelectedItem().toString();
-            int idade = -1;
-            try {
-                idade = Integer.parseInt(editTextIdade.getText().toString());
-            } catch (NumberFormatException e) {
-                e.printStackTrace();
-            }
+            String idade = editTextIdade.getText().toString();
             String vacinas = editTextVacinas.getText().toString();
             boolean castrado = false;
             String selectedItem = spinnerCastrado.getSelectedItem().toString();
@@ -165,7 +161,7 @@ public class CriarPublicacaoFragment extends Fragment {
             } else if(porte.equals("Selecione")){
                 msgRetorno.setText("Selecione um porte.");
                 return;
-            } else if(idade == -1){
+            } else if(idade.isEmpty()){
                 editTextIdade.requestFocus();
                 editTextIdade.setError("Campo obrigatório!");
                 return;
