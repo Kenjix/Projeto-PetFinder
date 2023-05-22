@@ -26,6 +26,7 @@ class User extends Authenticatable
         'dataNasc',
         'genero',
         'telefone',
+        'avatar',
     ];
 
     /**

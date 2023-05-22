@@ -15,6 +15,11 @@ class Publicacao extends Model
     protected $appends = ['base64_imagem'];
     protected $hidden = ['image_path'];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id')->select('id', 'name', 'avatar');
+    }
+
     public function getBase64ImagemAttribute()
     {
         $path = $this->image_path;

@@ -21,6 +21,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.petfinderapp.model.Publicacao;
 import com.example.petfinderapp.model.PublicacaoAdapter;
+import com.example.petfinderapp.model.Usuario;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -70,7 +71,13 @@ public class InicioFragment extends Fragment {
                                 boolean castrado = castradoStr.equals("1") ? true : false;
                                 String imagem = jsonPublicacao.getString("base64_imagem");
                                 long userId = jsonPublicacao.getLong("user_id");
-                                Publicacao publicacao = new Publicacao(id, descricao, nomePet, genero, especie, porte, idade, vacinas, castrado, imagem, userId);
+
+                                JSONObject jsonUser = jsonPublicacao.getJSONObject("user");
+                                String userName = jsonUser.getString("name");
+                                String userAvatar = jsonUser.getString("avatar");
+                                Usuario user = new Usuario(userId, userName, userAvatar);
+
+                                Publicacao publicacao = new Publicacao(id, descricao, nomePet, genero, especie, porte, idade, vacinas, castrado, imagem, user);
                                 publicacoes.add(publicacao);
                             }
                             //atualiza o adaptador com a lista de publicações obtida
@@ -83,14 +90,12 @@ public class InicioFragment extends Fragment {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getContext(), "Erro: " + error.getMessage(), Toast.LENGTH_SHORT).show();
                         error.printStackTrace();
                     }
                 });
 
         // Adicione a solicitação à RequestQueue
         requestQueue.add(jsonArrayRequest);
-
         return publicacoes;
     }
 }

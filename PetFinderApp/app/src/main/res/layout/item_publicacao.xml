@@ -85,7 +85,6 @@
                         android:textColor="@color/black" />
                 </LinearLayout>
 
-
                 <TextView
                     android:id="@+id/textDescricao"
                     android:layout_width="match_parent"

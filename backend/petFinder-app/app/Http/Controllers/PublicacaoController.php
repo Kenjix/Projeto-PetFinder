@@ -9,9 +9,8 @@ use App\Models\Publicacao;
 class PublicacaoController extends Controller
 {
     public function index()
-    {
-        $publicacoes = Publicacao::all();
-
+    {        
+        $publicacoes = Publicacao::with('user')->get();
         //retorna a resposta JSON com as publicações com o atributo virtual 'base64_imagem'
         return response()->json($publicacoes);
     }
@@ -64,7 +63,6 @@ class PublicacaoController extends Controller
         if ($publicacao) {
             return response()->json(['message' => 'Publicação cadastrada com sucesso'], 200);
         }
-
         return response()->json(['message' => 'Falha ao cadastrar a publicação'], 500);
     }
 }

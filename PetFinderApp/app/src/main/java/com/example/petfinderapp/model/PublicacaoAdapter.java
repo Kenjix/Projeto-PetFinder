@@ -33,14 +33,19 @@ public class PublicacaoAdapter extends RecyclerView.Adapter<PublicacaoAdapter.Vi
     //classe ViewHolder para representar os itens da lista
     public static class ViewHolder extends RecyclerView.ViewHolder {
         //elementos do layout
-        TextView textNomePet;
-        ImageView imageViewFoto;
+        private TextView textNomePet, textNomeUser, textDescricao, textIdadePet;
+        private ImageView imageViewFoto, imageViewPerfil;
+
 
         public ViewHolder(View itemView) {
             super(itemView);
             //inicializa os elementos de layout
             textNomePet = itemView.findViewById(R.id.textNomePet);
             imageViewFoto = itemView.findViewById(R.id.imageViewFoto);
+            imageViewPerfil = itemView.findViewById(R.id.imageViewPerfil);
+            textNomeUser = itemView.findViewById(R.id.textNomeUser);
+            textDescricao = itemView.findViewById(R.id.textDescricao);
+            textIdadePet = itemView.findViewById(R.id.textIdadePet);
         }
     }
 
@@ -56,15 +61,24 @@ public class PublicacaoAdapter extends RecyclerView.Adapter<PublicacaoAdapter.Vi
     public void onBindViewHolder(ViewHolder holder, int position) {
         Publicacao publicacao = publicacoes.get(position);
         holder.textNomePet.setText(publicacao.getNomePet());
+        holder.textNomeUser.setText(publicacao.getUser().getName());
+        holder.textDescricao.setText(publicacao.getDescricao());
+        holder.textIdadePet.setText(publicacao.getIdade());
 
-        //decodifica a string base64 para um array de bytes
-        byte[] decodedBytes = Base64.decode(publicacao.getImagem(), Base64.DEFAULT);
-        //converte o array de bytes para um objeto de imagem
-        Bitmap bitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
+        //carrega a imagem do avatar no ImageView usando o Glide
+        byte[] decodedBytesAtavar = Base64.decode(publicacao.getUser().getAvatar(), Base64.DEFAULT);
+        Bitmap bitmapAvatar = BitmapFactory.decodeByteArray(decodedBytesAtavar, 0, decodedBytesAtavar.length);
+        Glide.with(holder.itemView)
+                .load(bitmapAvatar)
+                .placeholder(R.drawable.fotoperfil)
+                .into(holder.imageViewPerfil);
 
         //carrega a imagem da publicação no ImageView usando o Glide
+        byte[] decodedBytesFoto = Base64.decode(publicacao.getImagem(), Base64.DEFAULT);
+        Bitmap bitmapFoto = BitmapFactory.decodeByteArray(decodedBytesFoto, 0, decodedBytesFoto.length);
         Glide.with(holder.itemView)
-                .load(bitmap)
+                .load(bitmapFoto)
+                .placeholder(R.drawable.cachorro)
                 .into(holder.imageViewFoto);
     }
 

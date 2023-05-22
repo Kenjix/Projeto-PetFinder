@@ -43,11 +43,15 @@ public class Usuario {
         this.genero = genero;
         this.telefone = telefone;
     }
-
     public Usuario(String name, String email, String telefone) {
         this.name = name;
         this.email = email;
         this.telefone = telefone;
+    }
+    public Usuario(long id, String name, String avatar) {
+        this.id = id;
+        this.name = name;
+        this.avatar = avatar;
     }
 
     public long getId() {

@@ -122,10 +122,10 @@ public class DatePickerDialog {
                     selectedMonth = monthPicker.getValue();
                     selectedYear = yearPicker.getValue();
                     String selectedDate = String.format("%02d %s e %02d %s",
-                            selectedMonth,
-                            (selectedMonth > 1) ? "meses" : "mês",
                             selectedYear,
-                            (selectedYear > 1) ? "anos" : "ano");
+                            (selectedYear > 1) ? "anos" : "ano",
+                            selectedMonth,
+                            (selectedMonth > 1) ? "meses" : "mês");
                     editText.setText(selectedDate);
                     dialog.dismiss();
                 }

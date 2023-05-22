@@ -13,6 +13,7 @@ public class Publicacao {
     private boolean Castrado;
     private String imagem;
     private long userId;
+    private Usuario user;
 
     public Publicacao(String descricao, String nomePet, String genero, String especie, String porte, String idade, String vacinas, boolean castrado, long userId) {
         this.descricao = descricao;
@@ -39,7 +40,7 @@ public class Publicacao {
         this.userId = userId;
     }
 
-    public Publicacao(long id, String descricao, String nomePet, String genero, String especie, String porte, String idade, String vacinas, boolean castrado, String imagem, long userId) {
+    public Publicacao(long id, String descricao, String nomePet, String genero, String especie, String porte, String idade, String vacinas, boolean castrado, String imagem, Usuario user) {
         this.id = id;
         this.descricao = descricao;
         this.nomePet = nomePet;
@@ -50,7 +51,7 @@ public class Publicacao {
         this.vacinas = vacinas;
         this.Castrado = castrado;
         this.imagem = imagem;
-        this.userId = userId;
+        this.user = user;
     }
 
     public long getId() {
@@ -94,5 +95,9 @@ public class Publicacao {
 
     public long getUserId() {
         return userId;
+    }
+
+    public Usuario getUser() {
+        return user;
     }
 }
