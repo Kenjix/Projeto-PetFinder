@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 
 class UserController extends Controller
@@ -24,26 +25,51 @@ class UserController extends Controller
             "email.unique" => "Email já cadastrado",
             "email.required" => "O email é obrigatório",
             "password.required" => "A senha é obrigatória",
-            "password.min" => "A senha não atende os requisitos minimos",
+            "password.min" => "A senha não atende os requisitos mínimos",
             "telefone.required" => "O número de celular é obrigatório",
-
         ]);
 
         if ($validaDados->fails()) {  
             return response()->json(['errors'=>$validaDados->errors()], 422);
         }
 
-    $user = User::create([        
-        'name' => $request->input('name'),
-        'email' => $request->input('email'),
-        'password' => $request->input('password'),
-        'dataNasc' => $request->input('dataNasc'),
-        'genero' => $request->input('genero'),
-        'telefone' => $request->input('telefone'),
-    ]);
-    if ($user) {
-        return response()->json(['message' => 'Usuário cadastrado com sucesso'], 200);
+        $user = User::create([        
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => $request->input('password'),
+            'dataNasc' => $request->input('dataNasc'),
+            'genero' => $request->input('genero'),
+            'telefone' => $request->input('telefone'),
+        ]);
+
+        if ($user) {
+            return response()->json(['message' => 'Usuário cadastrado com sucesso'], 200);
+        }
+
+        return response()->json(['message' => 'Falha ao cadastrar o usuário'], 500);        
     }
-    return response()->json(['message' => 'Falha ao cadastrar o usuário'], 500);        
-    }
+
+    /*public function atualizar(Request $request)
+    {
+        $nome = $request->input('name');
+        $password = $request->input('password');
+        $telefone = $request->input('telefone');
+
+        $user = auth()->user();
+
+        if (!$user) {
+            return response()->json(['message' => 'Usuário não encontrado'], 404);
+        }
+
+        // Verifique se a senha fornecida corresponde à senha atual
+        if (!Hash::check($password, $user->password)) {
+            return response()->json(['message' => 'A senha fornecida é incorreta'], 401);
+        }
+
+        $user->name = $nome;
+        $user->telefone = $telefone;
+        $user->save();
+
+        return response()->json(['message' => 'Dados atualizados com sucesso'], 200);
+    }*/
 }

@@ -31,8 +31,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InicioFragment extends Fragment {
-    private final String url = "http://192.168.100.6:8000/api/publicacoes";
+
+    //D
     //private final String url = "http://192.168.100.6:8000/api/publicacoes";
+
+    //G
+    private final String url = "http://192.168.0.115:8000/api/publicacoes";
 
     private PublicacaoAdapter adapter;
     private RecyclerView rvPublicacao;

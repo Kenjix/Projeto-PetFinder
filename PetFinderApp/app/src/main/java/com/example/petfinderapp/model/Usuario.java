@@ -43,9 +43,8 @@ public class Usuario {
         this.genero = genero;
         this.telefone = telefone;
     }
-    public Usuario(String name, String email, String telefone) {
+    public Usuario(String name, String telefone) {
         this.name = name;
-        this.email = email;
         this.telefone = telefone;
     }
     public Usuario(long id, String name, String avatar) {
