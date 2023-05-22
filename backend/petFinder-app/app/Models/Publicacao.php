@@ -12,7 +12,6 @@ class Publicacao extends Model
     use HasFactory, HasTimestamps;
 
     protected $table = 'publicacoes';
-    protected $appends = ['base64_imagem'];
     protected $hidden = ['image_path'];
 
     public function user()
@@ -20,12 +19,9 @@ class Publicacao extends Model
         return $this->belongsTo(User::class, 'user_id')->select('id', 'name', 'avatar');
     }
 
-    public function getBase64ImagemAttribute()
+    public function getImageLinkAttribute()
     {
-        $path = $this->image_path;
-        $conteudo = Storage::get($path);
-        $base64 = base64_encode($conteudo);
-        return $base64;
+        return asset($this->image_path);
     }
 
     protected $fillable = [

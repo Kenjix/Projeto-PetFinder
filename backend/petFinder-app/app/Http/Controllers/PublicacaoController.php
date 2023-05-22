@@ -11,7 +11,13 @@ class PublicacaoController extends Controller
     public function index()
     {        
         $publicacoes = Publicacao::with('user')->get();
-        //retorna a resposta JSON com as publicações com o atributo virtual 'base64_imagem'
+    
+        //adiciona a propriedade virtual 'image_link' às publicações
+        $publicacoes->each(function ($publicacao) {
+            $publicacao->append('image_link');
+        });
+    
+        // Retorna a resposta JSON com as publicações com a propriedade virtual 'image_link'
         return response()->json($publicacoes);
     }
 

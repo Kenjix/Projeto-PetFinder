@@ -1,10 +1,12 @@
 package com.example.petfinderapp.model;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,7 +15,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.petfinderapp.R;
+import com.example.petfinderapp.VerMaisPublicacaoActivity;
+import com.google.gson.Gson;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 
@@ -35,6 +42,7 @@ public class PublicacaoAdapter extends RecyclerView.Adapter<PublicacaoAdapter.Vi
         //elementos do layout
         private TextView textNomePet, textNomeUser, textDescricao, textIdadePet;
         private ImageView imageViewFoto, imageViewPerfil;
+        private Button buttonVerMais;
 
 
         public ViewHolder(View itemView) {
@@ -46,6 +54,7 @@ public class PublicacaoAdapter extends RecyclerView.Adapter<PublicacaoAdapter.Vi
             textNomeUser = itemView.findViewById(R.id.textNomeUser);
             textDescricao = itemView.findViewById(R.id.textDescricao);
             textIdadePet = itemView.findViewById(R.id.textIdadePet);
+            buttonVerMais = itemView.findViewById(R.id.buttonVerMais);
         }
     }
 
@@ -64,20 +73,26 @@ public class PublicacaoAdapter extends RecyclerView.Adapter<PublicacaoAdapter.Vi
         holder.textNomeUser.setText(publicacao.getUser().getName());
         holder.textDescricao.setText(publicacao.getDescricao());
         holder.textIdadePet.setText(publicacao.getIdade());
-
-        //carrega a imagem do avatar no ImageView usando o Glide
-        byte[] decodedBytesAtavar = Base64.decode(publicacao.getUser().getAvatar(), Base64.DEFAULT);
-        Bitmap bitmapAvatar = BitmapFactory.decodeByteArray(decodedBytesAtavar, 0, decodedBytesAtavar.length);
+        holder.buttonVerMais.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //serializar objeto para JSON usando Gson
+                Gson gson = new Gson();
+                String json = gson.toJson(publicacao);
+                Intent intent = new Intent(v.getContext(), VerMaisPublicacaoActivity.class);
+                intent.putExtra("publicacaoJson", json);
+                //iniciar a atividade usando o contexto da View
+                v.getContext().startActivity(intent);
+            }
+        });
         Glide.with(holder.itemView)
-                .load(bitmapAvatar)
+                .load(publicacao.getUser().getAvatar())
                 .placeholder(R.drawable.fotoperfil)
                 .into(holder.imageViewPerfil);
 
-        //carrega a imagem da publicação no ImageView usando o Glide
-        byte[] decodedBytesFoto = Base64.decode(publicacao.getImagem(), Base64.DEFAULT);
-        Bitmap bitmapFoto = BitmapFactory.decodeByteArray(decodedBytesFoto, 0, decodedBytesFoto.length);
         Glide.with(holder.itemView)
-                .load(bitmapFoto)
+                .load(publicacao.getImagem())
+                .placeholder(R.drawable.fotoperfil)
                 .placeholder(R.drawable.cachorro)
                 .into(holder.imageViewFoto);
     }

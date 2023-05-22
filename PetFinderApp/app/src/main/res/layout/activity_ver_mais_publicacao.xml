@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:background="#D0E4CD"
     android:gravity="center"
-    tools:context=".VerMaisPublicacaoFragment">
+    tools:context=".VerMaisPublicacaoActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -48,7 +48,7 @@
                 </LinearLayout>
 
                 <ImageView
-                    android:id="@+id/imagemView"
+                    android:id="@+id/imagemViewFoto"
                     android:layout_width="match_parent"
                     android:layout_height="400dp"
                     android:contentDescription="imagem"

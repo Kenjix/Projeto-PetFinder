@@ -34,6 +34,9 @@
         <activity
             android:name=".RecuperaSenha"
             android:exported="false" />
+        <activity
+            android:name=".VerMaisPublicacaoActivity"
+            android:exported="false" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

@@ -1,7 +1,5 @@
 package com.example.petfinderapp.model;
-
 public class Publicacao {
-
     private long id;
     private String descricao;
     private String nomePet;
@@ -10,7 +8,7 @@ public class Publicacao {
     private String porte;
     private String idade;
     private String vacinas;
-    private boolean Castrado;
+    private boolean castrado;
     private String imagem;
     private long userId;
     private Usuario user;
@@ -23,20 +21,7 @@ public class Publicacao {
         this.porte = porte;
         this.idade = idade;
         this.vacinas = vacinas;
-        this.Castrado = castrado;
-        this.userId = userId;
-    }
-
-    public Publicacao(String descricao, String nomePet, String genero, String especie, String porte, String idade, String vacinas, boolean castrado, String imagem, long userId) {
-        this.descricao = descricao;
-        this.nomePet = nomePet;
-        this.genero = genero;
-        this.especie = especie;
-        this.porte = porte;
-        this.idade = idade;
-        this.vacinas = vacinas;
-        this.Castrado = castrado;
-        this.imagem = imagem;
+        this.castrado = castrado;
         this.userId = userId;
     }
 
@@ -49,7 +34,7 @@ public class Publicacao {
         this.porte = porte;
         this.idade = idade;
         this.vacinas = vacinas;
-        this.Castrado = castrado;
+        this.castrado = castrado;
         this.imagem = imagem;
         this.user = user;
     }
@@ -87,16 +72,14 @@ public class Publicacao {
     }
 
     public boolean isCastrado() {
-        return Castrado;
+        return castrado;
     }
     public String getImagem() {
         return imagem;
     }
-
     public long getUserId() {
         return userId;
     }
-
     public Usuario getUser() {
         return user;
     }

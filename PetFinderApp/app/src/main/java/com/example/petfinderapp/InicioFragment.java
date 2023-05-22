@@ -1,13 +1,18 @@
 package com.example.petfinderapp;
 
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.transition.Transition;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +24,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.example.petfinderapp.model.Publicacao;
 import com.example.petfinderapp.model.PublicacaoAdapter;
 import com.example.petfinderapp.model.Usuario;
@@ -27,8 +35,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.lang.annotation.Target;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class InicioFragment extends Fragment {
     private final String url = "http://192.168.100.6:8000/api/publicacoes";
@@ -69,7 +82,7 @@ public class InicioFragment extends Fragment {
                                 String vacinas = jsonPublicacao.getString("vacinas");
                                 String castradoStr = jsonPublicacao.getString("castrado");
                                 boolean castrado = castradoStr.equals("1") ? true : false;
-                                String imagem = jsonPublicacao.getString("base64_imagem");
+                                String imagem = jsonPublicacao.getString("image_link");
                                 long userId = jsonPublicacao.getLong("user_id");
 
                                 JSONObject jsonUser = jsonPublicacao.getJSONObject("user");

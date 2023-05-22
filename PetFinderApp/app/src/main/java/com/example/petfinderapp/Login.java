@@ -86,9 +86,8 @@ public class Login extends AppCompatActivity {
                                     String telefone = userObject.getString("telefone");
                                     String avatar = userObject.getString("avatar");
                                     int nivelAcesso = userObject.getInt("nivelAcesso");
-                                    int tentativasAcesso = userObject.getInt("tentativasAcesso");
 
-                                    Usuario user = new Usuario(id, nome, email, dataNasc, genero, telefone, avatar, nivelAcesso, tentativasAcesso);
+                                    Usuario user = new Usuario(id, nome, email, dataNasc, genero, telefone, avatar, nivelAcesso);
                                     //salva sessao do usuário em SharedPreferences
                                     editor.putString("username", user.getName());
                                     editor.putInt("nivelAcesso", user.getNivelAcesso());
