@@ -103,4 +103,3 @@ public class PublicacaoAdapter extends RecyclerView.Adapter<PublicacaoAdapter.Vi
         return publicacoes.size();
     }
 }
-

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
 class UserController extends Controller
@@ -49,27 +50,29 @@ class UserController extends Controller
         return response()->json(['message' => 'Falha ao cadastrar o usuário'], 500);        
     }
 
-    /*public function atualizar(Request $request)
+    /*public function atualizarUsuario(Request $request)
     {
-        $nome = $request->input('name');
-        $password = $request->input('password');
-        $telefone = $request->input('telefone');
+        $user = Auth::user();
 
-        $user = auth()->user();
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'telefone' => 'required',
+            'password' => 'required',
+        ]);
 
-        if (!$user) {
-            return response()->json(['message' => 'Usuário não encontrado'], 404);
-        }
+        $password = $validatedData['password'];
 
-        // Verifique se a senha fornecida corresponde à senha atual
+        // Verifique se a senha do usuário está correta
         if (!Hash::check($password, $user->password)) {
-            return response()->json(['message' => 'A senha fornecida é incorreta'], 401);
+            return response()->json(['message' => 'Senha incorreta'], 401);
         }
 
-        $user->name = $nome;
-        $user->telefone = $telefone;
-        $user->save();
+        $user->update([
+            'name' => $validatedData['name'],
+            'telefone' => $validatedData['telefone'],
+        ]);
 
-        return response()->json(['message' => 'Dados atualizados com sucesso'], 200);
+        return response()->json(['message' => 'Dados atualizados com sucesso']);
     }*/
+
 }

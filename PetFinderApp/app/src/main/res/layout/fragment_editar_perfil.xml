@@ -39,16 +39,59 @@
                     android:textColor="@color/black"
                     android:textSize="18sp" />
 
-                <EditText
-                    android:id="@+id/editNome"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
-                    android:backgroundTint="@color/black"
-                    android:ems="10"
-                    android:hint="Nome"
-                    android:inputType="text"
-                    android:padding="16dp" />
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/editTextNome"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_weight="1"
+                            android:layout_marginLeft="10dp"
+                            android:gravity="left|center_vertical"
+                            android:textAppearance="?android:textAppearanceMedium"
+                            android:text="Nome" />
+
+                        <ImageView
+                            android:id="@+id/imageEditarNome"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/ic_editarperfil"
+                            android:contentDescription="Editar" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="10dp">
+
+                        <EditText
+                            android:id="@+id/editTextCel"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_weight="1"
+                            android:layout_marginLeft="10dp"
+                            android:gravity="left|center_vertical"
+                            android:textAppearance="?android:textAppearanceMedium"
+                            android:text="Celular" />
+
+                        <ImageView
+                            android:id="@+id/imageEditarTel"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/ic_editarperfil"
+                            android:contentDescription="Editar" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
 
                 <!--<EditText
                     android:id="@+id/editEmail"
@@ -60,17 +103,6 @@
                     android:hint="E-mail"
                     android:inputType="textEmailAddress"
                     android:padding="16dp"/>-->
-
-                <EditText
-                    android:id="@+id/editCelular"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
-                    android:backgroundTint="@color/black"
-                    android:ems="10"
-                    android:hint="Celular"
-                    android:inputType="phone"
-                    android:padding="16dp"/>
 
                 <TextView
                     android:id="@+id/msgErro"

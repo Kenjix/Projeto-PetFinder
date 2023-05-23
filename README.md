@@ -37,12 +37,22 @@ extension=fileinfo
 extension=pdo_msql
 extension=zip
 ```
+> Depois você deve ir até a pasta Projeto-PetFinder/backend/petFinder-app e EXCLUIR o arquivo composer.lock
 
 Após ter realizado esses passos, você pode ir até a pasta que foi clonada e abrir a pasta Projeto-PetFinder/backend -> e selecionar a pasta petFinder-app e abrir com o VS Code
 
 ### #4 Instalando o Composer
 
 No terminal do VS Code você deve executar o comando:
+
+```
+composer install
+```
+
+```
+composer self-update
+```
+e repetir o comando abaixo 
 
 ```
 composer install

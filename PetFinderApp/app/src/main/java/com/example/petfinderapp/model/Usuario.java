@@ -29,9 +29,10 @@ public class Usuario {
         this.genero = genero;
         this.telefone = telefone;
     }
-    public Usuario(String name, String telefone) {
+    public Usuario(String name, String telefone, String password) {
         this.name = name;
         this.telefone = telefone;
+        this.password = password;
     }
     public Usuario(long id, String name, String avatar) {
         this.id = id;
