@@ -15,13 +15,13 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('nomePet', 60)->nullable(false);
             $table->string('porte', 60)->nullable(false);
-            $table->string('idade');
+            $table->string('idade')->nullable(true);
             $table->string('vacinas', 255)->nullable(true);
-            $table->boolean('castrado');
+            $table->boolean('castrado')->nullable(false);
             $table->string('genero', 20)->nullable(false);
             $table->string('especie', 60)->nullable(false);
             $table->string('descricao', 255)->nullable(false);
-            $table->string('image_path');
+            $table->string('image_path')->nullable(false);;
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

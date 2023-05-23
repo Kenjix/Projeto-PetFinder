@@ -15,6 +15,7 @@ class PublicacaoController extends Controller
         //adiciona a propriedade virtual 'image_link' às publicações
         $publicacoes->each(function ($publicacao) {
             $publicacao->append('image_link');
+            $publicacao->image_link = asset($publicacao->image);
         });
     
         // Retorna a resposta JSON com as publicações com a propriedade virtual 'image_link'
@@ -26,9 +27,9 @@ class PublicacaoController extends Controller
         $validaDados = Validator::make($request->all(), [
             'nomePet' => 'required|string',
             'porte' => 'required|string',
-            'idade' => 'required|string',
+            'idade' => 'string',
             'vacinas' => 'nullable|string',
-            'castrado' => 'boolean',
+            'castrado' => 'required|boolean',
             'genero' => 'required|string',
             'especie' => 'required|string',
             'descricao' => 'nullable|string',
@@ -40,6 +41,7 @@ class PublicacaoController extends Controller
             "porte.required" => "O porte é obrigatório",
             "genero.required" => "O gênero é obrigatório",
             "especie.required" => "O tipo é obrigatório",
+            "descricao.required" => "A descrição é obrigatória",
             "image.required" => "A imagem é obrigatória",
         ]);
 
@@ -50,9 +52,8 @@ class PublicacaoController extends Controller
         $base64Image = $request->input('image');
         $decodedImage = base64_decode($base64Image);
         $fileName = 'images/' . uniqid() . '.png';
-        Storage::disk('local')->put($fileName, $decodedImage);
+        Storage::disk('public')->put($fileName, $decodedImage);
         $url = Storage::url($fileName);
-        //$url = $fileName;
         
         $publicacao = Publicacao::create([
             'nomePet' => $request->input('nomePet'),

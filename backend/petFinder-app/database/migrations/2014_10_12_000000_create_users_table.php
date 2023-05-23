@@ -16,10 +16,10 @@ return new class extends Migration
             $table->string('name', 30)->nullable(false);
             $table->string('email', 80)->unique()->nullable(false);
             $table->string('password', 80)->nullable(false);
-            $table->date('dataNasc')->nullable();
-            $table->char('genero')->nullable();
+            $table->date('dataNasc')->nullable(true);
+            $table->char('genero')->nullable(true);
             $table->string('telefone', 11)->nullable(false);
-            $table->binary('avatar')->nullable();
+            $table->binary('avatar')->nullable(true);
             $table->integer('nivelAcesso')->default(0);
             $table->integer('tentativasAcesso')->default(0);
             $table->boolean('ativo')->default(true);
