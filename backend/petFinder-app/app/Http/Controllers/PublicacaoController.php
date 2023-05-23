@@ -49,9 +49,10 @@ class PublicacaoController extends Controller
 
         $base64Image = $request->input('image');
         $decodedImage = base64_decode($base64Image);
-        $fileName = 'imagens/' . uniqid() . '.png';
-        Storage::disk('local')->put($fileName, $decodedImage);  
-        $url = $fileName;
+        $fileName = 'images/' . uniqid() . '.png';
+        Storage::disk('local')->put($fileName, $decodedImage);
+        $url = Storage::url($fileName);
+        //$url = $fileName;
         
         $publicacao = Publicacao::create([
             'nomePet' => $request->input('nomePet'),
