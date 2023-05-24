@@ -28,6 +28,9 @@ import androidx.activity.result.contract.ActivityResultContract;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -290,14 +293,6 @@ public class CadastroUsuario extends AppCompatActivity {
             }
         });
     }
-
-    //indo pra tela de inicio ???
-    public void removerAvatar(View view) {
-        ImageView imageView = findViewById(R.id.imageViewPerfil);
-        imageView.setImageDrawable(null);
-        imageView.setTag(1);
-    }
-
     private boolean validaSenha(String senha1, String senha2) {
         if (senha1.equals(senha2)) {
             return true;
