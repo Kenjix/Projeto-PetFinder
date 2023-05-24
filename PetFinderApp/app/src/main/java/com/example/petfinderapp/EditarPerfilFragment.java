@@ -33,7 +33,7 @@ import java.io.UnsupportedEncodingException;
 
 public class EditarPerfilFragment extends Fragment {
 
-    private final String url = "http://192.168.0.115:8000/api/atualizarUsuario";
+    private final String url = "http://187.52.53.112/api/atualizarUsuario";
     private EditText editTextNome, editTextCel;
     private Button buttonSalvar;
     private TextView msgErro;
