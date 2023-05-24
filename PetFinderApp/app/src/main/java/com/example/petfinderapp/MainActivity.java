@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_message:
                 getSupportActionBar().setTitle("Minhas Conversas");
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MeuPerfilFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MinhasConversasFragment()).commit();
                 break;
             case R.id.nav_favorite:
                 getSupportActionBar().setTitle("Favoritos");

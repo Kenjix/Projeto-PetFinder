@@ -1,5 +1,7 @@
 package com.example.petfinderapp;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -34,12 +36,14 @@ import java.io.UnsupportedEncodingException;
 public class EditarPerfilFragment extends Fragment {
 
     private final String url = "http://187.52.53.112/api/atualizarUsuario";
-    private EditText editTextNome, editTextCel;
+    private EditText editTextNome, editTextCel, textNomeUser;
     private Button buttonSalvar;
     private TextView msgErro;
     ImageView imageEditarNome, imageEditarCelular;
 
     String nome, telefone;
+
+    private SharedPreferences preferences;
 
     @Nullable
     @Override
@@ -55,9 +59,11 @@ public class EditarPerfilFragment extends Fragment {
 
         buttonSalvar.setOnClickListener(view -> confirmarAtualizacao());
 
-        //pensei em fazer com o SharedPreferences
-        // Preencha os valores atuais do nome e celular nos campos de entrada
-        String nomeAtual = ""; // Substitua pelo valor atual do nome do usuário
+        preferences = requireContext().getSharedPreferences("sessao", Context.MODE_PRIVATE);
+        long idUsuario = preferences.getLong("idUsuario", 0);
+        String nomeAtual = preferences.getString("username", "");
+
+
         String celularAtual = ""; // Substitua pelo valor atual do celular do usuário
         editTextNome.setText(nomeAtual);
         editTextCel.setText(celularAtual);

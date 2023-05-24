@@ -109,7 +109,6 @@ public class CadastroUsuario extends AppCompatActivity {
             imagemPerfil.setTag(2);
         });
 
-
         editDataNasc.setOnClickListener(view -> {
             DatePickerDialog datePickerDialog = new DatePickerDialog(CadastroUsuario.this, editDataNasc);
             datePickerDialog.showDatePickerDialog();
@@ -290,6 +289,13 @@ public class CadastroUsuario extends AppCompatActivity {
                 msgCadastro.setText("A senha não confere");
             }
         });
+    }
+
+    //indo pra tela de inicio ???
+    public void removerAvatar(View view) {
+        ImageView imageView = findViewById(R.id.imageViewPerfil);
+        imageView.setImageDrawable(null);
+        imageView.setTag(1);
     }
 
     private boolean validaSenha(String senha1, String senha2) {

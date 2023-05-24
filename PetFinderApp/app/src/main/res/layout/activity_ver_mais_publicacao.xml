@@ -35,6 +35,7 @@
                         android:src="@drawable/fotoperfil"
                         app:shapeAppearanceOverlay="@style/RoundedShapeAppearance" />
 
+
                     <TextView
                         android:id="@+id/textNomeUser"
                         android:layout_width="wrap_content"

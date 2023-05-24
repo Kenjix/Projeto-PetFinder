@@ -61,56 +61,59 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="16dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/textNomePet"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="10dp"
+                            android:text="Nome do Pet"
+                            android:textColor="@color/black"
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/textIdadePet"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="idade"
+                            android:textColor="@color/black" />
+                    </LinearLayout>
 
                     <TextView
-                        android:id="@+id/textNomePet"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="10dp"
-                        android:text="Nome do Pet"
-                        android:textColor="@color/black"
-                        android:textSize="22sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/textIdadePet"
+                        android:id="@+id/textGenero"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="idade"
+                        android:text="Genero"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/textDescricao"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Descrição"
                         android:textColor="@color/black" />
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/textGenero"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Genero"
-                    android:layout_marginLeft="16dp"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:id="@+id/textDescricao"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Descrição"
-                    android:layout_marginLeft="16dp"
-                    android:textColor="@color/black" />
-
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
 
                     <ImageButton
                         android:id="@+id/buttonCurtir"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:layout_marginTop="20dp"
                         android:layout_marginLeft="16dp"
                         android:background="@color/white"
                         app:srcCompat="@drawable/post_favorite"
@@ -120,7 +123,6 @@
                         android:id="@+id/buttonCompartilhar"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:layout_marginTop="20dp"
                         android:layout_marginRight="125dp"
                         android:background="@color/white"
                         app:srcCompat="@drawable/post_share"
@@ -130,7 +132,6 @@
                         android:id="@+id/buttonVerMais"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
                         android:backgroundTint="#D9D9D9"
                         android:text="Ver Mais"
                         android:textColor="@color/black" />
