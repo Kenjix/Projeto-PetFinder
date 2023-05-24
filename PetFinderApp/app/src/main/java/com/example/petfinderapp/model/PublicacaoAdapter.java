@@ -40,7 +40,7 @@ public class PublicacaoAdapter extends RecyclerView.Adapter<PublicacaoAdapter.Vi
     //classe ViewHolder para representar os itens da lista
     public static class ViewHolder extends RecyclerView.ViewHolder {
         //elementos do layout
-        private TextView textNomePet, textNomeUser, textDescricao, textIdadePet;
+        private TextView textNomePet, textNomeUser, textDescricao, textIdadePet, textGenero;
         private ImageView imageViewFoto, imageViewPerfil;
         private Button buttonVerMais;
 
@@ -53,6 +53,7 @@ public class PublicacaoAdapter extends RecyclerView.Adapter<PublicacaoAdapter.Vi
             imageViewPerfil = itemView.findViewById(R.id.imageViewPerfil);
             textNomeUser = itemView.findViewById(R.id.textNomeUser);
             textDescricao = itemView.findViewById(R.id.textDescricao);
+            textGenero = itemView.findViewById(R.id.textGenero);
             textIdadePet = itemView.findViewById(R.id.textIdadePet);
             buttonVerMais = itemView.findViewById(R.id.buttonVerMais);
         }
@@ -71,6 +72,7 @@ public class PublicacaoAdapter extends RecyclerView.Adapter<PublicacaoAdapter.Vi
         Publicacao publicacao = publicacoes.get(position);
         holder.textNomePet.setText(publicacao.getNomePet());
         holder.textNomeUser.setText(publicacao.getUser().getName());
+        holder.textGenero.setText(publicacao.getGenero());
         holder.textDescricao.setText(publicacao.getDescricao());
         holder.textIdadePet.setText(publicacao.getIdade());
         holder.buttonVerMais.setOnClickListener(new View.OnClickListener() {
