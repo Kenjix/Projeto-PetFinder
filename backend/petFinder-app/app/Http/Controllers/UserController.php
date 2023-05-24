@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 
 class UserController extends Controller
@@ -34,13 +33,22 @@ class UserController extends Controller
             return response()->json(['errors'=>$validaDados->errors()], 422);
         }
 
-        $user = User::create([        
+        $base64Image = $request->input('avatar');
+        if ($base64Image) {
+            $decodedImage = base64_decode($base64Image);
+            $fileName = 'avatares/' . uniqid() . '.png';
+            Storage::disk('public')->put($fileName, $decodedImage);
+            $url = Storage::url($fileName);
+        }
+
+        $user = User::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'password' => $request->input('password'),
             'dataNasc' => $request->input('dataNasc'),
             'genero' => $request->input('genero'),
             'telefone' => $request->input('telefone'),
+            'avatar' => $base64Image ? $url : null,
         ]);
 
         if ($user) {

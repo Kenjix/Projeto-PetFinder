@@ -2,17 +2,30 @@ package com.example.petfinderapp;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Matrix;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Base64;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContract;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -25,11 +38,14 @@ import com.android.volley.toolbox.Volley;
 import com.example.petfinderapp.model.DatePickerDialog;
 import com.example.petfinderapp.model.PhoneMaskWatcher;
 import com.example.petfinderapp.model.Usuario;
+import com.makeramen.roundedimageview.RoundedDrawable;
+import com.makeramen.roundedimageview.RoundedImageView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
 import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -49,6 +65,8 @@ public class CadastroUsuario extends AppCompatActivity {
     private CheckBox checkTermos;
     private Button buttonCadastro;
     private TextView msgCadastro;
+    private RoundedImageView imagemPerfil;
+    private TextView addImagem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +87,28 @@ public class CadastroUsuario extends AppCompatActivity {
         radioButtonMasc = findViewById(R.id.radioButtonMasc);
         radioButtonFem = findViewById(R.id.radioButtonFem);
         radioButtonOutros = findViewById(R.id.radioButtonOutros);
+        imagemPerfil = findViewById(R.id.imagemPerfil);
+        addImagem = findViewById(R.id.addImagem);
+
+
+        ActivityResultContract<String, Uri> getContent = new ActivityResultContracts.GetContent();
+        ActivityResultLauncher<String> launcher = registerForActivityResult(getContent, new ActivityResultCallback<Uri>() {
+            @Override
+            public void onActivityResult(Uri result) {
+                //resultado da seleção de imagem
+                if (result != null) {
+                    //URI da imagem selecionada
+                    imagemPerfil.setImageURI(result);
+                    addImagem.setText("");
+                }
+            }
+        });
+
+        imagemPerfil.setOnClickListener(view -> {
+            launcher.launch("image/*");
+            imagemPerfil.setTag(2);
+        });
+
 
         editDataNasc.setOnClickListener(view -> {
             DatePickerDialog datePickerDialog = new DatePickerDialog(CadastroUsuario.this, editDataNasc);
@@ -133,17 +173,41 @@ public class CadastroUsuario extends AppCompatActivity {
                 msgCadastro.setText("Termos não aceitos");
             } else if (validaSenha(senha, repeteSenha)) {
                 JSONObject jsonObject = new JSONObject();
-                Usuario user = new Usuario(nome, email, senha, dataFormatada, genero, telefone.replaceAll("[^0-9]", ""));
-                try {
-                    jsonObject.put("name", user.getName());
-                    jsonObject.put("email", user.getEmail());
-                    jsonObject.put("password", user.getPassword());
-                    jsonObject.put("dataNasc", user.getDataNasc());
-                    jsonObject.put("genero", user.getGenero());
-                    jsonObject.put("telefone", user.getTelefone());
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                int imageAtual = Integer.parseInt(imagemPerfil.getTag().toString());
+                if(imageAtual == 1) {
+                    Usuario user = new Usuario(nome, email, senha, dataFormatada, genero, telefone.replaceAll("[^0-9]", ""));
+                    try {
+                        jsonObject.put("name", user.getName());
+                        jsonObject.put("email", user.getEmail());
+                        jsonObject.put("password", user.getPassword());
+                        jsonObject.put("dataNasc", user.getDataNasc());
+                        jsonObject.put("genero", user.getGenero());
+                        jsonObject.put("telefone", user.getTelefone());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    Drawable drawable = imagemPerfil.getDrawable();
+                    RoundedDrawable roundedDrawable = (RoundedDrawable) drawable;
+                    Bitmap bitmap = roundedDrawable.getSourceBitmap();
+                    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+                    byte[] byteArray = byteArrayOutputStream.toByteArray();
+                    String avatar = Base64.encodeToString(byteArray, Base64.DEFAULT);
+
+                    Usuario user = new Usuario(nome, email, senha, dataFormatada, genero, telefone.replaceAll("[^0-9]", ""), avatar);
+                    try {
+                        jsonObject.put("name", user.getName());
+                        jsonObject.put("email", user.getEmail());
+                        jsonObject.put("password", user.getPassword());
+                        jsonObject.put("dataNasc", user.getDataNasc());
+                        jsonObject.put("genero", user.getGenero());
+                        jsonObject.put("telefone", user.getTelefone());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
+
 
                 JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, jsonObject,
                         new Response.Listener<JSONObject>() {

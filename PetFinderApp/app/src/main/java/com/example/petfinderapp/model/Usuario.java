@@ -29,6 +29,16 @@ public class Usuario {
         this.genero = genero;
         this.telefone = telefone;
     }
+
+    public Usuario(String name, String email, String password, String dataNasc, String genero, String telefone, String avatar) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.dataNasc = dataNasc;
+        this.genero = genero;
+        this.telefone = telefone;
+        this.avatar = avatar;
+    }
     public Usuario(String name, String telefone, String password) {
         this.name = name;
         this.telefone = telefone;
