@@ -93,7 +93,7 @@ public class DatePickerDialog {
             //limites e valores iniciais para os pickers
             int minMonth = 1;
             int maxMonth = 12;
-            int minYear = 1;
+            int minYear = 0;
             int maxYear = 30;
 
             monthPicker.setMinValue(minMonth);
@@ -121,11 +121,20 @@ public class DatePickerDialog {
                 public void onClick(View v) {
                     selectedMonth = monthPicker.getValue();
                     selectedYear = yearPicker.getValue();
-                    String selectedDate = String.format("%02d %s e %02d %s",
-                            selectedYear,
-                            (selectedYear > 1) ? "anos" : "ano",
-                            selectedMonth,
-                            (selectedMonth > 1) ? "meses" : "mês");
+                    String selectedDate = "";
+                    if(selectedYear > 0){
+                        selectedDate = String.format("%02d %s e %02d %s",
+                                selectedYear,
+                                (selectedYear > 1) ? "anos" : "ano",
+                                selectedMonth,
+                                (selectedMonth > 1) ? "meses" : "mês");
+                    } else{
+                        selectedDate = String.format("%02d %s",
+                                selectedMonth,
+                                (selectedMonth > 1) ? "meses" : "mês");
+                    }
+
+
                     editText.setText(selectedDate);
                     dialog.dismiss();
                 }
