@@ -9,16 +9,14 @@ use App\Models\Publicacao;
 class PublicacaoController extends Controller
 {
     public function index()
-    {        
-        $publicacoes = Publicacao::with('user')->get();
+    {
+        $publicacoes = Publicacao::with('user')->orderByDesc('updated_at')->get();
     
         //adiciona a propriedade virtual 'image_link' às publicações
         $publicacoes->each(function ($publicacao) {
             $publicacao->append('image_link');
             $publicacao->image_link = asset($publicacao->image);
-        });
-    
-        // Retorna a resposta JSON com as publicações com a propriedade virtual 'image_link'
+        });  
         return response()->json($publicacoes);
     }
 
