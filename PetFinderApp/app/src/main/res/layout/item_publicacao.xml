@@ -26,23 +26,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:padding="16dp">
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/imageViewPerfil"
                         android:layout_width="54dp"
                         android:layout_height="54dp"
                         android:layout_marginRight="10dp"
-                        android:layout_marginBottom="10dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/fotoperfil"
                         app:shapeAppearanceOverlay="@style/RoundedShapeAppearance" />
-
 
                     <TextView
                         android:id="@+id/textNomeUser"
@@ -53,8 +51,6 @@
                         android:text="Fulano de Tal da Silva"
                         android:textColor="@color/black"
                         android:textSize="20sp" />
-
-
                 </LinearLayout>
 
                 <ImageView
@@ -72,6 +68,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
+                        android:layout_marginLeft="16dp"
                         android:layout_marginRight="10dp"
                         android:text="Nome do Pet"
                         android:textColor="@color/black"
@@ -93,6 +90,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="Genero"
+                    android:layout_marginLeft="16dp"
                     android:textColor="@color/black" />
 
                 <TextView
@@ -101,6 +99,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="Descrição"
+                    android:layout_marginLeft="16dp"
                     android:textColor="@color/black" />
 
                 <LinearLayout
@@ -112,6 +111,7 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_marginTop="20dp"
+                        android:layout_marginLeft="16dp"
                         android:background="@color/white"
                         app:srcCompat="@drawable/post_favorite"
                         android:contentDescription="Curtir"/>
