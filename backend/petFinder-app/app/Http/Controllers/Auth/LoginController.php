@@ -23,11 +23,14 @@ class LoginController extends Controller
                 return response()->json(['message' => 'Tentativas de acesso excedidas. \\nConta bloqueada.'], 401);            
             } else {
                 /** @var \App\Models\User $user **/
-                $user->tentativasAcesso = 0;
+                $user->tentativasAcesso = 0;               
                 $user->save();
-                return response()->json([
-                    'user' => $user,
-                ], 200);
+                
+                $response = [
+                    'user' => $user->toArray(),
+                ];
+                $response['user']['avatar'] = asset($user->avatar);                
+                return response()->json($response, 200);
             }
         } else { //autenticação falhou
             //busca o usuário pelo email

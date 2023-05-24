@@ -57,17 +57,17 @@ import java.util.Date;
 
 public class CadastroUsuario extends AppCompatActivity {
     //D
-    //private final String url = "http://192.168.100.6:8000/api/cadastroUser";
+    private final String url = "http://192.168.100.2:8000/api/cadastroUser";
     //G
     //private final String url = "http://192.168.0.115:8000/api/cadastroUser";
     //WEB
-    private final String url = "http://187.52.53.112:8013/api/cadastroUser";
+    //private final String url = "http://187.52.53.112:8013/api/cadastroUser";
     private EditText editNome, editEmail, editDataNasc, editCelular, editSenha, editRepitaSenha;
     RadioGroup radioGroupGenero;
     RadioButton radioButtonMasc, radioButtonFem, radioButtonOutros;
     private CheckBox checkTermos;
     private Button buttonCadastro;
-    private TextView msgCadastro;
+    private TextView msgCadastro, removeImage;
     private RoundedImageView imagemPerfil;
     private TextView addImagem;
 
@@ -92,6 +92,7 @@ public class CadastroUsuario extends AppCompatActivity {
         radioButtonOutros = findViewById(R.id.radioButtonOutros);
         imagemPerfil = findViewById(R.id.imagemPerfil);
         addImagem = findViewById(R.id.addImagem);
+        removeImage = findViewById(R.id.removeImage);
 
 
         ActivityResultContract<String, Uri> getContent = new ActivityResultContracts.GetContent();
@@ -110,6 +111,12 @@ public class CadastroUsuario extends AppCompatActivity {
         imagemPerfil.setOnClickListener(view -> {
             launcher.launch("image/*");
             imagemPerfil.setTag(2);
+        });
+
+        removeImage.setOnClickListener(view -> {
+            imagemPerfil.setImageResource(R.drawable.background_img);
+            addImagem.setText("Adicione uma imagem");
+            imagemPerfil.setTag(getResources().getInteger(R.integer.image_tag));
         });
 
         editDataNasc.setOnClickListener(view -> {
@@ -175,8 +182,7 @@ public class CadastroUsuario extends AppCompatActivity {
                 msgCadastro.setText("Termos não aceitos");
             } else if (validaSenha(senha, repeteSenha)) {
                 JSONObject jsonObject = new JSONObject();
-                int imageAtual = Integer.parseInt(imagemPerfil.getTag().toString());
-                if(imageAtual == 1) {
+                if(imagemPerfil.getTag().toString().equals("1")) {
                     Usuario user = new Usuario(nome, email, senha, dataFormatada, genero, telefone.replaceAll("[^0-9]", ""));
                     try {
                         jsonObject.put("name", user.getName());
@@ -210,8 +216,6 @@ public class CadastroUsuario extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
-
-
                 JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, jsonObject,
                         new Response.Listener<JSONObject>() {
                             @Override

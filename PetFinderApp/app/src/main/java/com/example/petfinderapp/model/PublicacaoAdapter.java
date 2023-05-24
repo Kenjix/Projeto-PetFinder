@@ -94,7 +94,6 @@ public class PublicacaoAdapter extends RecyclerView.Adapter<PublicacaoAdapter.Vi
 
         Glide.with(holder.itemView)
                 .load(publicacao.getImagem())
-                .placeholder(R.drawable.fotoperfil)
                 .placeholder(R.drawable.cachorro)
                 .into(holder.imageViewFoto);
     }

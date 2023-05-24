@@ -10,13 +10,13 @@ class PublicacaoController extends Controller
 {
     public function index()
     {
-        $publicacoes = Publicacao::with('user')->orderByDesc('updated_at')->get();
-    
-        //adiciona a propriedade virtual 'image_link' às publicações
+        $publicacoes = Publicacao::with('user')->orderByDesc('updated_at')->get();    
+
         $publicacoes->each(function ($publicacao) {
             $publicacao->append('image_link');
             $publicacao->image_link = asset($publicacao->image);
-        });  
+            $publicacao->avatar = $publicacao->user->avatar_url;
+        });    
         return response()->json($publicacoes);
     }
 

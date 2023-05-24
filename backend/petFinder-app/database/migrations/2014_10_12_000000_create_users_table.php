@@ -19,7 +19,7 @@ return new class extends Migration
             $table->date('dataNasc')->nullable(true);
             $table->char('genero')->nullable(true);
             $table->string('telefone', 11)->nullable(false);
-            $table->binary('avatar')->nullable(true);
+            $table->string('avatar')->nullable(true);
             $table->integer('nivelAcesso')->default(0);
             $table->integer('tentativasAcesso')->default(0);
             $table->boolean('ativo')->default(true);

@@ -38,6 +38,7 @@ class User extends Authenticatable
         'password',
         'remember_token',
         'tentativasAcesso',
+        'avatar',
     ];
 
     /**
@@ -49,4 +50,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function getAvatarUrlAttribute()
+    {
+        if ($this->avatar) {            
+            return asset($this->avatar);
+        }
+        
+        return null;
+    }
 }

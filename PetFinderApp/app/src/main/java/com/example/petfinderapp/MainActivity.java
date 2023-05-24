@@ -16,6 +16,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
+import com.bumptech.glide.request.target.DrawableImageViewTarget;
+import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.navigation.NavigationView;
 
 
@@ -23,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private DrawerLayout drawerLayout;
     private TextView userSession;
+    private ShapeableImageView imageViewPerfil;
     private SharedPreferences preferences;
 
     @Override
@@ -55,8 +61,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         preferences = getSharedPreferences("sessao", MODE_PRIVATE);
         String username = preferences.getString("username", "");
+        String avatar = preferences.getString("avatar", "");
         View headerView = navigationView.getHeaderView(0);
         userSession = headerView.findViewById(R.id.userSession);
+        imageViewPerfil = headerView.findViewById(R.id.imageViewPerfil);
 
         if (username.isEmpty()) {
             Intent intent = new Intent(MainActivity.this, Login.class);
@@ -64,6 +72,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             finish();
         } else { //Se o username já foi salvo, exibe o conteudo
             userSession.setText(username);
+
+            Glide.with(this)
+                    .load(avatar)
+                    .placeholder(R.drawable.fotoperfil)
+                    .into(new DrawableImageViewTarget(imageViewPerfil));
         }
     }
 

@@ -25,10 +25,10 @@ import java.nio.charset.StandardCharsets;
 
 public class Login extends AppCompatActivity {
     //D
-    //private final String url = "http://192.168.100.6:8000/api/login";
+    private final String url = "http://192.168.100.2:8000/api/login";
     //G
     //private final String url = "http://192.168.0.115:8000/api/login";
-    private final String url = "http://187.52.53.112:8013/api/login";
+    //private final String url = "http://187.52.53.112:8013/api/login";
     private EditText editUser, editPassword;
     private TextView erroLogin;
     private Button buttonLogin;
@@ -90,7 +90,7 @@ public class Login extends AppCompatActivity {
                                     Usuario user = new Usuario(id, nome, email, dataNasc, genero, telefone, avatar, nivelAcesso);
                                     //salva sessao do usuário em SharedPreferences
                                     editor.putString("username", user.getName());
-                                    editor.putInt("nivelAcesso", user.getNivelAcesso());
+                                    editor.putString("avatar", user.getAvatar());
                                     editor.putLong("idUsuario", user.getId());
                                     editor.commit();
                                     //login bem-sucedido, redireciona para a próxima tela

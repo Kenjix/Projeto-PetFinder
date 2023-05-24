@@ -12,7 +12,7 @@ class Publicacao extends Model
 
     protected $table = 'publicacoes';
     protected $hidden = ['image_path'];
-
+    
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id')->select('id', 'name', 'avatar');
