@@ -49,11 +49,14 @@ import java.io.UnsupportedEncodingException;
 import java.util.Iterator;
 
 public class CriarPublicacaoFragment extends Fragment {
-    private static final int REQUEST_STORAGE_PERMISSION = 100;
     //D
-    private final String url = "http://192.168.100.6:8000/api/cadastroPublicacao";
+    //private final String url = "http://192.168.100.6:8000/api/cadastroPublicacao";
     //G
     //private final String url = "http://192.168.0.115:8000/api/cadastroPublicacao";
+    //WEB
+    private final String url = "http://187.52.53.112:8013/api/cadastroPublicacao";
+
+    private static final int REQUEST_STORAGE_PERMISSION = 100;
     //Spinner é o ComboBox
     Spinner spinnerPorte, spinnerCastrado, spinnerEspecie, spinnerGenero;
     private ImageView photoImageView;

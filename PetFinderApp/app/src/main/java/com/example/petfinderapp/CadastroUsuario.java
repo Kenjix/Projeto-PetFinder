@@ -38,9 +38,11 @@ import java.util.Date;
 
 public class CadastroUsuario extends AppCompatActivity {
     //D
-    private final String url = "http://192.168.100.6:8000/api/cadastroUser";
+    //private final String url = "http://192.168.100.6:8000/api/cadastroUser";
     //G
     //private final String url = "http://192.168.0.115:8000/api/cadastroUser";
+    //WEB
+    private final String url = "http://187.52.53.112:8013/api/cadastroUser";
     private EditText editNome, editEmail, editDataNasc, editCelular, editSenha, editRepitaSenha;
     RadioGroup radioGroupGenero;
     RadioButton radioButtonMasc, radioButtonFem, radioButtonOutros;

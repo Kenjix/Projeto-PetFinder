@@ -24,14 +24,14 @@ import java.nio.charset.StandardCharsets;
 
 
 public class Login extends AppCompatActivity {
+    //D
+    //private final String url = "http://192.168.100.6:8000/api/login";
+    //G
+    //private final String url = "http://192.168.0.115:8000/api/login";
+    private final String url = "http://187.52.53.112:8013/api/login";
     private EditText editUser, editPassword;
     private TextView erroLogin;
     private Button buttonLogin;
-    //D
-    private final String url = "http://192.168.100.6:8000/api/login";
-
-    //G
-    //private final String url = "http://192.168.0.115:8000/api/login";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
