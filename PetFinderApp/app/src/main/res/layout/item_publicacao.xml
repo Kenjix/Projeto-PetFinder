@@ -16,7 +16,9 @@
             android:id="@+id/cardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
             app:cardBackgroundColor="@android:color/white"
             app:cardCornerRadius="10dp">
 
@@ -71,7 +73,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
-                        android:text="Orelhuro"
+                        android:text="Nome do Pet"
                         android:textColor="@color/black"
                         android:textSize="22sp"
                         android:textStyle="bold" />
@@ -81,16 +83,24 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="8 meses"
+                        android:text="idade"
                         android:textColor="@color/black" />
                 </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textGenero"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Genero"
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:id="@+id/textDescricao"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Cão muito dócil, brincalhão e sem lar. Estarei me mudando e não terei como leva-lo."
+                    android:text="Descrição"
                     android:textColor="@color/black" />
 
                 <LinearLayout
