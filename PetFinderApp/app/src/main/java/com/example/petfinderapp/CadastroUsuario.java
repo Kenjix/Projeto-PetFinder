@@ -203,6 +203,7 @@ public class CadastroUsuario extends AppCompatActivity {
                         jsonObject.put("dataNasc", user.getDataNasc());
                         jsonObject.put("genero", user.getGenero());
                         jsonObject.put("telefone", user.getTelefone());
+                        jsonObject.put("avatar", user.getAvatar());
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
