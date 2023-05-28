@@ -16,14 +16,15 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/linear"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:id="@+id/linear"
             android:background="#7A8A78">
 
             <FrameLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
+
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/imageViewPerfil"
                     android:layout_width="100dp"
@@ -31,6 +32,7 @@
                     android:layout_margin="20dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/fotoperfil"
+                    android:tag="@integer/image_tag"
                     app:shapeAppearanceOverlay="@style/RoundedShapeAppearance" />
 
 
@@ -38,16 +40,18 @@
                     android:id="@+id/editIcon"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/ic_editarperfil"
                     android:layout_gravity="bottom|end"
+                    android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
-                    android:layout_marginEnd="16dp" />
+                    android:src="@drawable/ic_editarperfil" />
             </FrameLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_gravity="center">
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
                 <TextView
                     android:id="@+id/textNomeUser"
                     android:layout_width="wrap_content"
@@ -86,6 +90,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nome"
+                        android:textStyle="bold" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -95,42 +106,118 @@
                             android:id="@+id/editTextNome"
                             android:layout_width="0dp"
                             android:layout_height="48dp"
-                            android:layout_weight="1"
                             android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
                             android:gravity="left|center_vertical"
-                            android:textAppearance="?android:textAppearanceMedium"
-                            android:text="Nome" />
+                            android:text="Nome"
+                            android:textAppearance="?android:textAppearanceMedium" />
 
                         <ImageView
                             android:id="@+id/imageEditarNome"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
-                            android:src="@drawable/ic_editarperfil"
-                            android:contentDescription="Editar" />
+                            android:contentDescription="Editar"
+                            android:src="@drawable/ic_editarperfil" />
                     </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Celular"
+                        android:textStyle="bold" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginTop="10dp">
+                        android:orientation="horizontal">
 
                         <EditText
                             android:id="@+id/editTextCel"
                             android:layout_width="0dp"
                             android:layout_height="48dp"
-                            android:layout_weight="1"
                             android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
                             android:gravity="left|center_vertical"
-                            android:textAppearance="?android:textAppearanceMedium"
-                            android:text="Celular" />
+                            android:text="Celular"
+                            android:textAppearance="?android:textAppearanceMedium" />
 
                         <ImageView
                             android:id="@+id/imageEditarTel"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
-                            android:src="@drawable/ic_editarperfil"
-                            android:contentDescription="Editar" />
+                            android:contentDescription="Editar"
+                            android:src="@drawable/ic_editarperfil" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:text="Data de Nascimento"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/editTextDataNasc"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:gravity="left|center_vertical"
+                            android:text="Data Nascimento"
+                            android:focusable="false"
+                            android:textAppearance="?android:textAppearanceMedium" />
+
+                        <ImageView
+                            android:id="@+id/imageEditarDataNasc"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:contentDescription="Editar"
+                            android:src="@drawable/ic_editarperfil" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:text="Genero"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+                        <RadioGroup
+                            android:id="@+id/radioGroupGenero"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/radioButtonMasc"
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:text="Masculino" />
+
+                            <RadioButton
+                                android:id="@+id/radioButtonFem"
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:text="Feminino" />
+
+                            <RadioButton
+                                android:id="@+id/radioButtonOutros"
+                                android:layout_width="100dp"
+                                android:layout_height="wrap_content"
+                                android:text="Outros" />
+                        </RadioGroup>
                     </LinearLayout>
 
                 </LinearLayout>

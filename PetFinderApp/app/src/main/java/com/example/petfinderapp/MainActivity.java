@@ -8,6 +8,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -117,9 +118,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_logout:
                 SharedPreferences.Editor editor = preferences.edit();
+                editor.remove("userId");
                 editor.remove("username");
+                editor.remove("avatar");
                 editor.remove("nivelAcesso");
-                editor.remove("idUsuario");
                 editor.commit();
                 finish();
                 startActivity(getIntent());

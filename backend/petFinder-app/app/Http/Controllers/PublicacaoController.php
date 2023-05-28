@@ -14,8 +14,7 @@ class PublicacaoController extends Controller
 
         $publicacoes->each(function ($publicacao) {
             $publicacao->append('image_link');
-            $publicacao->image_link = asset($publicacao->image);
-            $publicacao->avatar = $publicacao->user->avatar_url;
+            $publicacao->user->append(['avatar_link']);
         });    
         return response()->json($publicacoes);
     }
@@ -49,8 +48,7 @@ class PublicacaoController extends Controller
 
         $base64Image = $request->input('image');
         $decodedImage = base64_decode($base64Image);
-        $fileName = 'images/' . uniqid() . '.png';
-        Storage::disk('public')->put($fileName, $decodedImage);
+        $fileName = 'images/' . uniqid() . '.png';        
         $url = Storage::url($fileName);
         
         $publicacao = Publicacao::create([
@@ -63,10 +61,11 @@ class PublicacaoController extends Controller
             'especie' => $request->input('especie'),
             'descricao' => $request->input('descricao'),  
             'image_path' => $url,
-            'user_id' => $request->input('user_id'),
+            'user_id' => $request->input('user_id'),            
         ]);
 
         if ($publicacao) {
+            Storage::disk('public')->put($fileName, $decodedImage);
             return response()->json(['message' => 'Publicação cadastrada com sucesso'], 200);
         }
         return response()->json(['message' => 'Falha ao cadastrar a publicação'], 500);

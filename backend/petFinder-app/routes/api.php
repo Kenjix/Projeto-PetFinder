@@ -22,7 +22,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/login', [LoginController::class, 'login'])->name('login');
-Route::post('/cadastroUser', [UserController::class, 'userCadastro'])->name('user_cadastro');
-Route::post('/cadastroPublicacao', [PublicacaoController::class, 'publicacaoCadastro'])->name('publicacao_cadastro');
+Route::post('/cadastroUser', [UserController::class, 'userCadastro'])->name('cadastro_user');
+Route::post('/cadastroPublicacao', [PublicacaoController::class, 'publicacaoCadastro'])->name('cadastro_publicacao');
 Route::get('publicacoes', [PublicacaoController::class, 'index']);
-Route::post('/atualizarUsuario', [UserController::class, 'atualizar'])->name('atualizar_usuario');
+Route::put('/atualizarUser/{id}', [UserController::class, 'userAtualizar'])->name('atualizar_user');
+Route::post('/getUser/{id}', [UserController::class, 'getUser'])->name('get_user');
+

@@ -39,14 +39,12 @@ public class Usuario {
         this.telefone = telefone;
         this.avatar = avatar;
     }
-    public Usuario(String name, String telefone, String password) {
-        this.name = name;
-        this.telefone = telefone;
-        this.password = password;
-    }
-    public Usuario(long id, String name, String avatar) {
+    public Usuario(long id, String name, String dataNasc, String genero, String telefone, String avatar) {
         this.id = id;
         this.name = name;
+        this.dataNasc = dataNasc;
+        this.genero = genero;
+        this.telefone = telefone;
         this.avatar = avatar;
     }
 

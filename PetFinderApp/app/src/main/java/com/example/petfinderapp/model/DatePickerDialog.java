@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.NumberPicker;
 
 import com.example.petfinderapp.CadastroUsuario;
+import com.example.petfinderapp.EditarPerfilFragment;
 import com.example.petfinderapp.MainActivity;
 import com.example.petfinderapp.R;
 
@@ -17,18 +18,20 @@ import java.util.Calendar;
 
 public class DatePickerDialog {
     private Context context;
+    private int controle;
     private int selectedDay;
     private int selectedMonth;
     private int selectedYear;
     private EditText editText;
 
-    public DatePickerDialog(Context context, EditText editText) {
+    public DatePickerDialog(Context context, EditText editText, int controle) {
         this.context = context;
         this.editText = editText;
+        this.controle = controle;
     }
 
     public void showDatePickerDialog() {
-        if (context instanceof CadastroUsuario) {
+        if (controle == 1 || controle == 2) {
             LayoutInflater inflater = LayoutInflater.from(context);
             View dialogView = inflater.inflate(R.layout.dialog_date_picker_user, null);
 
@@ -81,7 +84,7 @@ public class DatePickerDialog {
                 }
             });
             dialog.show();
-        } else if(context instanceof MainActivity) {
+        } else if(controle == 3) {
 
             LayoutInflater inflater = LayoutInflater.from(context);
             View dialogView = inflater.inflate(R.layout.dialog_date_picker_publicacao, null);
@@ -133,8 +136,6 @@ public class DatePickerDialog {
                                 selectedMonth,
                                 (selectedMonth > 1) ? "meses" : "mês");
                     }
-
-
                     editText.setText(selectedDate);
                     dialog.dismiss();
                 }

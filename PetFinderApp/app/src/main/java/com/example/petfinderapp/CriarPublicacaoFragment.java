@@ -49,13 +49,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.Iterator;
 
 public class CriarPublicacaoFragment extends Fragment {
-    //D
-    //private final String url = "http://192.168.100.2:8000/api/cadastroPublicacao";
-    //G
-    //private final String url = "http://192.168.0.115:8000/api/cadastroPublicacao";
-    //WEB
-    private final String url = "http://187.52.53.112:8013/api/cadastroPublicacao";
-
+    private String url = "";
     private static final int REQUEST_STORAGE_PERMISSION = 100;
     //Spinner é o ComboBox
     Spinner spinnerPorte, spinnerCastrado, spinnerEspecie, spinnerGenero;
@@ -67,8 +61,9 @@ public class CriarPublicacaoFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        url = getResources().getString(R.string.base_url) + "/api/cadastroPublicacao";
         preferences = requireContext().getSharedPreferences("sessao", Context.MODE_PRIVATE);
-        long idUsuario = preferences.getLong("idUsuario", 0);
+        long idUsuario = preferences.getLong("userId", 0);
 
         View view = inflater.inflate(R.layout.fragment_criar_publicacao, container, false);
 
@@ -89,7 +84,7 @@ public class CriarPublicacaoFragment extends Fragment {
         msgRetorno = view.findViewById(R.id.msgRetorno);
 
         editTextIdade.setOnClickListener(view2 -> {
-            DatePickerDialog datePickerDialog = new DatePickerDialog(requireContext(), editTextIdade);
+            DatePickerDialog datePickerDialog = new DatePickerDialog(requireContext(), editTextIdade, 3);
             datePickerDialog.showDatePickerDialog();
         });
 

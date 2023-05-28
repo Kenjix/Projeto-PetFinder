@@ -51,12 +51,11 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function getAvatarUrlAttribute()
+    public function getAvatarLinkAttribute()
     {
         if ($this->avatar) {            
             return asset($this->avatar);
-        }
-        
+        }        
         return null;
     }
 }

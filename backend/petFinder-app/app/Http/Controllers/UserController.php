@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Models\User;
+
 
 class UserController extends Controller
 {
@@ -58,29 +60,36 @@ class UserController extends Controller
         return response()->json(['message' => 'Falha ao cadastrar o usuário'], 500);        
     }
 
-    /*public function atualizarUsuario(Request $request)
-    {
-        $user = Auth::user();
-
-        $validatedData = $request->validate([
+    public function userAtualizar(Request $request, $id)
+    {       
+        $validaDados = $request->validate([
             'name' => 'required',
             'telefone' => 'required',
             'password' => 'required',
+            'dataNasc' => 'required',
+            'genero' => 'required',
+            'telefone' => 'required',
+            'avatar' => 'required',
         ]);
-
-        $password = $validatedData['password'];
-
-        // Verifique se a senha do usuário está correta
-        if (!Hash::check($password, $user->password)) {
-            return response()->json(['message' => 'Senha incorreta'], 401);
+ 
+        try {
+            $user = User::findOrFail($id);
+            $user->fill($validaDados); 
+            $user->save();
+            return response()->json(['message' => 'Dados atualizados com sucesso']);
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['message' => 'Erro ao atualizar']);
         }
+    }
 
-        $user->update([
-            'name' => $validatedData['name'],
-            'telefone' => $validatedData['telefone'],
-        ]);
+    public function getUser($id)
+    {
+        $user = User::find($id);
+        $user->append('avatar_link');
 
-        return response()->json(['message' => 'Dados atualizados com sucesso']);
-    }*/
-
+        if (!$user) {
+            return response()->json(['message' => 'Usuário não encontrado'], 404);
+        }
+        return response()->json(['user' => $user]);
+    }
 }

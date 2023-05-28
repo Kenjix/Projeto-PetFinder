@@ -60,14 +60,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp">
+
                     <com.makeramen.roundedimageview.RoundedImageView
                         android:id="@+id/imagemPerfil"
-                        android:tag="@integer/image_tag"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
                         android:background="@drawable/background_img"
                         android:scaleType="centerCrop"
-                        app:riv_oval="true"/>
+                        android:tag="@integer/image_tag"
+                        app:riv_oval="true" />
+
                     <TextView
                         android:id="@+id/addImagem"
                         android:layout_width="wrap_content"

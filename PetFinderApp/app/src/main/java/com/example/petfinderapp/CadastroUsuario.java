@@ -56,12 +56,7 @@ import java.util.Date;
 
 
 public class CadastroUsuario extends AppCompatActivity {
-    //D
-    //private final String url = "http://192.168.100.2:8000/api/cadastroUser";
-    //G
-    //private final String url = "http://192.168.0.115:8000/api/cadastroUser";
-    //WEB
-    private final String url = "http://187.52.53.112:8013/api/cadastroUser";
+    private String url = "";
     private EditText editNome, editEmail, editDataNasc, editCelular, editSenha, editRepitaSenha;
     RadioGroup radioGroupGenero;
     RadioButton radioButtonMasc, radioButtonFem, radioButtonOutros;
@@ -76,6 +71,7 @@ public class CadastroUsuario extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_usuario);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+        url = getResources().getString(R.string.base_url) + "/api/cadastroUser";
 
         editNome = findViewById(R.id.editNome);
         editEmail = findViewById(R.id.editEmail);
@@ -120,7 +116,7 @@ public class CadastroUsuario extends AppCompatActivity {
         });
 
         editDataNasc.setOnClickListener(view -> {
-            DatePickerDialog datePickerDialog = new DatePickerDialog(CadastroUsuario.this, editDataNasc);
+            DatePickerDialog datePickerDialog = new DatePickerDialog(CadastroUsuario.this, editDataNasc, 1);
             datePickerDialog.showDatePickerDialog();
         });
 

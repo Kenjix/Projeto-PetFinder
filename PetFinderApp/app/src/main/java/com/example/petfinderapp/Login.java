@@ -24,11 +24,7 @@ import java.nio.charset.StandardCharsets;
 
 
 public class Login extends AppCompatActivity {
-    //D
-    //private final String url = "http://192.168.100.2:8000/api/login";
-    //G
-    //private final String url = "http://192.168.0.115:8000/api/login";
-    private final String url = "http://187.52.53.112:8013/api/login";
+    private String url = "";
     private EditText editUser, editPassword;
     private TextView erroLogin;
     private Button buttonLogin;
@@ -38,6 +34,7 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+        url = getResources().getString(R.string.base_url) + "/api/login";
 
         editUser = findViewById(R.id.editUser);
         editPassword = findViewById(R.id.editPassword);
@@ -89,9 +86,10 @@ public class Login extends AppCompatActivity {
 
                                     Usuario user = new Usuario(id, nome, email, dataNasc, genero, telefone, avatar, nivelAcesso);
                                     //salva sessao do usuário em SharedPreferences
+                                    editor.putLong("userId", user.getId());
                                     editor.putString("username", user.getName());
                                     editor.putString("avatar", user.getAvatar());
-                                    editor.putLong("idUsuario", user.getId());
+                                    editor.putInt("nivelAcesso", user.getNivelAcesso());
                                     editor.commit();
                                     //login bem-sucedido, redireciona para a próxima tela
                                     Intent intent = new Intent(Login.this, MainActivity.class);

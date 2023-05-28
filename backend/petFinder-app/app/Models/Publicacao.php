@@ -15,7 +15,7 @@ class Publicacao extends Model
     
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id')->select('id', 'name', 'avatar');
+        return $this->belongsTo(User::class, 'user_id')->select('id', 'name', 'avatar', 'genero', 'dataNasc', 'telefone');
     }
 
     public function getImageLinkAttribute()
