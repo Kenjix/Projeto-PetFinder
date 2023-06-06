@@ -18,6 +18,8 @@ class Publicacao extends Model
         return $this->belongsTo(User::class, 'user_id')->select('id', 'name', 'avatar', 'genero', 'dataNasc', 'telefone');
     }
 
+
+    protected $appends = ['image_link'];
     public function getImageLinkAttribute()
     {
         return asset($this->image_path);

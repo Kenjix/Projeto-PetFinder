@@ -31,7 +31,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private TextView userSession;
     private ShapeableImageView imageViewPerfil;
     private SharedPreferences preferences;
-
+    public void atualizaHeader(String nome, String avatar) {
+        if(nome != null){
+            userSession.setText(nome);
+        }
+        if(avatar != null) {
+            Glide.with(this)
+                    .load(avatar)
+                    .placeholder(R.drawable.fotoperfil)
+                    .into(new DrawableImageViewTarget(imageViewPerfil));
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,7 +83,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             finish();
         } else { //Se o username já foi salvo, exibe o conteudo
             userSession.setText(username);
-
             Glide.with(this)
                     .load(avatar)
                     .placeholder(R.drawable.fotoperfil)

@@ -10,12 +10,7 @@ class PublicacaoController extends Controller
 {
     public function index()
     {
-        $publicacoes = Publicacao::with('user')->orderByDesc('updated_at')->get();    
-
-        $publicacoes->each(function ($publicacao) {
-            $publicacao->append('image_link');
-            $publicacao->user->append(['avatar_link']);
-        });    
+        $publicacoes = Publicacao::with('user')->orderByDesc('updated_at')->get();
         return response()->json($publicacoes);
     }
 

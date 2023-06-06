@@ -47,6 +47,7 @@ import com.example.petfinderapp.model.DatePickerDialog;
 import com.example.petfinderapp.model.PhoneMaskWatcher;
 import com.example.petfinderapp.model.Usuario;
 import com.google.android.material.imageview.ShapeableImageView;
+import com.google.android.material.navigation.NavigationView;
 import com.makeramen.roundedimageview.RoundedDrawable;
 
 import org.json.JSONArray;
@@ -71,7 +72,7 @@ public class EditarPerfilFragment extends Fragment {
     private ImageView imageEditarNome, imageEditarCelular, imageEditarDataNasc, imageViewPerfil, editIcon;
     private SharedPreferences preferences;
     private RadioGroup radioGroupGenero;
-    private RadioButton radioButtonMasc,  radioButtonFem, radioButtonOutros;
+    private RadioButton radioButtonMasc,  radioButtonFem;
 
     @Nullable
     @Override
@@ -92,7 +93,6 @@ public class EditarPerfilFragment extends Fragment {
         editIcon = rootView.findViewById(R.id.editIcon);
         radioButtonMasc = rootView.findViewById(R.id.radioButtonMasc);
         radioButtonFem = rootView.findViewById(R.id.radioButtonFem);
-        radioButtonOutros = rootView.findViewById(R.id.radioButtonOutros);
 
         desabilitaBotoes();
 
@@ -182,7 +182,9 @@ public class EditarPerfilFragment extends Fragment {
                             String telefone = userObject.getString("telefone");
                             String avatar = userObject.getString("avatar_link");
                             Usuario user = new Usuario(id, nome, dataNasc, genero, telefone, avatar);
-
+                            if(user.getAvatar() != null){
+                                imageViewPerfil.setTag(2);
+                            }
                             Glide.with(getActivity())
                                     .load(user.getAvatar())
                                     .placeholder(R.drawable.fotoperfil)
@@ -318,9 +320,7 @@ public class EditarPerfilFragment extends Fragment {
                 jsonObject.put("dataNasc", dataNasc);
                 jsonObject.put("genero", genero);
                 jsonObject.put("password", senhaConfirmacao);
-                jsonObject.put("avatar", null);
             } else {
-                Toast.makeText(getContext(), "AVATAR: " + avatar, Toast.LENGTH_SHORT).show();
                 jsonObject.put("name", nome);
                 jsonObject.put("telefone", telefone.replaceAll("[^0-9]", ""));
                 jsonObject.put("dataNasc", dataNasc);
@@ -343,6 +343,24 @@ public class EditarPerfilFragment extends Fragment {
                         try {
                             String message = response.getString("message");
                             Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+                            JSONObject userData = response.getJSONObject("user");
+                            long id = userData.getLong("id");
+                            String name = userData.getString("name");
+                            String telefone = userData.getString("telefone");
+                            String dataNasc = userData.getString("dataNasc");
+                            String genero = userData.getString("genero");
+                            String avatar = userData.getString("avatar_link");
+                            Usuario user = new Usuario(id, name, dataNasc, genero, telefone, avatar);
+
+                            MainActivity mainActivity = (MainActivity) getActivity();
+                            if (mainActivity != null) {
+                                mainActivity.atualizaHeader(user.getName(), user.getAvatar());
+                            }
+                            SharedPreferences.Editor editor = preferences.edit();
+                            editor.putLong("userId", user.getId());
+                            editor.putString("username", user.getName());
+                            editor.putString("avatar", user.getAvatar());
+                            editor.commit();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

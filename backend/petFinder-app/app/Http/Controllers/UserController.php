@@ -12,6 +12,7 @@ use App\Models\User;
 
 class UserController extends Controller
 {
+    //INDEX (GET ALL)
     public function index()
     {
         // Retorna a lista de usuários
@@ -19,7 +20,20 @@ class UserController extends Controller
         return response()->json($users);
     }
 
+    //GET ONE
+    public function show($id)
+    {
+        $user = User::find($id);
+        $user->append('avatar_link');
 
+        if (!$user) {
+            return response()->json(['message' => 'Usuário não encontrado'], 404);
+        }
+        return response()->json(['user' => $user]);
+    }
+
+
+    //STORE (CREATE)
     public function store(Request $request)
     {
         $validaDados = Validator::make($request->all(), [     
@@ -69,6 +83,7 @@ class UserController extends Controller
         return response()->json(['message' => 'Falha ao cadastrar o usuário'], 500);        
     }
 
+    //PUT (UPDATE)
     public function update(Request $request, $id)
     {       
         $validaDados = $request->validate([
@@ -78,55 +93,38 @@ class UserController extends Controller
             'dataNasc' => 'required',
             'genero' => 'required',
         ]);
- 
-        try {
+    
+        try {            
             $user = User::findOrFail($id);
             if (!Hash::check($request->password, $user->password)){
                 return response()->json(['message' => 'Credenciais inválidas'], 401);
             }
+            $url = null;
+            if ($user->avatar) {
+                $filePath = public_path($user->avatar);
+                unlink($filePath);
+            }
 
-
-           /* $base64Image = $request->input('avatar');
+            $base64Image = $request->input('avatar');
             if ($base64Image) {
+                $base64Image = $request->input('avatar');                
                 $decodedImage = base64_decode($base64Image);
                 $fileName = 'avatares/' . uniqid() . '.png';
                 Storage::disk('public')->put($fileName, $decodedImage);
-                $url = Storage::url($fileName);
-                $user->avatar = $url;
-            } else {
-
+                $url = Storage::url($fileName);   
             }
-        
-            $base64Image = $request->input('avatar');
-            if ($base64Image) {
-                if ($user->avatar) {
-                    // Remover a imagem anterior se existir
-                    Storage::disk('public')->delete($user->avatar);
-                }
-            
 
-            
-                
-            }*/
             $user->name = $validaDados['name'];
             $user->telefone = $validaDados['telefone'];
             $user->dataNasc = $validaDados['dataNasc'];
-            $user->genero = $validaDados['genero'];            
+            $user->genero = $validaDados['genero']; 
+            $user->avatar = $base64Image ? $url : null;
             $user->save();
-            return response()->json(['message' => 'Dados atualizados com sucesso!'], 200);
+            
+            return response()->json(['message' => 'Dados atualizados com sucesso!', 'user' => $user], 200);
+            
         } catch (ModelNotFoundException $e) {
             return response()->json(['message' => 'Erro ao atualizar'], 403);
         }
-    }
-
-    public function show($id)
-    {
-        $user = User::find($id);
-        $user->append('avatar_link');
-
-        if (!$user) {
-            return response()->json(['message' => 'Usuário não encontrado'], 404);
-        }
-        return response()->json(['user' => $user]);
     }
 }

@@ -51,6 +51,8 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    protected $appends = ['avatar_link'];
+
     public function getAvatarLinkAttribute()
     {
         if ($this->avatar) {            
