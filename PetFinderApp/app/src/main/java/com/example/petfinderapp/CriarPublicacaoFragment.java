@@ -31,6 +31,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -46,7 +47,9 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 public class CriarPublicacaoFragment extends Fragment {
     private String url = "";
@@ -61,9 +64,10 @@ public class CriarPublicacaoFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        url = getResources().getString(R.string.base_url) + "/api/cadastroPublicacao";
+        url = getResources().getString(R.string.base_url) + "/api/publicacao/store";
         preferences = requireContext().getSharedPreferences("sessao", Context.MODE_PRIVATE);
         long idUsuario = preferences.getLong("userId", 0);
+        String authToken = preferences.getString("auth_token", null);
 
         View view = inflater.inflate(R.layout.fragment_criar_publicacao, container, false);
 
@@ -181,14 +185,6 @@ public class CriarPublicacaoFragment extends Fragment {
                 return;
             }
             JSONObject jsonObject = new JSONObject();
-            /*//converte a imagem em Base64 sem redimencionamento
-            Bitmap imageBitmap = ((BitmapDrawable) photoImageView.getDrawable()).getBitmap();
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
-            byte[] imageBytes = baos.toByteArray();
-            String base64Image = Base64.encodeToString(imageBytes, Base64.DEFAULT);*/
-
-            //redimenciona 800x600 e converte para base64
             Bitmap imageBitmap = ((BitmapDrawable) photoImageView.getDrawable()).getBitmap();
             int width = imageBitmap.getWidth();
             int height = imageBitmap.getHeight();
@@ -264,12 +260,29 @@ public class CriarPublicacaoFragment extends Fragment {
                                 } catch (UnsupportedEncodingException | JSONException e) {
                                     e.printStackTrace();
                                 }
+                            } else if(error.networkResponse != null && error.networkResponse.statusCode != 401) {
+                                Intent intent = new Intent(getActivity(), Login.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(intent);
+                                getActivity().finish();
                             } else {
                                 //outros erros
                                 msgRetorno.setText("Erro código 21. Contate o suporte");
                             }
                         }
-                    });
+
+                    }){
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    Map<String, String> headers = super.getHeaders();
+                    if (headers == null) {
+                        headers = new HashMap<>();
+                    }
+                    headers.put("Content-Type", "application/json");
+                    headers.put("Authorization", authToken);
+                    return headers;
+                }
+            };
             RequestQueue fila = Volley.newRequestQueue(getContext());
             fila.add(request);
         });

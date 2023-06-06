@@ -19,7 +19,7 @@ class PublicacaoController extends Controller
         return response()->json($publicacoes);
     }
 
-    public function publicacaoCadastro(Request $request)
+    public function store(Request $request)
     {
         $validaDados = Validator::make($request->all(), [
             'nomePet' => 'required|string',

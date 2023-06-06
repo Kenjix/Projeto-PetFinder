@@ -71,7 +71,7 @@ public class CadastroUsuario extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_usuario);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-        url = getResources().getString(R.string.base_url) + "/api/cadastroUser";
+        url = getResources().getString(R.string.base_url) + "/api/users";
 
         editNome = findViewById(R.id.editNome);
         editEmail = findViewById(R.id.editEmail);

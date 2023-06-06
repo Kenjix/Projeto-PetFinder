@@ -12,24 +12,25 @@ class LoginController extends Controller
     {
         $credenciais = $request->only('email', 'password');
 
-        if (Auth::once($credenciais)) {
-            //autenticação bem-sucedida
-            $user = Auth::user();
+        if (auth::attempt($credenciais)) {               
+            /** @var \App\Models\User $user **/       
+            $user = auth::user();            
+            $token = auth()->user()->createToken('auth_token');            
             
             if ($user->ativo == 0) {
                 return response()->json(['message' => 'Conta Desativada. \\nRedefina a senha para reabilitar.'], 401);
             } 
             if($user->tentativasAcesso >= 5) {
                 return response()->json(['message' => 'Tentativas de acesso excedidas. \\nConta bloqueada.'], 401);            
-            } else {
-                /** @var \App\Models\User $user **/
+            } else {                
                 $user->tentativasAcesso = 0;               
                 $user->save();
                 
                 $response = [
                     'user' => $user->toArray(),
                 ];
-                $response['user']['avatar'] = asset($user->avatar);                
+                $response['user']['avatar'] = asset($user->avatar);     
+                $response['user']['auth_token'] = $token->plainTextToken;      
                 return response()->json($response, 200);
             }
         } else { //autenticação falhou

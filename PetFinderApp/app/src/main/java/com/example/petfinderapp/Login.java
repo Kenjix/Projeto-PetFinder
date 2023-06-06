@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.DefaultRetryPolicy;
@@ -28,18 +29,20 @@ public class Login extends AppCompatActivity {
     private EditText editUser, editPassword;
     private TextView erroLogin;
     private Button buttonLogin;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-        url = getResources().getString(R.string.base_url) + "/api/login";
+        url = getResources().getString(R.string.base_url) + "/api/auth/login";
 
         editUser = findViewById(R.id.editUser);
         editPassword = findViewById(R.id.editPassword);
         buttonLogin = findViewById(R.id.buttonLogin);
         erroLogin = findViewById(R.id.erroLogin);
+        progressBar = findViewById(R.id.progressBar);
 
         SharedPreferences sharedPreferences = getSharedPreferences("sessao", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -52,6 +55,7 @@ public class Login extends AppCompatActivity {
         }
 
         buttonLogin.setOnClickListener(view -> {
+            erroLogin.setText("");
             String username = editUser.getText().toString();
             String password = editPassword.getText().toString();
 
@@ -62,6 +66,8 @@ public class Login extends AppCompatActivity {
                 editPassword.setError("Campo obrigatório!");
                 return;
             } else {
+                buttonLogin.setEnabled(false);
+                progressBar.setVisibility(View.VISIBLE);
                 JSONObject jsonObject = new JSONObject();
                 try {
                     jsonObject.put("email", username);
@@ -83,14 +89,17 @@ public class Login extends AppCompatActivity {
                                     String telefone = userObject.getString("telefone");
                                     String avatar = userObject.getString("avatar");
                                     int nivelAcesso = userObject.getInt("nivelAcesso");
+                                    String authToken = userObject.getString("auth_token");
 
                                     Usuario user = new Usuario(id, nome, email, dataNasc, genero, telefone, avatar, nivelAcesso);
                                     //salva sessao do usuário em SharedPreferences
                                     editor.putLong("userId", user.getId());
                                     editor.putString("username", user.getName());
                                     editor.putString("avatar", user.getAvatar());
-                                    editor.putInt("nivelAcesso", user.getNivelAcesso());
+                                    editor.putString("auth_token", authToken);
                                     editor.commit();
+                                    progressBar.setVisibility(View.INVISIBLE);
+                                    buttonLogin.setEnabled(true);
                                     //login bem-sucedido, redireciona para a próxima tela
                                     Intent intent = new Intent(Login.this, MainActivity.class);
                                     startActivity(intent);
@@ -104,6 +113,8 @@ public class Login extends AppCompatActivity {
                         new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
+                                progressBar.setVisibility(View.INVISIBLE);
+                                buttonLogin.setEnabled(true);
                                 NetworkResponse networkResponse = error.networkResponse;
                                 erroLogin.setText("Erro código 10. Contate o suporte");
                                 if (networkResponse != null && networkResponse.data != null) {

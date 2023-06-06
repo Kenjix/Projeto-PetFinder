@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 editor.remove("userId");
                 editor.remove("username");
                 editor.remove("avatar");
-                editor.remove("nivelAcesso");
+                editor.remove("authToken");
                 editor.commit();
                 finish();
                 startActivity(getIntent());

@@ -221,19 +221,6 @@
                     </LinearLayout>
 
                 </LinearLayout>
-
-
-                <!--<EditText
-                    android:id="@+id/editEmail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
-                    android:backgroundTint="@color/black"
-                    android:ems="10"
-                    android:hint="E-mail"
-                    android:inputType="textEmailAddress"
-                    android:padding="16dp"/>-->
-
                 <TextView
                     android:id="@+id/msgErro"
                     android:layout_width="wrap_content"

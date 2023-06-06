@@ -21,10 +21,23 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/login', [LoginController::class, 'login'])->name('login');
-Route::post('/cadastroUser', [UserController::class, 'userCadastro'])->name('cadastro_user');
-Route::post('/cadastroPublicacao', [PublicacaoController::class, 'publicacaoCadastro'])->name('cadastro_publicacao');
-Route::get('publicacoes', [PublicacaoController::class, 'index']);
-Route::put('/atualizarUser/{id}', [UserController::class, 'userAtualizar'])->name('atualizar_user');
-Route::post('/getUser/{id}', [UserController::class, 'getUser'])->name('get_user');
+Route::prefix('auth')->group(function(){
+    Route::post('/login', [LoginController::class, 'login']);
+    Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth:sanctum');       
+});
 
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/users', [UserController::class, 'index']);
+    Route::post('/users', [UserController::class, 'store'])->withoutMiddleware('auth:sanctum');
+    Route::get('/users/{id}', [UserController::class, 'show']);
+    Route::put('/users/{id}', [UserController::class, 'update']);
+    Route::delete('/users/{id}', [UserController::class, 'destroy']);
+});
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/publicacao', [PublicacaoController::class, 'index']);
+    Route::post('/publicacao', [PublicacaoController::class, 'store']);
+    Route::get('/publicacao/{id}', [PublicacaoController::class, 'show']);
+    Route::put('/publicacao/{id}', [PublicacaoController::class, 'update']);
+    Route::delete('/publicacao/{id}', [PublicacaoController::class, 'destroy']);
+});
