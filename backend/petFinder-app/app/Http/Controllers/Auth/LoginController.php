@@ -14,8 +14,9 @@ class LoginController extends Controller
 
         if (auth::attempt($credenciais)) {               
             /** @var \App\Models\User $user **/       
-            $user = auth::user();            
-            $token = auth()->user()->createToken('auth_token');            
+            $user = Auth::user();
+            $user->tokens()->delete();            
+            $token = $user->createToken('auth_token');       
             
             if ($user->ativo == 0) {
                 return response()->json(['message' => 'Conta Desativada. \\nRedefina a senha para reabilitar.'], 401);
@@ -48,6 +49,16 @@ class LoginController extends Controller
                 return response()->json(['message' => 'Credenciais inválidas.'], 401);
             }
         }
+    }
+
+    public function logout(Request $request)
+    {
+        if (!Auth::check()) {
+            return response()->json(['error' => 'Usuário não autenticado.'], 401);
+        }
+        $user = Auth::user();
+        $user->currentAccessToken()->delete();    
+        return response()->json(['message' => 'Logout realizado com sucesso.'], 200);
     }
 }
 ?>

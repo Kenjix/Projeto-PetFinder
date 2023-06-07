@@ -310,7 +310,6 @@ public class EditarPerfilFragment extends Fragment {
 
     private void atualizarUsuario(String nome, String telefone, String dataNasc, String genero, String senhaConfirmacao, String avatar, long idUsuario, String authToken) {
         String url = getResources().getString(R.string.base_url) + "/api/users/" + idUsuario;
-        Toast.makeText(getContext(), imageViewPerfil.getTag().toString(), Toast.LENGTH_SHORT).show();
         JSONObject jsonObject = new JSONObject();
         try {
             int imageAtual = Integer.parseInt(imageViewPerfil.getTag().toString());
@@ -351,7 +350,7 @@ public class EditarPerfilFragment extends Fragment {
                             String genero = userData.getString("genero");
                             String avatar = userData.getString("avatar_link");
                             Usuario user = new Usuario(id, name, dataNasc, genero, telefone, avatar);
-
+                            textNomeUser.setText(user.getName());
                             MainActivity mainActivity = (MainActivity) getActivity();
                             if (mainActivity != null) {
                                 mainActivity.atualizaHeader(user.getName(), user.getAvatar());

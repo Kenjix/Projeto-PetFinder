@@ -64,7 +64,7 @@ public class CriarPublicacaoFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        url = getResources().getString(R.string.base_url) + "/api/publicacao/store";
+        url = getResources().getString(R.string.base_url) + "/api/publicacao";
         preferences = requireContext().getSharedPreferences("sessao", Context.MODE_PRIVATE);
         long idUsuario = preferences.getLong("userId", 0);
         String authToken = preferences.getString("auth_token", null);
@@ -215,6 +215,9 @@ public class CriarPublicacaoFragment extends Fragment {
                 e.printStackTrace();
             }
             //request
+            Map<String, String> headers = new HashMap<>();
+            headers.put("Content-Type", "application/json");
+            headers.put("Authorization", "Bearer " + authToken);
             JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, jsonObject,
                     new Response.Listener<JSONObject>() {
                         @Override
@@ -236,6 +239,7 @@ public class CriarPublicacaoFragment extends Fragment {
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             //verifica o código de resposta do servidor
+                            Toast.makeText(getContext(), error.networkResponse.statusCode, Toast.LENGTH_SHORT).show();
                             if (error.networkResponse != null && error.networkResponse.statusCode != 200) {
                                 try {
                                     String responseBody = new String(error.networkResponse.data, "utf-8");
@@ -274,12 +278,6 @@ public class CriarPublicacaoFragment extends Fragment {
                     }){
                 @Override
                 public Map<String, String> getHeaders() throws AuthFailureError {
-                    Map<String, String> headers = super.getHeaders();
-                    if (headers == null) {
-                        headers = new HashMap<>();
-                    }
-                    headers.put("Content-Type", "application/json");
-                    headers.put("Authorization", authToken);
                     return headers;
                 }
             };

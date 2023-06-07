@@ -61,7 +61,7 @@ public class InicioFragment extends Fragment {
         Map<String, String> headers = new HashMap<>();
         headers.put("Content-Type", "application/json");
         headers.put("Authorization", "Bearer " + authToken);
-        //cria uma solicitação GET para a URL da API
+        //cria uma solicitacao GET para a URL da API
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {
                     @Override
