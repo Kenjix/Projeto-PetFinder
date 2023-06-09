@@ -4,14 +4,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Resources\PublicacaoResource;
 use App\Models\Publicacao;
 
 class PublicacaoController extends Controller
 {
     public function index()
     {
-        $publicacoes = Publicacao::with('user')->orderByDesc('updated_at')->get();
-        return response()->json($publicacoes);
+        $publicacoes = Publicacao::with('favoritos')->orderByDesc('updated_at')->get();
+        return PublicacaoResource::collection($publicacoes);
     }
 
     public function store(Request $request)

@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -21,6 +20,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.petfinderapp.model.Publicacao;
 import com.example.petfinderapp.model.PublicacaoAdapter;
@@ -62,14 +62,17 @@ public class InicioFragment extends Fragment {
         headers.put("Content-Type", "application/json");
         headers.put("Authorization", "Bearer " + authToken);
         //cria uma solicitacao GET para a URL da API
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONArray>() {
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
                     @Override
-                    public void onResponse(JSONArray response) {
+                    public void onResponse(JSONObject response) {
                         //processar a resposta JSON e cria objeto Publicacao
                         try {
-                            for (int i = 0; i < response.length(); i++) {
-                                JSONObject jsonPublicacao = response.getJSONObject(i);
+                            JSONArray dataArray = response.getJSONArray("data");
+                            for (int i = 0; i < dataArray.length(); i++) {
+                                JSONObject jsonData = dataArray.getJSONObject(i);
+
+                                JSONObject jsonPublicacao = jsonData.getJSONObject("publicacao");
                                 long id = jsonPublicacao.getLong("id");
                                 String descricao = jsonPublicacao.getString("descricao");
                                 String nomePet = jsonPublicacao.getString("nomePet");
@@ -82,7 +85,7 @@ public class InicioFragment extends Fragment {
                                 boolean castrado = castradoStr.equals("1") ? true : false;
                                 String imagem = jsonPublicacao.getString("image_link");
 
-                                JSONObject jsonUser = jsonPublicacao.getJSONObject("user");
+                                JSONObject jsonUser = jsonData.getJSONObject("user");
                                 long userId = jsonUser.getLong("id");
                                 String userName = jsonUser.getString("name");
                                 String generoUser = jsonUser.getString("genero");
@@ -123,8 +126,8 @@ public class InicioFragment extends Fragment {
             }
         };
 
-        // Adicione a solicitação à RequestQueue
-        requestQueue.add(jsonArrayRequest);
+        //adiciona a solicitacao a fila
+        requestQueue.add(request);
         return publicacoes;
     }
 }

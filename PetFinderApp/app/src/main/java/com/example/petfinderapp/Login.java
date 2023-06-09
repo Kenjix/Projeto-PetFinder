@@ -46,10 +46,11 @@ public class Login extends AppCompatActivity {
 
         SharedPreferences sharedPreferences = getSharedPreferences("sessao", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        String sessao = sharedPreferences.getString("username", "");
+        String sessao = sharedPreferences.getString("auth_token", "");
 
         if (!sessao.isEmpty()) {
             Intent intent = new Intent(Login.this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             finish();
         }

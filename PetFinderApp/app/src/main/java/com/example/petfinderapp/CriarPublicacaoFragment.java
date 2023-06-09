@@ -30,6 +30,8 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -226,9 +228,8 @@ public class CriarPublicacaoFragment extends Fragment {
                                 msgRetorno.setText(response.getString("message"));
                                 //cria uma Intent para iniciar a atividade principal
                                 Intent intent = new Intent(getActivity(), MainActivity.class);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(intent);
-                                //finalizar a activity atual
                                 getActivity().finish();
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -239,7 +240,6 @@ public class CriarPublicacaoFragment extends Fragment {
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             //verifica o código de resposta do servidor
-                            Toast.makeText(getContext(), error.networkResponse.statusCode, Toast.LENGTH_SHORT).show();
                             if (error.networkResponse != null && error.networkResponse.statusCode != 200) {
                                 try {
                                     String responseBody = new String(error.networkResponse.data, "utf-8");

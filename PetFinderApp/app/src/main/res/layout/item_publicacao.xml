@@ -26,7 +26,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginBottom="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -116,7 +117,7 @@
                         android:layout_height="50dp"
                         android:layout_marginLeft="16dp"
                         android:background="@color/white"
-                        app:srcCompat="@drawable/post_favorite"
+                        app:srcCompat="@drawable/post_favorite_negative"
                         android:contentDescription="Curtir"/>
 
                     <ImageButton

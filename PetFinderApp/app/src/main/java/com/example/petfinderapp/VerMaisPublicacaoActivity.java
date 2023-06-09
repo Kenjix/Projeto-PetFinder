@@ -61,6 +61,7 @@ public class VerMaisPublicacaoActivity extends AppCompatActivity {
                     .placeholder(R.drawable.fotoperfil)
                     .into(imageViewPerfil);
 
+            textNomeUser.setText(publicacao.getUser().getName());
             nomePet.setText(publicacao.getNomePet());
             portePet.setText(publicacao.getPorte());
             idadePet.setText(publicacao.getIdade());

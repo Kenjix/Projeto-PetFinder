@@ -17,7 +17,11 @@ class Publicacao extends Model
     {
         return $this->belongsTo(User::class, 'user_id')->select('id', 'name', 'avatar', 'genero', 'dataNasc', 'telefone');
     }
-
+   
+    public function favoritos()
+    {
+        return $this->belongsToMany(User::class, 'favoritos', 'publicacao_id', 'user_id');
+    }
 
     protected $appends = ['image_link'];
     public function getImageLinkAttribute()
