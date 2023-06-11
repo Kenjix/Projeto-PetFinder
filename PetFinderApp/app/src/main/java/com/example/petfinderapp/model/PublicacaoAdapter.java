@@ -12,6 +12,12 @@ import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.example.petfinderapp.R;
 import com.example.petfinderapp.VerMaisPublicacaoActivity;
@@ -22,10 +28,17 @@ import java.util.List;
 
 public class PublicacaoAdapter extends RecyclerView.Adapter<PublicacaoAdapter.ViewHolder> {
     private List<Publicacao> publicacoes;
+    private OnImageClickListener imageClickListener;
 
     //construtor para receber a lista de publicações
-    public PublicacaoAdapter(List<Publicacao> publicacoes) {
+    public PublicacaoAdapter(List<Publicacao> publicacoes, OnImageClickListener imageClickListener) {
         this.publicacoes = publicacoes;
+        this.imageClickListener = imageClickListener;
+    }
+
+    //Fav image
+    public interface OnImageClickListener {
+        void onImageClick(int position);
     }
 
     public void setPublicacoes(List<Publicacao> publicacoes) {
@@ -49,12 +62,21 @@ public class PublicacaoAdapter extends RecyclerView.Adapter<PublicacaoAdapter.Vi
         holder.textGenero.setText(publicacao.getGenero());
         holder.textDescricao.setText(publicacao.getDescricao());
         holder.textIdadePet.setText(publicacao.getIdade());
+        List<Long> favoritos = publicacao.getUser().getFavoritos();
+        if (favoritos.contains(publicacao.getId())) {
+            holder.buttonCurtir.setImageResource(R.drawable.post_favorite_positive);
+        } else {
+            holder.buttonCurtir.setImageResource(R.drawable.post_favorite_negative);
+        }
+
         //listeneer botao favorito
         holder.buttonCurtir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Toast.makeText(v.getContext(), "FAV! id:" + publicacao.getId(), Toast.LENGTH_SHORT).show();
+                int clickedPosition = holder.getBindingAdapterPosition();
+                if (clickedPosition != RecyclerView.NO_POSITION && imageClickListener != null) {
+                    imageClickListener.onImageClick(clickedPosition);
+                }
             }
         });
         //listener botao ver mais

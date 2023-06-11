@@ -1,4 +1,7 @@
 package com.example.petfinderapp.model;
+
+import java.util.List;
+
 public class Usuario {
     private long id;
     private String name;
@@ -9,6 +12,7 @@ public class Usuario {
     private String telefone;
     private String avatar;
     private int nivelAcesso;
+    private List favoritos;
 
     public Usuario(long id, String name, String email, String dataNasc, String genero, String telefone, String avatar, int nivelAcesso) {
         this.id = id;
@@ -39,6 +43,16 @@ public class Usuario {
         this.telefone = telefone;
         this.avatar = avatar;
     }
+    public Usuario(long id, String name, String dataNasc, String genero, String telefone, String avatar, List favoritos) {
+        this.id = id;
+        this.name = name;
+        this.dataNasc = dataNasc;
+        this.genero = genero;
+        this.telefone = telefone;
+        this.avatar = avatar;
+        this.favoritos = favoritos;
+    }
+
     public Usuario(long id, String name, String dataNasc, String genero, String telefone, String avatar) {
         this.id = id;
         this.name = name;
@@ -46,6 +60,10 @@ public class Usuario {
         this.genero = genero;
         this.telefone = telefone;
         this.avatar = avatar;
+    }
+
+    public List<Long> getFavoritos() {
+        return favoritos;
     }
 
     public long getId() {
