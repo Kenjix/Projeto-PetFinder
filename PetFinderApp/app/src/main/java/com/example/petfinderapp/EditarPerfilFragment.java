@@ -122,12 +122,8 @@ public class EditarPerfilFragment extends Fragment {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId) {
                     case R.id.radioButtonMasc:
-                        desabilitaBotoes();
-                        break;
-                    case R.id.radioButtonFem:
-                        desabilitaBotoes();
-                        break;
                     case R.id.radioButtonOutros:
+                    case R.id.radioButtonFem:
                         desabilitaBotoes();
                         break;
                 }
