@@ -151,7 +151,6 @@ class UserController extends Controller
             return response()->json(['errors' => $validaDados->errors()], 422);
         }
 
-
         try {
             $user = User::findOrFail($id);
             if (!Hash::check($request->password, $user->password)) {

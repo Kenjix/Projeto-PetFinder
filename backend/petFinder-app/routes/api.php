@@ -32,7 +32,7 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::post('/users', [UserController::class, 'store'])->withoutMiddleware('auth:sanctum');
     Route::get('/users/{id}', [UserController::class, 'show']);
     Route::put('/users/{id}', [UserController::class, 'update']);
-    Route::put('/users/{id}', [UserController::class, 'redefinirSenha'])->withoutMiddleware('auth:sanctum');
+    Route::put('/users/{id}', [UserController::class, 'redefinirSenha']);
     Route::delete('/users/{id}', [UserController::class, 'destroy']);
 });
 

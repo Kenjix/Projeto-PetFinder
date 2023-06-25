@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_perfil:
                 getSupportActionBar().setTitle("Meu Perfil");
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MeuPerfilFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MinhasPublicacoesFragment()).commit();
                 break;
             case R.id.nav_settings:
                 getSupportActionBar().setTitle("Configurações");
