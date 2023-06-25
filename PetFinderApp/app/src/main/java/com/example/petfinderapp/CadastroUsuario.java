@@ -3,6 +3,7 @@ package com.example.petfinderapp;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -171,7 +172,7 @@ public class CadastroUsuario extends AppCompatActivity {
             } else if (validaSenha(senha, repeteSenha)) {
                 JSONObject jsonObject = new JSONObject();
                 if(imagemPerfil.getTag().toString().equals("1")) {
-                    Usuario user = new Usuario(nome, email, senha, dataFormatada, genero, telefone.replaceAll("[^0-9]", ""));
+                    Usuario user = new Usuario(nome, email, senha, dataFormatada, genero, telefone.replaceAll("\\D", ""));
                     try {
                         jsonObject.put("name", user.getName());
                         jsonObject.put("email", user.getEmail());
@@ -191,7 +192,7 @@ public class CadastroUsuario extends AppCompatActivity {
                     byte[] byteArray = byteArrayOutputStream.toByteArray();
                     String avatar = Base64.encodeToString(byteArray, Base64.DEFAULT);
 
-                    Usuario user = new Usuario(nome, email, senha, dataFormatada, genero, telefone.replaceAll("[^0-9]", ""), avatar);
+                    Usuario user = new Usuario(nome, email, senha, dataFormatada, genero, telefone.replaceAll("\\D", ""), avatar);
                     try {
                         jsonObject.put("name", user.getName());
                         jsonObject.put("email", user.getEmail());
@@ -216,6 +217,7 @@ public class CadastroUsuario extends AppCompatActivity {
 
                                     @Override
                                     public void run() {
+                                        msgCadastro.setTextColor(Color.parseColor("#8aa67b"));
                                         msgCadastro.setText("Cadastrado com sucesso! \nRedirecionando em " + segundosRestantes + " segundos...");
                                         segundosRestantes--;
 
