@@ -5,37 +5,49 @@
     tools:showIn="navigation_view">
 
     <group
-        android:checkableBehavior="single">
+        android:checkableBehavior="single"
+        android:background="#D0E4CD">
 
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/nav_home"
-            android:title="Inicio"/>
+            android:title="Inicio"
+            android:fontFamily="@font/outfit_r" />
 
         <item
             android:id="@+id/nav_search"
             android:icon="@drawable/nav_search"
-            android:title="Realizar Busca"/>
+            android:title="Realizar Busca"
+            android:fontFamily="@font/outfit_r"
+            />
 
         <item
             android:id="@+id/nav_add_to_post"
             android:icon="@drawable/nav_add_to_post"
-            android:title="Criar Publicação"/>
+            android:title="Criar Publicação"
+            android:fontFamily="@font/outfit_r"
+            />
 
         <item
             android:id="@+id/nav_message"
             android:icon="@drawable/ic_message"
-            android:title="Minhas Conversas"/>
+            android:title="Minhas Conversas"
+            android:fontFamily="@font/outfit_r"
+            />
 
         <item
             android:id="@+id/nav_favorite"
             android:icon="@drawable/post_favorite_negative"
-            android:title="Favoritos"/>
+            android:title="Favoritos"
+            android:fontFamily="@font/outfit_r"
+            />
 
         <item
             android:id="@+id/nav_donates"
             android:icon="@drawable/nav_donates"
-            android:title="Doações"/>
+            android:title="Doações"
+            android:fontFamily="@font/outfit_r"
+            />
 
     </group>
 
@@ -46,16 +58,22 @@
             <item
                 android:id="@+id/nav_perfil"
                 android:icon="@drawable/manage_accounts"
-                android:title="Minhas Publicações"/>
+                android:title="Minhas Publicações"
+                android:fontFamily="@font/outfit_r"
+                />
             <item
                 android:id="@+id/nav_settings"
                 android:icon="@drawable/nav_settings"
-                android:title="Configurações"/>
+                android:title="Configurações"
+                android:fontFamily="@font/outfit_r"
+                />
 
             <item
                 android:id="@+id/nav_logout"
                 android:icon="@drawable/nav_logout"
-                android:title="Sair"/>
+                android:title="Sair"
+                android:fontFamily="@font/outfit_r"
+                />
         </menu>
     </item>
 

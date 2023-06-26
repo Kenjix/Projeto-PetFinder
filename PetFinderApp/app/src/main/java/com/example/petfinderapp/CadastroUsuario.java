@@ -167,6 +167,8 @@ public class CadastroUsuario extends AppCompatActivity {
                 return;
             }
 
+            checkTermos.setChecked(true);
+
             if (!checkTermos.isChecked()) {
                 msgCadastro.setText("Termos não aceitos");
             } else if (validaSenha(senha, repeteSenha)) {

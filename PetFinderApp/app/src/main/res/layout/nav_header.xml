@@ -1,44 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="150dp"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
-    android:gravity="bottom"
-    android:padding="16dp">
-
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/imageViewPerfil"
-        android:layout_width="74dp"
-        android:layout_height="74dp"
-        android:scaleType="centerCrop"
-        android:layout_marginBottom="10dp"
-        android:layout_marginRight="10dp"
-        android:src="@drawable/fotoperfil"
-        app:shapeAppearanceOverlay="@style/RoundedShapeAppearance"/>
-
+    android:gravity="bottom">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginStart="16dp">
-        <TextView
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="40dp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imageViewPerfil"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:scaleType="centerCrop"
+            android:layout_gravity="center"
+            android:src="@drawable/fotoperfil"
+            app:shapeAppearanceOverlay="@style/RoundedShapeAppearance"/>
+
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Bem-vindo,"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginStart="16dp"
+            android:orientation="vertical"
+            android:layout_gravity="center">
 
-        <TextView
-            android:id="@+id/userSession"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            android:layout_marginBottom="16dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bem-vindo,"
+                android:fontFamily="@font/outfit_r"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
 
+            <TextView
+                android:id="@+id/userSession"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:fontFamily="@font/outfit_r"/>
+
+        </LinearLayout>
     </LinearLayout>
 
     <!--Talvez colocar um botão de config ou algo do tipo pra entrar no perfil por aqui-->

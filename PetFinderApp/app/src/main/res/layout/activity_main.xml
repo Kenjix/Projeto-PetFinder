@@ -17,10 +17,10 @@
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
-            android:background="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:popupTheme="@style/Theme.AppCompat.Light"
+            android:background="#FAF6F6"
             app:title="Início"/>
 
         <FrameLayout
@@ -38,6 +38,7 @@
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/nav_menu"
         app:itemIconTint="@color/black"
-        app:itemTextColor="@color/black"/>
+        app:itemTextColor="@color/black"
+        android:background="#FAF6F6"/>
 
 </androidx.drawerlayout.widget.DrawerLayout>

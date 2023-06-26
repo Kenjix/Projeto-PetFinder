@@ -7,12 +7,61 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".CriarPublicacaoFragment">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardCornerRadius="20dp"
+        android:layout_margin="5dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"
+            android:orientation="vertical">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Adicione uma foto"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:textColor="@color/black"/>
+
+            <ImageView
+                android:id="@+id/photoImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/selectPhotoButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+"
+                    android:background="@drawable/card_view_bg"
+                    android:textColor="@color/white"
+                    android:layout_marginRight="50dp"
+                    android:layout_marginLeft="50dp"
+                    android:backgroundTint="#40801C"/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
         app:cardBackgroundColor="@android:color/white"
         app:cardCornerRadius="20dp">
         <LinearLayout
@@ -22,41 +71,7 @@
             android:padding="16dp"
             android:gravity="center">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="20dp"
-                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Adicione uma foto"
-                    android:layout_gravity="left"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"/>
-
-                <ImageView
-                    android:id="@+id/photoImageView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical">
-
-                    <Button
-                        android:id="@+id/selectPhotoButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Selecionar Foto"
-                        android:onClick="selectPhotoClick" />
-
-                </LinearLayout>
-            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -73,7 +88,7 @@
                 android:hint="Insira o nome do seu pet"
                 android:layout_marginBottom="12dp"
                 android:inputType="text"
-                android:background="#F5F5F5"
+
                 android:textSize="16sp"
                 android:padding="8dp"/>
 
@@ -245,4 +260,5 @@
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+    </LinearLayout>
 </ScrollView>

@@ -10,16 +10,12 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_inicio"
-        android:background="@color/white"
         android:layout_width="match_parent"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_publicacao"
+        android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_height="0dp"/>
+        android:background="@color/white"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_publicacao" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:background="#D0E4CD"/>
 
 </LinearLayout>

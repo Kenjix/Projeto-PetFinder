@@ -30,7 +30,7 @@ Após ter instalado a versão do PHP 8.2.6, agora você pode instalar o [Compose
 
 ### #3 Abrindo o Projeto no VSCODE
 
-> Primeiramente você deve ir até a raiz do seu PHP 8.2.6 e procurar o arquivo php.ini e descomentar os seguintes itens:
+> Primeiramente você deve ir até a raiz do seu PHP 8.2.6 e procurar o arquivo php.ini e verificar os seguintes itens, eles devem estar descomentados:
 
 ```
 extension=fileinfo
@@ -38,32 +38,15 @@ extension=pdo_msql
 extension=zip
 ```
 
-## Evitando problemas
-> Depois você deve ir até a pasta Projeto-PetFinder/backend/petFinder-app e EXCLUIR o arquivo composer.lock
-
-Após ter realizado esses passos, você pode ir até a pasta que foi clonada e abrir a pasta Projeto-PetFinder/backend -> e selecionar a pasta petFinder-app e abrir com o VS Code
-
 ### #4 Instalando o Composer
 
-No terminal do VS Code você deve executar o comando:
+Agora você deve abrir a pasta backend/petFinder-app no VS Code e executar o comando no terminal:
 
 ```
 composer install
 ```
 
-```
-composer self-update
-```
-e repetir o comando abaixo 
-
-```
-composer install
-```
-### #5 Abrindo o MySQL Workbench
-
-Para a criação das tabelas, abra o seu MySQL
-
-### #6 Fazendo a conexão do migrations com o MySQL
+### #5 Fazendo a conexão do migrations com o MySQL
 
 Para fazer a criação das tabelas no banco de dados você deve criar um arquivo .env na raiz da pasta petFinder-app
 
@@ -71,7 +54,7 @@ Em seguida abrir o arquivo .env.example e copiar tudo
 
 Colar no arquivo .env que você a recém criou
 
-Para conectar com o seu banco de dados você deve mudar essa parte do código no arquivo .env e colocar seu username e senha para o seu banco de dados no MySQL
+Para conectar com o seu banco de dados você deve mudar a parte do código abaixo no arquivo .env e colocar seu username e senha para o seu banco de dados no MySQL
 
 ```
 DB_CONNECTION=mysql
@@ -82,15 +65,19 @@ DB_USERNAME=aqui voce coloca o username do seu banco
 DB_PASSWORD=aqui voce coloca a senha do seu banco
 ```
 
-### #7 Criando as tabelas
+### #6 Criando as tabelas
 
 Finalizando, para a criação das tabelas você executa esse comando:
 
 ```
 php artisan migrate
 ```
+### #7 Criando o Link simbólico para armazenar as imagens das postagem e perfil
 
-### #8 Conectando os Android Studio no PHP
+```
+php artisan storage:link
+```
+### #8 Conectando o Android Studio no PHP
 
 Recomendo você iniciar o servidor no terminal do VS Code dessa forma:
 
@@ -104,11 +91,12 @@ php artisan serve --host=192.168.0.02 --port=8000
 
 ### Observação
 
-Lembre-se de trocar a url de requisição nos arquivos do Android Studio são eles (Por enquanto):
+Para conectar o Android Studio à API, você deve colocar o mesmo endereço IP que usou acima no arquivo no arquivo do Android Studio, localizado na pasta res/values/string.xml
 
-- Login
-- CadastroUsuario
-- CriarPublicacaoFragment
+```
+<string name="base_url">http://192.168.0.02:8000</string>
+```
+nessa string você coloca o seu IP e isso ira configurar para todas os arquivos
 
 ### Desenvolvedores:
 - Douglas Kenji Kihara
