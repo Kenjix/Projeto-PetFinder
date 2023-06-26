@@ -38,9 +38,9 @@ Route::middleware('auth:sanctum')->group(function() {
 
 Route::middleware('auth:sanctum')->group(function() {
     Route::get('/publicacao', [PublicacaoController::class, 'index']);
-    Route::get('/publicacao/favoritos/{id}', [PublicacaoController::class, 'favoritos'])->withoutMiddleware('auth:sanctum'); //teste atual;
+    Route::get('/publicacao/favoritos/{id}', [PublicacaoController::class, 'favoritos']);
     Route::post('/publicacao', [PublicacaoController::class, 'store']);
-    Route::get('/publicacao/{id}', [PublicacaoController::class, 'show'])->withoutMiddleware('auth:sanctum'); //teste atual
+    Route::get('/publicacao/{id}', [PublicacaoController::class, 'show']);
     Route::put('/publicacao/{id}', [PublicacaoController::class, 'update']);
     Route::delete('/publicacao/{id}', [PublicacaoController::class, 'destroy']);
 });
