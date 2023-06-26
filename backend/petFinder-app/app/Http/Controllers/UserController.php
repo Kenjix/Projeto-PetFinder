@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 
-
 class UserController extends Controller
 {
     //INDEX (GET ALL)
@@ -161,6 +160,21 @@ class UserController extends Controller
             return response()->json(['message' => 'Senha atualizada com sucesso!'], 200);
         } catch (ModelNotFoundException $e) {
             return response()->json(['message' => 'Erro ao atualizar a senha'], 403);
+        }
+    }
+
+    public function destroy($id)
+    {
+        try {
+            $user = User::findOrFail($id);
+            $user->ativo = false;
+            $user->save();
+
+            return response()->json(['message' => 'Usuário desativado com sucesso'], 200);
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['message' => 'Usuário não encontrado'], 404);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Erro ao desativar o usuário'], 500);
         }
     }
 }

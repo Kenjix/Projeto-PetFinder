@@ -81,7 +81,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new InicioFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_home);
         }
-
         preferences = getSharedPreferences("sessao", MODE_PRIVATE);
         String username = preferences.getString("username", "");
         String avatar = preferences.getString("avatar", "");

@@ -78,7 +78,7 @@
                 android:layout_marginRight="20dp"
                 android:padding="10dp"
                 android:drawableStart="@drawable/delete_forever"
-                android:text="  Excluir Conta"
+                android:text="  Desabilitar Conta"
                 android:textColor="#000000"
                 android:textSize="18sp" />
 

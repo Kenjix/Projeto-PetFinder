@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('avatar')->nullable(true);
             $table->integer('nivelAcesso')->default(0);
             $table->integer('tentativasAcesso')->default(0);
+            $table->boolean('notificacoes')->default(true);
             $table->boolean('ativo')->default(true);
             $table->timestamps();
         });
