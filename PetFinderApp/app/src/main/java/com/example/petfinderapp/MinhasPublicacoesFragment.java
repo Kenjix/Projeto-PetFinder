@@ -26,6 +26,7 @@ import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.example.petfinderapp.model.MinhasPublicacoesAdapter;
 import com.example.petfinderapp.model.Publicacao;
+import com.example.petfinderapp.model.PublicacaoAdapter;
 import com.example.petfinderapp.model.Usuario;
 
 import org.json.JSONArray;
@@ -38,20 +39,22 @@ import java.util.List;
 import java.util.Map;
 
 
-public class MinhasPublicacoesFragment extends Fragment {
+public class MinhasPublicacoesFragment extends Fragment implements PublicacaoAdapter.OnImageClickListener {
     private String url = "";
     private ImageView imageViewPerfil;
     private TextView textNomeUser;
-    private ImageView imageViewPetFoto;
     private SharedPreferences preferences;
     private MinhasPublicacoesAdapter adapter;
     private RecyclerView rvPublicacao;
     private List<Publicacao> publicacoes = new ArrayList<>();
-    private List<Long> favoritos = new ArrayList<>();
+
 
     public MinhasPublicacoesFragment() {
     }
-
+    @Override
+    public void onImageClick(int position) {
+        Publicacao publicacao = publicacoes.get(position);
+    }
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_minhas_publicacoes, container, false);
@@ -77,7 +80,7 @@ public class MinhasPublicacoesFragment extends Fragment {
         List<Publicacao> publicacoes = obterPublicacoes(authToken, usuarioId);
         rvPublicacao = rootView.findViewById(R.id.recycler_view_minha_publicacao);
         rvPublicacao.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter = new MinhasPublicacoesAdapter(publicacoes);
+        adapter = new MinhasPublicacoesAdapter(publicacoes, this::onImageClick);
         rvPublicacao.setAdapter(adapter);
         return rootView;
     }
@@ -126,16 +129,7 @@ public class MinhasPublicacoesFragment extends Fragment {
                                             .placeholder(R.drawable.fotoperfil)
                                             .into(imageViewPerfil);
                                 }
-
-                                JSONArray jsonFav = jsonData.getJSONArray("favoritos");
-                                for (int j = 0; j < jsonFav.length(); j++) {
-                                    JSONObject jsonObject = jsonFav.getJSONObject(j);
-                                    long favUserId = jsonObject.getLong("user_id");
-                                    if (favUserId == usuarioId) {
-                                        favoritos.add(id);
-                                    }
-                                }
-                                Usuario user = new Usuario(userId, userName, dataNasc, generoUser, telefone, avatar, favoritos);
+                                Usuario user = new Usuario(userId, userName, dataNasc, generoUser, telefone, avatar);
                                 Publicacao publicacao = new Publicacao(id, descricao, nomePet, genero, especie, porte, idade, vacinas, castrado, imagem, user);
                                 publicacoes.add(publicacao);
                             }

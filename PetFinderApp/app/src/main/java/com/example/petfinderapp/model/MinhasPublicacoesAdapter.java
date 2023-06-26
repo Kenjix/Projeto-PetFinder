@@ -3,8 +3,10 @@ package com.example.petfinderapp.model;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,10 +17,17 @@ import java.util.List;
 
 public class MinhasPublicacoesAdapter extends RecyclerView.Adapter<MinhasPublicacoesAdapter.ViewHolder> {
     private List<Publicacao> publicacoes;
+    private PublicacaoAdapter.OnImageClickListener imageClickListener;
 
     //construtor para receber a lista de publicações
-    public MinhasPublicacoesAdapter(List<Publicacao> publicacoes) {
+    public MinhasPublicacoesAdapter(List<Publicacao> publicacoes, PublicacaoAdapter.OnImageClickListener imageClickListener) {
         this.publicacoes = publicacoes;
+        this.imageClickListener = imageClickListener;
+    }
+
+    //Fav image
+    public interface OnImageClickListener {
+        void onImageClick(int position);
     }
 
     public void setPublicacoes(List<Publicacao> publicacoes) {
@@ -49,6 +58,28 @@ public class MinhasPublicacoesAdapter extends RecyclerView.Adapter<MinhasPublica
                 .load(publicacao.getImagem())
                 .placeholder(R.drawable.cachorro)
                 .into(holder.imageViewPetFoto);
+
+        //listeneer botao favorito
+        holder.buttoEditar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int clickedPosition = holder.getBindingAdapterPosition();
+                if (clickedPosition != RecyclerView.NO_POSITION && imageClickListener != null) {
+                    imageClickListener.onImageClick(clickedPosition);
+                    Toast.makeText(v.getContext(), "BOTAO EDITAR - PUB_ID: " + publicacao.getId(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        holder.buttonExcluir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int clickedPosition = holder.getBindingAdapterPosition();
+                if (clickedPosition != RecyclerView.NO_POSITION && imageClickListener != null) {
+                    imageClickListener.onImageClick(clickedPosition);
+                    Toast.makeText(v.getContext(), "BOTAO EXCLUIR - PUB_ID: " + publicacao.getId(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     //classe ViewHolder para representar os itens da lista
@@ -56,6 +87,7 @@ public class MinhasPublicacoesAdapter extends RecyclerView.Adapter<MinhasPublica
         //elementos do layout
         private TextView textNomePet, textIdadePet;
         private ImageView imageViewPetFoto;
+        private ImageButton buttoEditar, buttonExcluir;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -63,6 +95,8 @@ public class MinhasPublicacoesAdapter extends RecyclerView.Adapter<MinhasPublica
             textNomePet = itemView.findViewById(R.id.textNomePet);
             textIdadePet = itemView.findViewById(R.id.textIdadePet);
             imageViewPetFoto = itemView.findViewById(R.id.imageViewPetFoto);
+            buttoEditar = itemView.findViewById(R.id.buttoEditar);
+            buttonExcluir = itemView.findViewById(R.id.buttonExcluir);
         }
     }
 }

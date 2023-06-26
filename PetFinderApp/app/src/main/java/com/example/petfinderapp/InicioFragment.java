@@ -128,7 +128,6 @@ public class InicioFragment extends Fragment implements PublicacaoAdapter.OnImag
         return rootView;
     }
 
-
     private List<Publicacao> obterPublicacoes(String authToken, Long usuarioId) {
         RequestQueue requestQueue = Volley.newRequestQueue(requireContext());
         url = getResources().getString(R.string.base_url) + "/api/publicacao";
@@ -182,7 +181,7 @@ public class InicioFragment extends Fragment implements PublicacaoAdapter.OnImag
                             //atualiza o adaptador com a lista de publicações obtida
                             adapter.notifyDataSetChanged();
                         } catch (JSONException e) {
-                            System.out.println("ERRO: " + e.getMessage());
+                            Toast.makeText(getContext(), "Erro ao adiquirir as publicações", Toast.LENGTH_SHORT).show();
                         }
                     }
                 },

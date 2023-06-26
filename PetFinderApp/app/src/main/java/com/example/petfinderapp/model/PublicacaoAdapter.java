@@ -25,7 +25,6 @@ import com.google.gson.Gson;
 
 import java.util.List;
 
-
 public class PublicacaoAdapter extends RecyclerView.Adapter<PublicacaoAdapter.ViewHolder> {
     private List<Publicacao> publicacoes;
     private OnImageClickListener imageClickListener;
@@ -36,7 +35,6 @@ public class PublicacaoAdapter extends RecyclerView.Adapter<PublicacaoAdapter.Vi
         this.imageClickListener = imageClickListener;
     }
 
-    //Fav image
     public interface OnImageClickListener {
         void onImageClick(int position);
     }
