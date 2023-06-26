@@ -67,13 +67,30 @@ class PublicacaoController extends Controller
         return response()->json(['message' => 'Falha ao cadastrar a publicação'], 500);
     }
 
-    public function favoritos($id){
-        $publicacoes = Publicacao::whereHas('favoritos', function ($query) use ($id) {
-            $query->where('user_id', $id);
+    public function favoritos($user_id)
+    {
+        $publicacoes = Publicacao::whereHas('favoritos', function ($query) use ($user_id) {
+            $query->where('user_id', $user_id);
         })
         ->with('favoritos')
         ->orderByDesc('updated_at')
         ->get();
+    
+        return PublicacaoResource::collection($publicacoes);
+    }
+
+    public function show($user_id)
+    {
+        $publicacoes = Publicacao::whereHas('user', function ($query) use ($user_id) {
+            $query->where('user_id', $user_id);
+        })
+        ->with('user')
+        ->orderByDesc('updated_at')
+        ->get();
+    
+        if ($publicacoes->isEmpty()) {
+            return response()->json(['message' => 'Nenhuma publicação encontrada'], 404);
+        }
     
         return PublicacaoResource::collection($publicacoes);
     }

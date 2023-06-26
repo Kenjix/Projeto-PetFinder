@@ -146,7 +146,6 @@ public class InicioFragment extends Fragment implements PublicacaoAdapter.OnImag
 
                             for (int i = 0; i < dataArray.length(); i++) {
                                 JSONObject jsonData = dataArray.getJSONObject(i);
-
                                 JSONObject jsonPublicacao = jsonData.getJSONObject("publicacao");
                                 long id = jsonPublicacao.getLong("id");
                                 String descricao = jsonPublicacao.getString("descricao");

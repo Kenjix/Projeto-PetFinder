@@ -32,15 +32,15 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::post('/users', [UserController::class, 'store'])->withoutMiddleware('auth:sanctum');
     Route::get('/users/{id}', [UserController::class, 'show']);
     Route::put('/users/{id}', [UserController::class, 'update']);
-    Route::put('/users/{id}', [UserController::class, 'redefinirSenha']);
+    Route::put('/users/redefinirSenha/{id}', [UserController::class, 'redefinirSenha']);
     Route::delete('/users/{id}', [UserController::class, 'destroy']);
 });
 
 Route::middleware('auth:sanctum')->group(function() {
     Route::get('/publicacao', [PublicacaoController::class, 'index']);
-    Route::get('/publicacao/favoritos/{id}', [PublicacaoController::class, 'favoritos']);
+    Route::get('/publicacao/favoritos/{id}', [PublicacaoController::class, 'favoritos'])->withoutMiddleware('auth:sanctum'); //teste atual;
     Route::post('/publicacao', [PublicacaoController::class, 'store']);
-    Route::get('/publicacao/{id}', [PublicacaoController::class, 'show']);
+    Route::get('/publicacao/{id}', [PublicacaoController::class, 'show'])->withoutMiddleware('auth:sanctum'); //teste atual
     Route::put('/publicacao/{id}', [PublicacaoController::class, 'update']);
     Route::delete('/publicacao/{id}', [PublicacaoController::class, 'destroy']);
 });

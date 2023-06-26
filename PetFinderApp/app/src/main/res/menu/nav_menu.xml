@@ -46,7 +46,7 @@
             <item
                 android:id="@+id/nav_perfil"
                 android:icon="@drawable/manage_accounts"
-                android:title="Meu Perfil"/>
+                android:title="Minhas Publicações"/>
             <item
                 android:id="@+id/nav_settings"
                 android:icon="@drawable/nav_settings"

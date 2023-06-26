@@ -69,9 +69,14 @@ public class RedefinirSenhaFragment extends Fragment {
                     confirmaNovaSenhaEditText.requestFocus();
                     confirmaNovaSenhaEditText.setError("Campo obrigatório");
                 } else {
-                    //verifica se as senhas correspondem
-                    if (novaSenha.equals(confirmaNovaSenha)) {
-                        String url = getResources().getString(R.string.base_url) + "/api/users/" + userId;
+                    if(senhaAntiga.equals(novaSenha)){
+                        //verifica se a senha atual é igual a nova
+                        msgErroTextView.setText("A nova senha é igual a atual.");
+                        confirmaNovaSenhaEditText.requestFocus();
+                        return;
+                    } else if (novaSenha.equals(confirmaNovaSenha)) {
+                        //verifica se as senhas correspondem
+                        String url = getResources().getString(R.string.base_url) + "/api/users/redefinirSenha/" + userId;
                         JSONObject jsonObject = new JSONObject();
                         try {
                             jsonObject.put("password", senhaAntiga);
@@ -88,6 +93,9 @@ public class RedefinirSenhaFragment extends Fragment {
                                     @Override
                                     public void onResponse(JSONObject response) {
                                         Toast.makeText(getActivity(), "Senha alterada com sucesso!", Toast.LENGTH_SHORT).show();
+                                        senhaAntigaEditText.setText("");
+                                        novaSenhaEditText.setText("");
+                                        confirmaNovaSenhaEditText.setText("");
                                     }
                                 },
                                 new Response.ErrorListener() {
