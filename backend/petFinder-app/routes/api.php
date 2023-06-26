@@ -33,7 +33,7 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::get('/users/{id}', [UserController::class, 'show']);
     Route::put('/users/{id}', [UserController::class, 'update']);
     Route::put('/users/redefinirSenha/{id}', [UserController::class, 'redefinirSenha']);
-    Route::delete('/users/{id}', [UserController::class, 'destroy'])->withoutMiddleware('auth:sanctum');;
+    Route::delete('/users/{id}', [UserController::class, 'destroy']);
 });
 
 Route::middleware('auth:sanctum')->group(function() {
