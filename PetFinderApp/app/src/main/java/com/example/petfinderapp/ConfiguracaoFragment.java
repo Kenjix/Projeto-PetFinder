@@ -89,11 +89,6 @@ public class ConfiguracaoFragment extends Fragment {
             }
         });
 
-
-        View dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_confirm_password, null);
-        EditText editPassword = dialogView.findViewById(R.id.editSenha);
-
-
         txtDeleteAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

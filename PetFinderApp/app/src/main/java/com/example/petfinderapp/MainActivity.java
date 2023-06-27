@@ -84,11 +84,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         preferences = getSharedPreferences("sessao", MODE_PRIVATE);
         String username = preferences.getString("username", "");
         String avatar = preferences.getString("avatar", "");
+        String authToken = preferences.getString("auth_token", "");
         View headerView = navigationView.getHeaderView(0);
         userSession = headerView.findViewById(R.id.userSession);
         imageViewPerfil = headerView.findViewById(R.id.imageViewPerfil);
 
-        if (username.isEmpty()) {
+        if (authToken.isEmpty()) {
             Intent intent = new Intent(MainActivity.this, Login.class);
             startActivity(intent);
             finish();
