@@ -36,7 +36,6 @@ import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-
     private DrawerLayout drawerLayout;
     private TextView userSession;
     private ShapeableImageView imageViewPerfil;

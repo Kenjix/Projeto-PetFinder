@@ -1,5 +1,6 @@
 package com.example.petfinderapp.model;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.petfinderapp.R;
+import com.example.petfinderapp.VerMaisPublicacaoActivity;
+import com.google.gson.Gson;
 
 import java.util.List;
 
@@ -25,7 +28,6 @@ public class MinhasPublicacoesAdapter extends RecyclerView.Adapter<MinhasPublica
         this.imageClickListener = imageClickListener;
     }
 
-    //Fav image
     public interface OnImageClickListener {
         void onImageClick(int position);
     }
@@ -66,6 +68,13 @@ public class MinhasPublicacoesAdapter extends RecyclerView.Adapter<MinhasPublica
                 int clickedPosition = holder.getBindingAdapterPosition();
                 if (clickedPosition != RecyclerView.NO_POSITION && imageClickListener != null) {
                     imageClickListener.onImageClick(clickedPosition);
+                    /*//serializa objeto para JSON usando Gson
+                    Gson gson = new Gson();
+                    String json = gson.toJson(publicacao);
+                    Intent intent = new Intent(v.getContext(), VerMaisPublicacaoActivity.class);
+                    intent.putExtra("publicacaoJson", json);
+                    //inicia a activity usando o contexto da View
+                    v.getContext().startActivity(intent);*/
                     Toast.makeText(v.getContext(), "BOTAO EDITAR - PUB_ID: " + publicacao.getId(), Toast.LENGTH_SHORT).show();
                 }
             }
@@ -76,7 +85,6 @@ public class MinhasPublicacoesAdapter extends RecyclerView.Adapter<MinhasPublica
                 int clickedPosition = holder.getBindingAdapterPosition();
                 if (clickedPosition != RecyclerView.NO_POSITION && imageClickListener != null) {
                     imageClickListener.onImageClick(clickedPosition);
-                    Toast.makeText(v.getContext(), "BOTAO EXCLUIR - PUB_ID: " + publicacao.getId(), Toast.LENGTH_SHORT).show();
                 }
             }
         });

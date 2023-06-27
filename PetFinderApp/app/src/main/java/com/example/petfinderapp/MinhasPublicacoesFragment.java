@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,6 +23,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.example.petfinderapp.model.MinhasPublicacoesAdapter;
@@ -54,6 +56,46 @@ public class MinhasPublicacoesFragment extends Fragment implements PublicacaoAda
     @Override
     public void onImageClick(int position) {
         Publicacao publicacao = publicacoes.get(position);
+
+        preferences = requireContext().getSharedPreferences("sessao", Context.MODE_PRIVATE);
+        String authToken = preferences.getString("auth_token", null);
+        Long usuarioId = preferences.getLong("userId", 0);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+        builder.setTitle("Confirmação");
+        builder.setMessage("Deseja mesmo excluir está publicação?");
+        builder.setCancelable(false);
+        builder.setPositiveButton("Confirmar", (dialogInterface, i) -> {
+
+            //request para desabilita publicacao
+            url = getResources().getString(R.string.base_url) + "/api/publicacao/" + publicacao.getId();
+            RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+            Map<String, String> headers = new HashMap<>();
+            headers.put("Content-Type", "application/json");
+            headers.put("Authorization", "Bearer " + authToken);
+            StringRequest request = new StringRequest(Request.Method.DELETE, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            Toast.makeText(getActivity(), "Publicação excluída com sucesso.", Toast.LENGTH_SHORT).show();
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(getActivity(), "Erro ao excluir a publicação.", Toast.LENGTH_SHORT).show();
+                        }
+                    }) {
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    return headers;
+                }
+            };
+            requestQueue.add(request);
+        });
+        builder.setNegativeButton("Cancelar", null);
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
