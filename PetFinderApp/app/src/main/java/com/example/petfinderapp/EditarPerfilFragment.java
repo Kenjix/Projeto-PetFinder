@@ -300,7 +300,7 @@ public class EditarPerfilFragment extends Fragment {
             AlertDialog dialog = builder.create();
             dialog.show();
         }catch (ParseException e){
-
+            e.printStackTrace();
         }
     }
 

@@ -7,12 +7,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -87,40 +89,54 @@ public class ConfiguracaoFragment extends Fragment {
             }
         });
 
+
+        View dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.dialog_confirm_password, null);
+        EditText editPassword = dialogView.findViewById(R.id.editSenha);
+
+
         txtDeleteAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //request para desabilitar a conta
-                url = getResources().getString(R.string.base_url) + "/api/users/" + usuarioId;
-                RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-                Map<String, String> headers = new HashMap<>();
-                headers.put("Content-Type", "application/json");
-                headers.put("Authorization", "Bearer " + authToken);
-                StringRequest request = new StringRequest(Request.Method.DELETE, url,
-                        new Response.Listener<String>() {
-                            @Override
-                            public void onResponse(String response) {
-                                Toast.makeText(getActivity(), "Conta desativada com sucesso.", Toast.LENGTH_SHORT).show();
-                                SharedPreferences.Editor editor = preferences.edit();
-                                editor.remove("auth_token");
-                                editor.commit();
-                                Intent intent = new Intent(getActivity(), Login.class);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                startActivity(intent);
-                            }
-                        },
-                        new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Toast.makeText(getActivity(), "Erro ao desativar a conta", Toast.LENGTH_SHORT).show();
-                            }
-                        }) {
-                    @Override
-                    public Map<String, String> getHeaders() throws AuthFailureError {
-                        return headers;
-                    }
-                };
-                requestQueue.add(request);
+                AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+                builder.setTitle("Confirmação");
+                builder.setMessage("Deseja mesmo desabilitar sua conta?");
+                builder.setCancelable(false);
+                builder.setPositiveButton("Confirmar", (dialogInterface, i) -> {
+                    //request para desabilitar a conta
+                    url = getResources().getString(R.string.base_url) + "/api/users/" + usuarioId;
+                    RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+                    Map<String, String> headers = new HashMap<>();
+                    headers.put("Content-Type", "application/json");
+                    headers.put("Authorization", "Bearer " + authToken);
+                    StringRequest request = new StringRequest(Request.Method.DELETE, url,
+                            new Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String response) {
+                                    Toast.makeText(getActivity(), "Conta desativada com sucesso.", Toast.LENGTH_SHORT).show();
+                                    SharedPreferences.Editor editor = preferences.edit();
+                                    editor.remove("auth_token");
+                                    editor.commit();
+                                    Intent intent = new Intent(getActivity(), Login.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    startActivity(intent);
+                                }
+                            },
+                            new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    Toast.makeText(getActivity(), "Erro ao desativar a conta", Toast.LENGTH_SHORT).show();
+                                }
+                            }) {
+                        @Override
+                        public Map<String, String> getHeaders() throws AuthFailureError {
+                            return headers;
+                        }
+                    };
+                    requestQueue.add(request);
+                });
+                builder.setNegativeButton("Cancelar", null);
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         });
         return view;
