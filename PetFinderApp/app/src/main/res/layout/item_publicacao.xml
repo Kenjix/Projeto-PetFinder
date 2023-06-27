@@ -55,7 +55,8 @@
                 <ImageView
                     android:id="@+id/imageViewFoto"
                     android:layout_width="match_parent"
-                    android:layout_height="360dp"
+                    android:layout_height="400dp"
+                    android:scaleType="centerCrop"
                     app:srcCompat="@drawable/cachorro" />
 
                 <LinearLayout
@@ -67,7 +68,6 @@
                         android:id="@+id/buttonCurtir"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:layout_marginLeft="16dp"
                         android:background="@color/white"
                         app:srcCompat="@drawable/post_favorite_negative"
                         android:contentDescription="Curtir"/>
@@ -76,10 +76,23 @@
                         android:id="@+id/buttonCompartilhar"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:layout_marginRight="150dp"
                         android:background="@color/white"
                         app:srcCompat="@drawable/post_share"
+                        android:layout_marginRight="180dp"
                         android:contentDescription="Compartilhar"/>
+
+                    <Button
+                        android:id="@+id/buttonVerMais"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:text="Ver detalhes"
+                        android:textSize="10sp"
+                        android:layout_margin="5dp"
+                        android:fontFamily="@font/outfit_r"
+                        android:textColor="@color/black"
+                        android:backgroundTint="#C7C8C7"
+                        android:background="@drawable/card_view_bg"/>
+
 
                 </LinearLayout>
 
@@ -133,15 +146,6 @@
                         android:fontFamily="@font/outfit_r"
                         android:textColor="@color/black" />
 
-                    <Button
-                        android:id="@+id/buttonVerMais"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="#D9D9D9"
-                        android:text="Ver detalhes"
-                        android:layout_marginLeft="15dp"
-                        android:fontFamily="@font/outfit_r"
-                        android:textColor="@color/black" />
                 </LinearLayout>
 
 

@@ -2,7 +2,6 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="#D0E4CD"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -11,254 +10,294 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-    <androidx.cardview.widget.CardView
+
+    <LinearLayout
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="@android:color/white"
-        app:cardCornerRadius="20dp"
-        android:layout_margin="5dp">
+        app:cardBackgroundColor="@android:color/white">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="20dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Adicione uma foto"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:layout_gravity="center"
-                android:textColor="@color/black"/>
-
-            <ImageView
-                android:id="@+id/photoImageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"/>
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="16dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingTop="20dp">
 
-                <Button
-                    android:id="@+id/selectPhotoButton"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="+"
-                    android:background="@drawable/card_view_bg"
-                    android:textColor="@color/white"
-                    android:layout_marginRight="50dp"
-                    android:layout_marginLeft="50dp"
-                    android:backgroundTint="#40801C"/>
+                    android:fontFamily="@font/outfit_r"
+                    android:text="Adicione uma foto do seu Pet"
+                    android:textColor="@color/teal_700"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
+                <ImageView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center" />
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="16dp">
+
+                    <ImageView
+                        android:id="@+id/photoImageView"
+                        android:layout_width="match_parent"
+                        android:layout_height="400dp"
+                        android:background="@drawable/semfoto"
+                        android:gravity="center"
+                        android:scaleType="centerCrop" />
+
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/selectPhotoButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="#B1B5AF"
+                        android:fontFamily="@font/outfit_r"
+                        android:background="@drawable/card_view_bg"
+                        android:text="Adicionar foto da galeria"
+                        android:layout_margin="5dp"
+                        android:textColor="@color/black" />
+
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardBackgroundColor="@android:color/white"
-        app:cardCornerRadius="20dp">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp"
-            android:gravity="center">
-
 
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nome"
                 android:layout_gravity="left"
+                android:fontFamily="@font/outfit_r"
+                android:text="Nome"
+                android:textColor="@color/teal_700"
                 android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="@color/black"/>
+                android:textStyle="bold" />
+
             <EditText
                 android:id="@+id/editTextNome"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:hint="Insira o nome do seu pet"
                 android:layout_marginBottom="12dp"
+                android:background="@drawable/input_bg"
+                android:fontFamily="@font/outfit_r"
+                android:hint="Insira o nome do seu pet"
                 android:inputType="text"
-
-                android:textSize="16sp"
-                android:padding="8dp"/>
+                android:padding="8dp"
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Selecione o porte"
                 android:layout_gravity="left"
+                android:fontFamily="@font/outfit_r"
+                android:text="Selecione o porte"
+                android:textColor="@color/teal_700"
                 android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="@color/black"/>
+                android:textStyle="bold" />
+
             <Spinner
                 android:id="@+id/spinnerPorte"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
+                android:background="@drawable/input_bg"
+                android:fontFamily="@font/outfit_r"
                 android:layout_marginBottom="12dp"
-                android:background="#F5F5F5"
-                android:textSize="16sp"
+                android:contentDescription="porte"
                 android:padding="8dp"
-                android:contentDescription="porte"/>
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Idade"
                 android:layout_gravity="left"
+                android:fontFamily="@font/outfit_r"
+                android:text="Idade"
+                android:textColor="@color/teal_700"
                 android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="@color/black"/>
+                android:textStyle="bold" />
+
             <EditText
                 android:id="@+id/editTextIdade"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:hint="Insira a idade do seu pet"
                 android:layout_marginBottom="12dp"
+                android:focusable="false"
+                android:hint="Insira a idade do seu pet"
+                android:background="@drawable/input_bg"
+                android:fontFamily="@font/outfit_r"
                 android:inputType="numberDecimal"
-                android:background="#F5F5F5"
-                android:textSize="16sp"
                 android:padding="8dp"
-                android:focusable="false"/>
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Vacinas"
                 android:layout_gravity="left"
+                android:fontFamily="@font/outfit_r"
+                android:text="Vacinas"
+                android:textColor="@color/teal_700"
                 android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="@color/black"/>
+                android:textStyle="bold" />
+
             <EditText
                 android:id="@+id/editTextVacinas"
                 android:layout_width="match_parent"
                 android:layout_height="94dp"
-                android:hint="Informe as vacinas que o seu Pet possui..."
+                android:layout_marginBottom="12dp"
                 android:gravity="start"
-                android:textSize="16sp"
-                android:padding="8dp"
-                android:background="#F5F5F5"
-                android:scrollbars="vertical"
+                android:hint="Informe as vacinas que o seu Pet possui..."
+                android:background="@drawable/input_bg"
+                android:fontFamily="@font/outfit_r"
                 android:maxLines="3"
-                android:layout_marginBottom="12dp"/>
+                android:padding="8dp"
+                android:scrollbars="vertical"
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Castrado"
                 android:layout_gravity="left"
+                android:fontFamily="@font/outfit_r"
+                android:text="Castrado"
+                android:textColor="@color/teal_700"
                 android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="@color/black"/>
+                android:textStyle="bold" />
+
             <Spinner
                 android:id="@+id/spinnerCastrado"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginBottom="12dp"
-                android:background="#F5F5F5"
-                android:textSize="16sp"
+                android:contentDescription="castrado"
+                android:background="@drawable/input_bg"
+                android:fontFamily="@font/outfit_r"
                 android:padding="8dp"
-                android:contentDescription="castrado"/>
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Gênero"
                 android:layout_gravity="left"
+                android:fontFamily="@font/outfit_r"
+                android:text="Gênero"
+                android:textColor="@color/teal_700"
                 android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="@color/black"/>
+                android:textStyle="bold" />
+
             <Spinner
                 android:id="@+id/spinnerGenero"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginBottom="12dp"
-                android:background="#F5F5F5"
-                android:textSize="16sp"
+                android:background="@drawable/input_bg"
+                android:fontFamily="@font/outfit_r"
+                android:contentDescription="genero"
                 android:padding="8dp"
-                android:contentDescription="genero"/>
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Espécie"
                 android:layout_gravity="left"
+                android:fontFamily="@font/outfit_r"
+                android:text="Espécie"
+                android:textColor="@color/teal_700"
                 android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="@color/black"/>
+                android:textStyle="bold" />
+
             <Spinner
                 android:id="@+id/spinnerEspecie"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginBottom="12dp"
-                android:background="#F5F5F5"
-                android:textSize="16sp"
+                android:background="@drawable/input_bg"
+                android:fontFamily="@font/outfit_r"
+                android:contentDescription="Selecione o tipo"
                 android:padding="8dp"
-                android:contentDescription="Selecione o tipo"/>
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Descrição Comportamental"
                 android:layout_gravity="left"
+                android:fontFamily="@font/outfit_r"
+                android:text="Descrição Comportamental"
+                android:textColor="@color/teal_700"
                 android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="@color/black"/>
+                android:textStyle="bold" />
+
             <EditText
                 android:id="@+id/editTextDescricao"
                 android:layout_width="match_parent"
                 android:layout_height="134dp"
-                android:hint="Descreva o comportamento do seu Pet"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/input_bg"
+                android:fontFamily="@font/outfit_r"
                 android:gravity="start"
-                android:textSize="16sp"
-                android:padding="8dp"
-                android:background="#F5F5F5"
-                android:scrollbars="vertical"
+                android:hint="Descreva o comportamento do seu Pet"
                 android:maxLines="4"
-                android:layout_marginBottom="12dp"/>
+                android:padding="8dp"
+                android:scrollbars="vertical"
+                android:textSize="16sp" />
+
             <TextView
                 android:id="@+id/msgRetorno"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=""
                 android:layout_gravity="center"
+                android:text=""
+                android:textColor="#F13D3D"
                 android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="#F13D3D"/>
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:paddingBottom="20dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                >
 
                 <Button
                     android:id="@+id/buttonCancelar"
                     android:layout_width="130dp"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="#FDFDFC"
+                    android:layout_margin="5dp"
                     android:text="Cancelar"
-                    android:textColor="@color/white"
-                    android:backgroundTint="#4C5C43"/>
+                    android:background="@drawable/card_view_bg"
+                    android:textColor="#4C5C43"/>
+
                 <Button
                     android:id="@+id/buttonCadastrar"
                     android:layout_width="130dp"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="#4C5C43"
+                    android:layout_margin="5dp"
                     android:text="Cadastrar"
-                    android:textColor="@color/white"
-                    android:backgroundTint="#4C5C43"/>
+                    android:background="@drawable/card_view_bg"
+                    android:textColor="@color/white" />
 
             </LinearLayout>
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    </LinearLayout>
     </LinearLayout>
 </ScrollView>

@@ -132,9 +132,9 @@
                     android:id="@+id/editEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/input_bg"
                     android:ems="10"
                     android:hint="Insira seu e-mail"
+                    android:background="@drawable/input_bg"
                     android:fontFamily="@font/outfit_r"
                     android:inputType="textEmailAddress"
                     android:padding="16dp" />
