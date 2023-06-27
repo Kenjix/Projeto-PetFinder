@@ -181,7 +181,7 @@ public class InicioFragment extends Fragment implements PublicacaoAdapter.OnImag
                             //atualiza o adaptador com a lista de publicações obtida
                             adapter.notifyDataSetChanged();
                         } catch (JSONException e) {
-                            Toast.makeText(getContext(), "Erro ao adiquirir as publicações", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Erro ao adquirir as publicações", Toast.LENGTH_SHORT).show();
                         }
                     }
                 },

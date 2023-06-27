@@ -14,7 +14,7 @@ public class Usuario {
     private int nivelAcesso;
     private List favoritos;
 
-    public Usuario(long id, String name, String email, String dataNasc, String genero, String telefone, String avatar, int nivelAcesso) {
+    public Usuario(long id, String name, String email) {
         this.id = id;
         this.name = name;
         this.email = email;

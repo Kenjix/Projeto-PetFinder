@@ -162,4 +162,26 @@ class PublicacaoController extends Controller
             return response()->json(['message' => 'Erro ao desativar a publicação'], 500);
         }
     }
+
+    public function buscar(Request $request)
+    {
+        //filtros
+        $especie = $request->input('especie');
+        $genero = $request->input('genero');
+        $porte = $request->input('porte');
+
+        $publicacao = Publicacao::query()
+            ->when($especie, function ($query) use ($especie) {
+                return $query->where('especie', $especie);
+            })
+            ->when($genero, function ($query) use ($genero) {
+                return $query->where('genero', $genero);
+            })
+            ->when($porte, function ($query) use ($porte) {
+                return $query->where('porte', $porte);
+            })
+            ->get();
+
+        return response()->json($publicacao);
+	}
 }

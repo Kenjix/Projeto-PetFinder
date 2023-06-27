@@ -35,6 +35,9 @@ public class PublicacaoAdapter extends RecyclerView.Adapter<PublicacaoAdapter.Vi
         this.imageClickListener = imageClickListener;
     }
 
+    public PublicacaoAdapter(List<Publicacao> publicacoes) {
+    }
+
     public interface OnImageClickListener {
         void onImageClick(int position);
     }

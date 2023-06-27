@@ -44,6 +44,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/publicacao', [PublicacaoController::class, 'store']);    
     Route::put('/publicacao/{id}', [PublicacaoController::class, 'update']); //testar
     Route::delete('/publicacao/{id}', [PublicacaoController::class, 'destroy']); //testar
+    Route::get('/publicacao/buscar', [PublicacaoController::class, 'buscar']);
 });
 
 Route::middleware('auth:sanctum')->group(function () {
