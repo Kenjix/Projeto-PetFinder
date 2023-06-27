@@ -22,30 +22,31 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::prefix('auth')->group(function(){
+Route::prefix('auth')->group(function () {
     Route::post('/login', [LoginController::class, 'login']);
-    Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth:sanctum');       
+    Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth:sanctum');
 });
 
-Route::middleware('auth:sanctum')->group(function() {
+Route::middleware('auth:sanctum')->group(function () {
     Route::get('/users', [UserController::class, 'index']);
     Route::post('/users', [UserController::class, 'store'])->withoutMiddleware('auth:sanctum');
     Route::get('/users/{id}', [UserController::class, 'show']);
     Route::put('/users/{id}', [UserController::class, 'update']);
     Route::put('/users/redefinirSenha/{id}', [UserController::class, 'redefinirSenha']);
+    Route::put('/users/desabilitiarNotificacoes/{id}', [UserController::class, 'desabilitiarNotificacoes']); //testar
     Route::delete('/users/{id}', [UserController::class, 'destroy']);
 });
 
-Route::middleware('auth:sanctum')->group(function() {
+Route::middleware('auth:sanctum')->group(function () {
     Route::get('/publicacao', [PublicacaoController::class, 'index']);
-    Route::get('/publicacao/favoritos/{id}', [PublicacaoController::class, 'favoritos']);
-    Route::post('/publicacao', [PublicacaoController::class, 'store']);
     Route::get('/publicacao/{id}', [PublicacaoController::class, 'show']);
-    Route::put('/publicacao/{id}', [PublicacaoController::class, 'update']);
-    Route::delete('/publicacao/{id}', [PublicacaoController::class, 'destroy']);
+    Route::get('/publicacao/favoritos/{id}', [PublicacaoController::class, 'favoritos']);    
+    Route::post('/publicacao', [PublicacaoController::class, 'store']);    
+    Route::put('/publicacao/{id}', [PublicacaoController::class, 'update']); //testar
+    Route::delete('/publicacao/{id}', [PublicacaoController::class, 'destroy']); //testar
 });
 
-Route::middleware('auth:sanctum')->group(function() {
+Route::middleware('auth:sanctum')->group(function () {
     Route::post('favoritos', [FavoritoController::class, 'store']);
     Route::delete('favoritos/{publicacaoId}', [FavoritoController::class, 'destroy']);
 });

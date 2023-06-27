@@ -21,7 +21,8 @@ return new class extends Migration
             $table->string('genero', 20)->nullable(false);
             $table->string('especie', 60)->nullable(false);
             $table->string('descricao', 255)->nullable(false);
-            $table->string('image_path')->nullable(false);;
+            $table->string('image_path')->nullable(false);
+            $table->boolean('ativo')->default(true);
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

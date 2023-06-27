@@ -163,6 +163,21 @@ class UserController extends Controller
         }
     }
 
+    public function desabilitiarNotificacoes($id) 
+    {
+        try {
+            $user = User::findOrFail($id);
+            $user->notificacoes = false;
+            $user->save();
+
+            return response()->json(['message' => 'Notificações desativativadas com sucesso'], 200);
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['message' => 'Usuário não encontrado'], 404);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Erro ao desativativar notificações'], 500);
+        } 
+    }
+
     public function destroy($id)
     {
         try {
