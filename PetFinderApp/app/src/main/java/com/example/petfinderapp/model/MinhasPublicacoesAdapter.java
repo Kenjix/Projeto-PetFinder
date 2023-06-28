@@ -7,13 +7,12 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.petfinderapp.EditarPublicacaoActivity;
 import com.example.petfinderapp.R;
-import com.example.petfinderapp.VerMaisPublicacaoActivity;
 import com.google.gson.Gson;
 
 import java.util.List;
@@ -26,10 +25,6 @@ public class MinhasPublicacoesAdapter extends RecyclerView.Adapter<MinhasPublica
     public MinhasPublicacoesAdapter(List<Publicacao> publicacoes, PublicacaoAdapter.OnImageClickListener imageClickListener) {
         this.publicacoes = publicacoes;
         this.imageClickListener = imageClickListener;
-    }
-
-    public interface OnImageClickListener {
-        void onImageClick(int position);
     }
 
     public void setPublicacoes(List<Publicacao> publicacoes) {
@@ -65,18 +60,12 @@ public class MinhasPublicacoesAdapter extends RecyclerView.Adapter<MinhasPublica
         holder.buttoEditar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int clickedPosition = holder.getBindingAdapterPosition();
-                if (clickedPosition != RecyclerView.NO_POSITION && imageClickListener != null) {
-                    imageClickListener.onImageClick(clickedPosition);
-                    /*//serializa objeto para JSON usando Gson
-                    Gson gson = new Gson();
-                    String json = gson.toJson(publicacao);
-                    Intent intent = new Intent(v.getContext(), VerMaisPublicacaoActivity.class);
-                    intent.putExtra("publicacaoJson", json);
-                    //inicia a activity usando o contexto da View
-                    v.getContext().startActivity(intent);*/
-                    Toast.makeText(v.getContext(), "BOTAO EDITAR - PUB_ID: " + publicacao.getId(), Toast.LENGTH_SHORT).show();
-                }
+                //serializa objeto para JSON usando Gson
+                Gson gson = new Gson();
+                String json = gson.toJson(publicacao);
+                Intent intent = new Intent(v.getContext(), EditarPublicacaoActivity.class);
+                intent.putExtra("publicacaoJson", json);
+                v.getContext().startActivity(intent);
             }
         });
         holder.buttonExcluir.setOnClickListener(new View.OnClickListener() {
@@ -88,6 +77,12 @@ public class MinhasPublicacoesAdapter extends RecyclerView.Adapter<MinhasPublica
                 }
             }
         });
+    }
+
+    public interface OnImageClickListener {
+        void onImageClick(int position);
+
+        void onImageViewClick(int position);
     }
 
     //classe ViewHolder para representar os itens da lista

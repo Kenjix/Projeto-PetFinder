@@ -17,7 +17,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".EditarPublicacao"
+            android:name=".EditarPublicacaoActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

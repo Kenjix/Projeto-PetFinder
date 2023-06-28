@@ -53,6 +53,7 @@ public class MinhasPublicacoesFragment extends Fragment implements PublicacaoAda
 
     public MinhasPublicacoesFragment() {
     }
+
     @Override
     public void onImageClick(int position) {
         Publicacao publicacao = publicacoes.get(position);
@@ -97,6 +98,7 @@ public class MinhasPublicacoesFragment extends Fragment implements PublicacaoAda
         AlertDialog dialog = builder.create();
         dialog.show();
     }
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_minhas_publicacoes, container, false);

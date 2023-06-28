@@ -14,10 +14,10 @@ class PublicacaoController extends Controller
     public function index()
     {
         $publicacoes = Publicacao::with('favoritos')
-        ->where('ativo', 1)
-        ->orderByDesc('updated_at')
-        ->get();
-    
+            ->where('ativo', 1)
+            ->orderByDesc('updated_at')
+            ->get();
+
         return PublicacaoResource::collection($publicacoes);
     }
 
@@ -129,9 +129,9 @@ class PublicacaoController extends Controller
         $publicacoes = Publicacao::whereHas('favoritos', function ($query) use ($user_id) {
             $query->where('user_id', $user_id);
         })
-        ->with('favoritos')
-        ->orderByDesc('updated_at')
-        ->get();
+            ->with('favoritos')
+            ->orderByDesc('updated_at')
+            ->get();
 
         return PublicacaoResource::collection($publicacoes);
     }
@@ -145,11 +145,11 @@ class PublicacaoController extends Controller
             ->with('user')
             ->orderByDesc('updated_at')
             ->get();
-    
+
         if ($publicacoes->isEmpty()) {
             return response()->json(['message' => 'Nenhuma publicação encontrada'], 404);
         }
-    
+
         return PublicacaoResource::collection($publicacoes);
     }
 
@@ -166,5 +166,28 @@ class PublicacaoController extends Controller
         } catch (\Exception $e) {
             return response()->json(['message' => 'Erro ao desativar a publicação'], 500);
         }
+    }
+
+    public function buscar(Request $request)
+    {
+        //filtros
+        $especie = $request->input('especie');
+        $genero = $request->input('genero');
+        $porte = $request->input('porte');
+
+        $publicacoes = Publicacao::query()
+            ->when($especie, function ($query) use ($especie) {
+                return $query->where('especie', $especie);
+            })
+            ->when($genero, function ($query) use ($genero) {
+                return $query->where('genero', $genero);
+            })
+            ->when($porte, function ($query) use ($porte) {
+                return $query->where('porte', $porte);
+            })
+            ->get();
+
+        return PublicacaoResource::collection($publicacoes);
+        //return response()->json($publicacao);
     }
 }

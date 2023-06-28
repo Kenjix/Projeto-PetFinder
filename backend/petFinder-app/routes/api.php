@@ -40,10 +40,12 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/publicacao', [PublicacaoController::class, 'index']);
     Route::get('/publicacao/{id}', [PublicacaoController::class, 'show']);
-    Route::get('/publicacao/favoritos/{id}', [PublicacaoController::class, 'favoritos']);    
+    Route::get('/publicacao/favoritos/{id}', [PublicacaoController::class, 'favoritos']);  
+    Route::get('/publicacao/buscar/lista', [PublicacaoController::class, 'buscar'])->withoutMiddleware('auth:sanctum');  
     Route::post('/publicacao', [PublicacaoController::class, 'store']);    
     Route::put('/publicacao/{id}', [PublicacaoController::class, 'update']); //testar
-    Route::delete('/publicacao/{id}', [PublicacaoController::class, 'destroy']); //testar
+    Route::delete('/publicacao/{id}', [PublicacaoController::class, 'destroy']);
+    
 });
 
 Route::middleware('auth:sanctum')->group(function () {
