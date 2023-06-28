@@ -17,3 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/401', function () {
     return view('401');
 })->name('401');
+
+Route::get('/', function () {
+    return "ONLINE";
+});

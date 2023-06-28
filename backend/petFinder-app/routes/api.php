@@ -33,7 +33,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/users/{id}', [UserController::class, 'show']);
     Route::put('/users/{id}', [UserController::class, 'update']);
     Route::put('/users/redefinirSenha/{id}', [UserController::class, 'redefinirSenha']);
-    Route::put('/users/desabilitiarNotificacoes/{id}', [UserController::class, 'desabilitiarNotificacoes']); //testar
+    Route::put('/users/desabilitiarNotificacoes/{id}', [UserController::class, 'desabilitiarNotificacoes']);
     Route::delete('/users/{id}', [UserController::class, 'destroy']);
 });
 
@@ -41,11 +41,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/publicacao', [PublicacaoController::class, 'index']);
     Route::get('/publicacao/{id}', [PublicacaoController::class, 'show']);
     Route::get('/publicacao/favoritos/{id}', [PublicacaoController::class, 'favoritos']);  
-    Route::get('/publicacao/buscar/lista', [PublicacaoController::class, 'buscar'])->withoutMiddleware('auth:sanctum');  
+    Route::get('/publicacao/buscar/lista', [PublicacaoController::class, 'buscar']);
     Route::post('/publicacao', [PublicacaoController::class, 'store']);    
-    Route::put('/publicacao/{id}', [PublicacaoController::class, 'update'])->withoutMiddleware('auth:sanctum');
-    Route::delete('/publicacao/{id}', [PublicacaoController::class, 'destroy']);
-    
+    Route::put('/publicacao/{id}', [PublicacaoController::class, 'update']);
+    Route::delete('/publicacao/{id}', [PublicacaoController::class, 'destroy']);    
 });
 
 Route::middleware('auth:sanctum')->group(function () {
