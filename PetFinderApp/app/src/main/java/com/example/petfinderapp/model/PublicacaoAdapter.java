@@ -36,6 +36,7 @@ public class PublicacaoAdapter extends RecyclerView.Adapter<PublicacaoAdapter.Vi
     }
 
     public PublicacaoAdapter(List<Publicacao> publicacoes) {
+        this.publicacoes = publicacoes;
     }
 
     public interface OnImageClickListener {
@@ -64,10 +65,12 @@ public class PublicacaoAdapter extends RecyclerView.Adapter<PublicacaoAdapter.Vi
         holder.textDescricao.setText(publicacao.getDescricao());
         holder.textIdadePet.setText(publicacao.getIdade());
         List<Long> favoritos = publicacao.getUser().getFavoritos();
-        if (favoritos.contains(publicacao.getId())) {
-            holder.buttonCurtir.setImageResource(R.drawable.post_favorite_positive);
-        } else {
-            holder.buttonCurtir.setImageResource(R.drawable.post_favorite_negative);
+        if(favoritos!= null) {
+            if (favoritos.contains(publicacao.getId())) {
+                holder.buttonCurtir.setImageResource(R.drawable.post_favorite_positive);
+            } else {
+                holder.buttonCurtir.setImageResource(R.drawable.post_favorite_negative);
+            }
         }
 
         //listeneer botao favorito
@@ -107,6 +110,7 @@ public class PublicacaoAdapter extends RecyclerView.Adapter<PublicacaoAdapter.Vi
     //sobreescreve o metodo getItemCount para retornar o número de itens na lista
     @Override
     public int getItemCount() {
+        if(publicacoes==null) return 0;
         return publicacoes.size();
     }
 

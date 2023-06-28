@@ -169,6 +169,7 @@ class PublicacaoController extends Controller
         $especie = $request->input('especie');
         $genero = $request->input('genero');
         $porte = $request->input('porte');
+        $castrado = $request->input('castrado');
 
         $publicacao = Publicacao::query()
             ->when($especie, function ($query) use ($especie) {
@@ -179,6 +180,9 @@ class PublicacaoController extends Controller
             })
             ->when($porte, function ($query) use ($porte) {
                 return $query->where('porte', $porte);
+            })
+            ->when($castrado, function ($query) use ($castrado) {
+                return $query->where('castrado', $castrado);
             })
             ->get();
 

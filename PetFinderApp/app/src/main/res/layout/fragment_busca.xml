@@ -8,7 +8,6 @@
     tools:context=".BuscaFragment"
     android:background="#D0E4CD">
 
-
     <androidx.appcompat.widget.SearchView
         android:id="@+id/searchView"
         android:layout_width="match_parent"
@@ -19,15 +18,18 @@
         app:iconifiedByDefault="false">
 
     </androidx.appcompat.widget.SearchView>
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         app:cardCornerRadius="10dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -37,7 +39,8 @@
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
                 android:textSize="18sp"/>
-            <!--TextView é o Espécie e Dentro do linear os checkbox-->
+
+            <!-- Espécie -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -46,64 +49,70 @@
                 android:textStyle="bold"
                 android:layout_margin="10dp"
                 android:textSize="18sp"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
 
-                <CheckBox
-                    android:id="@+id/checkBoxCachorro"
-                    android:layout_width="80dp"
+            <RadioGroup
+                android:id="@+id/radioGroupEspecie"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/radioButtonCachorro"
+                    android:layout_width="110dp"
                     android:layout_height="48dp"
                     android:layout_weight="1"
                     android:text="Cachorro"
                     android:layout_margin="10dp"/>
 
-                <CheckBox
-                    android:id="@+id/checkBoxGato"
-                    android:layout_width="80dp"
+                <RadioButton
+                    android:id="@+id/radioButtonGato"
+                    android:layout_width="110dp"
                     android:layout_height="48dp"
                     android:layout_weight="1"
                     android:text="Gato"
                     android:layout_margin="10dp"/>
 
-                <CheckBox
-                    android:id="@+id/checkBoxOutros"
-                    android:layout_width="80dp"
+                <RadioButton
+                    android:id="@+id/radioButtonOutros"
+                    android:layout_width="110dp"
                     android:layout_height="48dp"
                     android:layout_weight="1"
                     android:text="Outros"
                     android:layout_margin="10dp"/>
-            </LinearLayout>
+            </RadioGroup>
 
-            <!--TextView é o Gênero e Dentro do linear os checkbox-->
+            <!-- Gênero -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Genêro"
+                android:text="Gênero"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:layout_margin="10dp"
                 android:textSize="18sp"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
 
-                <CheckBox
-                    android:id="@+id/checkBoxMacho"
+            <RadioGroup
+                android:id="@+id/radioGroupGenero"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/radioButtonMacho"
                     android:layout_width="110dp"
                     android:layout_height="48dp"
                     android:text="Macho"
                     android:layout_margin="10dp"/>
 
-                <CheckBox
-                    android:id="@+id/checkBoxFemea"
+                <RadioButton
+                    android:id="@+id/radioButtonFemea"
                     android:layout_width="118dp"
                     android:layout_height="48dp"
                     android:text="Fêmea"
                     android:layout_margin="10dp"/>
-            </LinearLayout>
+            </RadioGroup>
 
-            <!--TextView é o Porte e Dentro do linear os checkbox-->
+            <!-- Porte -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -112,35 +121,39 @@
                 android:textStyle="bold"
                 android:layout_margin="10dp"
                 android:textSize="18sp"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
 
-                <CheckBox
-                    android:id="@+id/checkBoxPequeno"
+            <RadioGroup
+                android:id="@+id/radioGroupPorte"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/radioButtonPequeno"
                     android:layout_width="80dp"
                     android:layout_height="48dp"
                     android:layout_weight="1"
                     android:text="Pequeno"
                     android:layout_margin="10dp"/>
 
-                <CheckBox
-                    android:id="@+id/checkBoxMedio"
+                <RadioButton
+                    android:id="@+id/radioButtonMedio"
                     android:layout_width="80dp"
                     android:layout_height="48dp"
                     android:layout_weight="1"
-                    android:text="Medio"
+                    android:text="Médio"
                     android:layout_margin="10dp"/>
 
-                <CheckBox
-                    android:id="@+id/checkBoxGrande"
+                <RadioButton
+                    android:id="@+id/radioButtonGrande"
                     android:layout_width="80dp"
                     android:layout_height="48dp"
                     android:layout_weight="1"
                     android:text="Grande"
                     android:layout_margin="10dp"/>
-            </LinearLayout>
-            <!--TextView é o Castrado e dentro do linear os checkbox-->
+            </RadioGroup>
+
+            <!-- Castrado -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -149,25 +162,28 @@
                 android:textStyle="bold"
                 android:layout_margin="10dp"
                 android:textSize="18sp"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
 
-                <CheckBox
-                    android:id="@+id/checkBoxSim"
+            <RadioGroup
+                android:id="@+id/radioGroupCastrado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/radioButtonSim"
                     android:layout_width="110dp"
                     android:layout_height="48dp"
                     android:text="Sim"
                     android:layout_margin="10dp"/>
 
-                <CheckBox
-                    android:id="@+id/checkBoxNao"
+                <RadioButton
+                    android:id="@+id/radioButtonNao"
                     android:layout_width="118dp"
                     android:layout_height="48dp"
                     android:text="Não"
                     android:layout_margin="10dp"/>
+            </RadioGroup>
 
-            </LinearLayout>
             <Button
                 android:id="@+id/buttonBuscarPerso"
                 android:layout_width="150dp"

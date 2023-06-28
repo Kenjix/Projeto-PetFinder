@@ -12,7 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.RadioButton;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -78,30 +80,30 @@ public class BuscaFragment extends Fragment {
 
         // Obter referências para os elementos da interface de busca
         //SearchView searchView = view.findViewById(R.id.searchView);
-        CheckBox checkBoxCachorro = view.findViewById(R.id.checkBoxCachorro);
-        CheckBox checkBoxGato = view.findViewById(R.id.checkBoxGato);
-        CheckBox checkBoxOutros = view.findViewById(R.id.checkBoxOutros);
-        CheckBox checkBoxMacho = view.findViewById(R.id.checkBoxMacho);
-        CheckBox checkBoxFemea = view.findViewById(R.id.checkBoxFemea);
-        CheckBox checkBoxPequeno = view.findViewById(R.id.checkBoxPequeno);
-        CheckBox checkBoxMedio = view.findViewById(R.id.checkBoxMedio);
-        CheckBox checkBoxGrande = view.findViewById(R.id.checkBoxGrande);
-        CheckBox checkBoxSim = view.findViewById(R.id.checkBoxSim);
-        CheckBox checkBoxNao = view.findViewById(R.id.checkBoxNao);
+        RadioButton radioButtonCachorro = view.findViewById(R.id.radioButtonCachorro);
+        RadioButton radioButtonGato = view.findViewById(R.id.radioButtonGato);
+        RadioButton radioButtonOutros = view.findViewById(R.id.radioButtonOutros);
+        RadioButton radioButtonMacho = view.findViewById(R.id.radioButtonMacho);
+        RadioButton radioButtonFemea = view.findViewById(R.id.radioButtonFemea);
+        RadioButton radioButtonPequeno = view.findViewById(R.id.radioButtonPequeno);
+        RadioButton radioButtonMedio = view.findViewById(R.id.radioButtonMedio);
+        RadioButton radioButtonGrande = view.findViewById(R.id.radioButtonGrande);
+        RadioButton radioButtonSim = view.findViewById(R.id.radioButtonSim);
+        RadioButton radioButtonNao = view.findViewById(R.id.radioButtonNao);
         Button buttonBuscarPerso = view.findViewById(R.id.buttonBuscarPerso);
         buttonBuscarPerso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean isCachorroSelected = checkBoxCachorro.isChecked();
-                boolean isGatoSelected = checkBoxGato.isChecked();
-                boolean isOutrosSelected = checkBoxOutros.isChecked();
-                boolean isMachoSelected = checkBoxMacho.isChecked();
-                boolean isFemeaSelected = checkBoxFemea.isChecked();
-                boolean isPequenoSelected = checkBoxPequeno.isChecked();
-                boolean isMedioSelected = checkBoxMedio.isChecked();
-                boolean isGrandeSelected = checkBoxGrande.isChecked();
-                boolean isSimSelected = checkBoxSim.isChecked();
-                boolean isNaoSelected = checkBoxNao.isChecked();
+                boolean isCachorroSelected = radioButtonCachorro.isChecked();
+                boolean isGatoSelected = radioButtonGato.isChecked();
+                boolean isOutrosSelected = radioButtonOutros.isChecked();
+                boolean isMachoSelected = radioButtonMacho.isChecked();
+                boolean isFemeaSelected = radioButtonFemea.isChecked();
+                boolean isPequenoSelected = radioButtonPequeno.isChecked();
+                boolean isMedioSelected = radioButtonMedio.isChecked();
+                boolean isGrandeSelected = radioButtonGrande.isChecked();
+                boolean isSimSelected = radioButtonSim.isChecked();
+                boolean isNaoSelected = radioButtonNao.isChecked();
 
                 // Monta a url com os filtros selecionados
                 String baseUrl = getResources().getString(R.string.base_url) + "/api/publicacao/buscar/lista?";
@@ -116,9 +118,9 @@ public class BuscaFragment extends Fragment {
                 urlParameters += (isPequenoSelected ? "=pequeno" : "");
                 urlParameters += (isMedioSelected ? "=medio" : "");
                 urlParameters += (isGrandeSelected ? "=grande" : "");
-                //castrado não está no banco
-                //urlParameters += "&sim=" + (isSimSelected ? "1" : "0");
-                //urlParameters += "&nao=" + (isNaoSelected ? "1" : "0");
+                urlParameters += "&castrado";
+                urlParameters += (isSimSelected ? "=1" : "");
+                urlParameters += (isNaoSelected ? "=0" : "");
 
                 String apiUrl = baseUrl + urlParameters;
 
@@ -130,7 +132,6 @@ public class BuscaFragment extends Fragment {
                 Map<String, String> headers = new HashMap<>();
                 headers.put("Content-Type", "application/json");
                 headers.put("Authorization", "Bearer " + authToken);
-                //cria uma solicitacao GET para a URL da API
                 JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, apiUrl, null,
                         new Response.Listener<JSONObject>() {
                             @Override
@@ -162,22 +163,18 @@ public class BuscaFragment extends Fragment {
                                         Publicacao publicacao = new Publicacao(id, descricao, nomePet, genero, especie, porte, idade, vacinas, castrado, imagem, user);
                                         publicacoes.add(publicacao);
                                     }
+                                    if(publicacoes.size() !=0) {
+                                        adapter.notifyDataSetChanged();
+                                        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+                                        fragmentManager.beginTransaction()
+                                                .replace(R.id.fragment_container, ResultadoBuscarFragment.newInstance(publicacoes))
+                                                .commit();
+                                    }else{
+                                        Toast.makeText(getContext(), "Nenhuma publicação cumpre os requisitos", Toast.LENGTH_LONG).show();
+                                    }
 
-//                                    Intent intent = new Intent(getActivity(), ResultadoBuscarFragment.class);
-//                                    intent.putExtra("publicacoes", (Serializable) publicacoes);
-//                                    startActivity(intent);
-
-                                    Intent intent = new Intent(getActivity(), ResultadoBuscarFragment.class);
-                                    intent.putExtra("publicacoes", (Serializable) publicacoes);
-
-                                    FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
-                                    fragmentManager.beginTransaction()
-                                            .replace(R.id.fragment_container, new ResultadoBuscarFragment())
-                                            .commit();
-                                    //atualiza o adaptador com a lista de publicações obtida
-                                    adapter.notifyDataSetChanged();
                                 } catch (JSONException e) {
-                                    System.out.println("deu ruim");
+                                    Toast.makeText(getContext(), "Ops! Ocorreu algum erro!", Toast.LENGTH_LONG).show();
                                     e.printStackTrace();
                                 }
 
@@ -186,7 +183,19 @@ public class BuscaFragment extends Fragment {
                         new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                                System.out.println("deu ruim 2");
+                                Toast.makeText(getContext(), "Ops! Ocorreu algum erro!", Toast.LENGTH_LONG).show();
+                                if (error.networkResponse != null && error.networkResponse.statusCode == 401) {
+                                    SharedPreferences.Editor editor = preferences.edit();
+                                    editor.remove("userId");
+                                    editor.remove("username");
+                                    editor.remove("avatar");
+                                    editor.remove("authToken");
+                                    editor.commit();
+                                    Intent intent = new Intent(getActivity(), Login.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    startActivity(intent);
+                                    getActivity().finish();
+                                }
                             }
                         }
                 ) {

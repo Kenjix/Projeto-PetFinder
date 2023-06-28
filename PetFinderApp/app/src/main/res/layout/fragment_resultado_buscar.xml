@@ -6,20 +6,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".BuscaFragment">
+    tools:context=".ResultadoBuscarFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_resultado_buscar"
-        android:background="@color/white"
         android:layout_width="match_parent"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_resultado_buscar"
+        android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_height="0dp"/>
+        android:background="@color/white"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_resultado_buscar"/>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:background="#D0E4CD"/>
 
 </LinearLayout>
