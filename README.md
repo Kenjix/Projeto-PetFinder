@@ -97,10 +97,3 @@ Para conectar o Android Studio à API, você deve colocar o mesmo endereço IP q
 <string name="base_url">http://192.168.0.02:8000</string>
 ```
 nessa string você coloca o seu IP e isso ira configurar para todas os arquivos
-
-### Desenvolvedores:
-- Douglas Kenji Kihara
-- Gabriel Castagna Henrique
-
-### Professor Avaliador:
-- Guilherme Chagas Kurtz
