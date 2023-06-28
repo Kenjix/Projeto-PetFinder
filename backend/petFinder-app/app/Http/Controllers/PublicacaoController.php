@@ -79,18 +79,19 @@ class PublicacaoController extends Controller
     public function update(Request $request, $id)
     {
         $validaDados = $request->validate([
-            'petnome' => 'required',
+            'nomePet' => 'required',
             'porte' => 'required',
             'idade' => 'required',
+            'vacinas' => 'required',
             'castrado' => 'required',
             'genero' => 'required',
             'especie' => 'required',
             'descricao' => 'required',
+            'image_path' => 'required',
         ]);
 
         try {
-            $publicacao = Publicacao::findOrFail($id);
-
+            $publicacao = Publicacao::findOrFail($id);            
             $url = null;
             if ($publicacao->image_path) {
                 $filePath = public_path($publicacao->image_path);
@@ -101,15 +102,16 @@ class PublicacaoController extends Controller
             if ($base64Image) {
                 $base64Image = $request->input('image_path');
                 $decodedImage = base64_decode($base64Image);
-                $fileName = 'imagens/' . uniqid() . '.png';
+                $fileName = 'images/' . uniqid() . '.png';
                 Storage::disk('public')->put($fileName, $decodedImage);
                 $url = Storage::url($fileName);
             }
 
-            $publicacao->petnome = $validaDados['petnome'];
+            $publicacao->nomePet = $validaDados['nomePet'];
             $publicacao->porte = $validaDados['porte'];
             $publicacao->idade = $validaDados['idade'];
-            $publicacao->castrado = $validaDados['castrado'];
+            $publicacao->castrado = $validaDados['castrado'] === 'Sim' ? true : false;
+            $publicacao->vacinas = $validaDados['vacinas'];
             $publicacao->genero = $validaDados['genero'];
             $publicacao->especie = $validaDados['especie'];
             $publicacao->descricao = $validaDados['descricao'];
@@ -119,9 +121,7 @@ class PublicacaoController extends Controller
             return response()->json(['message' => 'Dados atualizados com sucesso!', 'user' => $publicacao], 200);
         } catch (ModelNotFoundException $e) {
             return response()->json(['message' => 'Publicação não encontrada'], 404);
-        } catch (\Exception $e) {
-            return response()->json(['message' => 'Erro ao atualizar a publicação'], 500);
-        }
+        } 
     }
 
     public function favoritos($user_id)
@@ -188,6 +188,5 @@ class PublicacaoController extends Controller
             ->get();
 
         return PublicacaoResource::collection($publicacoes);
-        //return response()->json($publicacao);
     }
 }

@@ -43,7 +43,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/publicacao/favoritos/{id}', [PublicacaoController::class, 'favoritos']);  
     Route::get('/publicacao/buscar/lista', [PublicacaoController::class, 'buscar'])->withoutMiddleware('auth:sanctum');  
     Route::post('/publicacao', [PublicacaoController::class, 'store']);    
-    Route::put('/publicacao/{id}', [PublicacaoController::class, 'update']); //testar
+    Route::put('/publicacao/{id}', [PublicacaoController::class, 'update'])->withoutMiddleware('auth:sanctum');
     Route::delete('/publicacao/{id}', [PublicacaoController::class, 'destroy']);
     
 });

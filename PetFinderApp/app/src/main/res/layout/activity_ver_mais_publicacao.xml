@@ -508,7 +508,7 @@
                     android:textStyle="bold"/>
 
                 <Button
-                    android:id="@+id/buttonLogin"
+                    android:id="@+id/buttonEnvMgs"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Enviar mensagem"

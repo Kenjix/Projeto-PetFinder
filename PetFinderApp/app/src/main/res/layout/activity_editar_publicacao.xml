@@ -57,6 +57,7 @@
                             android:layout_height="400dp"
                             android:background="@drawable/semfoto"
                             android:gravity="center"
+                            android:tag="@integer/image_tag"
                             android:scaleType="centerCrop" />
 
                     </FrameLayout>
