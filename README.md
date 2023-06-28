@@ -101,11 +101,6 @@ nessa string você coloca o seu IP e isso ira configurar para todas os arquivos
 ### Desenvolvedores:
 - Douglas Kenji Kihara
 - Gabriel Castagna Henrique
-- Carlos Marcelo M. Filho
-- Leonardo Pereira
-- Matheus Freitas
-- Júnior Ferreira
-- Lucas Schaefer
 
 ### Professor Avaliador:
 - Guilherme Chagas Kurtz
