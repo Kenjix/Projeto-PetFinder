@@ -11,6 +11,24 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme">
+
+            <ImageButton
+                android:id="@+id/backButton"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_back"
+                android:background="@android:color/transparent"
+                android:contentDescription="voltar"/>
+
+        </androidx.appcompat.widget.Toolbar>
+
         <LinearLayout
             android:id="@+id/cardView"
             android:layout_width="match_parent"
@@ -68,16 +86,15 @@
                         android:gravity="center_horizontal"
                         android:orientation="vertical">
 
-                        <Button
-                            android:id="@+id/selectPhotoButton"
+                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:backgroundTint="#B1B5AF"
                             android:fontFamily="@font/outfit_r"
-                            android:background="@drawable/card_view_bg"
-                            android:text="Adicionar foto da galeria"
-                            android:layout_margin="5dp"
-                            android:textColor="@color/black" />
+                            android:gravity="center"
+                            android:text="Clique na foto para altera-la"
+                            android:layout_marginBottom="10dp"
+                            android:textColor="@color/teal_700" />
 
                     </LinearLayout>
                 </LinearLayout>
@@ -255,7 +272,7 @@
                     android:fontFamily="@font/outfit_r"
                     android:gravity="start"
                     android:hint="Descreva o comportamento do seu Pet"
-                    android:maxLines="4"
+                    android:maxLines="10"
                     android:padding="8dp"
                     android:scrollbars="vertical"
                     android:textSize="16sp" />
@@ -266,6 +283,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text=""
+                    
                     android:textColor="#F13D3D"
                     android:textSize="16sp"
                     android:textStyle="bold" />

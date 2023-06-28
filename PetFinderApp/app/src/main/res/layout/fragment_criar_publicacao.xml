@@ -34,7 +34,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/outfit_r"
-                    android:text="Adicione uma foto do seu Pet"
+                    android:text="Foto do seu Pet"
                     android:textColor="@color/teal_700"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -67,16 +67,14 @@
                     android:gravity="center_horizontal"
                     android:orientation="vertical">
 
-                    <Button
-                        android:id="@+id/selectPhotoButton"
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:backgroundTint="#B1B5AF"
                         android:fontFamily="@font/outfit_r"
-                        android:background="@drawable/card_view_bg"
-                        android:text="Adicionar foto da galeria"
-                        android:layout_margin="5dp"
-                        android:textColor="@color/black" />
+                        android:gravity="center"
+                        android:text="Clique acima para adicionar uma foto da galeria"
+                        android:layout_marginBottom="10dp"
+                        android:textColor="@color/teal_700" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -254,7 +252,7 @@
                 android:fontFamily="@font/outfit_r"
                 android:gravity="start"
                 android:hint="Descreva o comportamento do seu Pet"
-                android:maxLines="4"
+                android:maxLines="10"
                 android:padding="8dp"
                 android:scrollbars="vertical"
                 android:textSize="16sp" />

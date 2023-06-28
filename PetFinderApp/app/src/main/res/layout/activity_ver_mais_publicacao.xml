@@ -12,10 +12,29 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/colorPrimary"
+                    android:minHeight="?attr/actionBarSize"
+                    android:theme="?attr/actionBarTheme">
+
+                    <ImageButton
+                        android:id="@+id/backButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_back"
+                        android:background="@android:color/transparent"/>
+
+                </androidx.appcompat.widget.Toolbar>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -43,13 +62,14 @@
                 </LinearLayout>
 
                 <ImageView
-                    android:layout_margin="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
                     android:id="@+id/imagemViewFoto"
                     android:layout_width="match_parent"
                     android:layout_height="400dp"
                     android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/semfoto"
-                    android:layout_marginBottom="10dp"/>
+                    app:srcCompat="@drawable/semfoto"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -66,8 +86,8 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     app:cardCornerRadius="15dp"
-                    android:layout_marginLeft="13dp"
-                    android:layout_marginRight="13dp"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginRight="18dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp">
 
@@ -305,8 +325,8 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     app:cardCornerRadius="15dp"
-                    android:layout_marginLeft="13dp"
-                    android:layout_marginRight="13dp"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginRight="18dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp">
 
@@ -327,7 +347,7 @@
                             android:layout_gravity="left"
                             android:layout_margin="10dp"
                             android:ellipsize="marquee"
-                            android:singleLine="true"
+                            android:maxLines="10"
                             android:text="Vacinas"
                             android:fontFamily="@font/outfit_m"
                             android:textColor="@color/teal_700"
@@ -452,8 +472,8 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     app:cardCornerRadius="15dp"
-                    android:layout_marginLeft="13dp"
-                    android:layout_marginRight="13dp"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginRight="18dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp">
 
@@ -490,7 +510,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginBottom="10dp"
                             android:textSize="22sp"
-                            android:maxLines="5"/>
+                            android:maxLines="10"/>
 
                     </LinearLayout>
 

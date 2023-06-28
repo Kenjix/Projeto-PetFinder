@@ -93,9 +93,7 @@ public class CriarPublicacaoFragment extends Fragment {
             DatePickerDialog datePickerDialog = new DatePickerDialog(requireContext(), editTextIdade, 3);
             datePickerDialog.showDatePickerDialog();
         });
-
-        Button selectPhotoButton = view.findViewById(R.id.selectPhotoButton);
-        selectPhotoButton.setOnClickListener(new View.OnClickListener() {
+        photoImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //verificar permissão de acesso à galeria

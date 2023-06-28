@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,8 +28,8 @@ import java.io.IOException;
 public class VerMaisPublicacaoActivity extends AppCompatActivity {
 
     private ImageView imagemViewFoto, imageViewPerfil;
-    private TextView textNomeUser, nomePet, portePet, idadePet, vacinasPet, castradoPet, generoPet, especiePet, descricaoPet;
-    private Button buttonEnvMgs;
+    private ImageButton backButton;
+    private TextView textNomeUser, nomePet, portePet, idadePet, vacinasPet, castradoPet, generoPet, especiePet, descricaoPet ;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ver_mais_publicacao);
@@ -44,7 +45,7 @@ public class VerMaisPublicacaoActivity extends AppCompatActivity {
         generoPet = findViewById(R.id.generoPet);
         especiePet = findViewById(R.id.especiePet);
         descricaoPet = findViewById(R.id.descricaoPet);
-        buttonEnvMgs = findViewById(R.id.buttonEnvMgs);
+        backButton = findViewById(R.id.backButton);
 
         Intent intent = getIntent();
         if (intent != null) {
@@ -74,5 +75,13 @@ public class VerMaisPublicacaoActivity extends AppCompatActivity {
             especiePet.setText(publicacao.getEspecie());
             descricaoPet.setText(publicacao.getDescricao());
         }
+
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
 }

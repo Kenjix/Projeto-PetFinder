@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -90,8 +91,7 @@ public class EditarPublicacaoActivity extends AppCompatActivity {
         msgRetorno = findViewById(R.id.msgRetorno);
         buttonCancelar = findViewById(R.id.buttonCancelar);
         buttonEditar = findViewById(R.id.buttonEditar);
-        selectPhotoButton = findViewById(R.id.selectPhotoButton);
-        selectPhotoButton.setOnClickListener(new View.OnClickListener() {
+        photoImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //verifica permissao de acesso a galeria
@@ -178,6 +178,14 @@ public class EditarPublicacaoActivity extends AppCompatActivity {
         //evento botao cancelar
         buttonCancelar.setOnClickListener(clickView -> {
             onBackPressed();
+        });
+
+        ImageButton backButton = findViewById(R.id.backButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed(); // Chamada para voltar à página anterior
+            }
         });
     }
 
@@ -327,4 +335,5 @@ public class EditarPublicacaoActivity extends AppCompatActivity {
         RequestQueue fila = Volley.newRequestQueue(this);
         fila.add(request);
     }
+
 }

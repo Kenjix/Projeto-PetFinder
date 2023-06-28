@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#D0E4CD"
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".CadastroUsuario">
@@ -57,189 +56,194 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Nome do Usuário"
+                    android:fontFamily="@font/outfit_m"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
             </LinearLayout>
         </LinearLayout>
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            app:cardBackgroundColor="@android:color/white"
-            app:cardCornerRadius="10dp">
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:text="Alteração de dados"
+                android:fontFamily="@font/outfit_m"
+                android:textColor="@color/teal_700"
+                android:textSize="18sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="16dp">
+                android:orientation="vertical">
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:gravity="center"
-                    android:text="Alteração de dados"
-                    android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:text="Nome"
+                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Nome"
-                        android:textStyle="bold" />
+                    <EditText
+                        android:id="@+id/editTextNome"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:gravity="left|center_vertical"
+                        android:hint="Nome"
+                        android:fontFamily="@font/outfit_r"
+                        android:textAppearance="?android:textAppearanceMedium" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <EditText
-                            android:id="@+id/editTextNome"
-                            android:layout_width="0dp"
-                            android:layout_height="48dp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_weight="1"
-                            android:gravity="left|center_vertical"
-                            android:hint="Nome"
-                            android:textAppearance="?android:textAppearanceMedium" />
-
-                        <ImageView
-                            android:id="@+id/imageEditarNome"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:contentDescription="Editar"
-                            android:src="@drawable/ic_editarperfil" />
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Celular"
-                        android:textStyle="bold" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <EditText
-                            android:id="@+id/editTextCel"
-                            android:layout_width="0dp"
-                            android:layout_height="48dp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_weight="1"
-                            android:gravity="left|center_vertical"
-                            android:hint="Celular"
-                            android:textAppearance="?android:textAppearanceMedium" />
-
-                        <ImageView
-                            android:id="@+id/imageEditarTel"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:contentDescription="Editar"
-                            android:src="@drawable/ic_editarperfil" />
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="5dp"
-                        android:text="Data de Nascimento"
-                        android:textStyle="bold" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <EditText
-                            android:id="@+id/editTextDataNasc"
-                            android:layout_width="0dp"
-                            android:layout_height="48dp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_weight="1"
-                            android:gravity="left|center_vertical"
-                            android:hint="Data Nascimento"
-                            android:focusable="false"
-                            android:textAppearance="?android:textAppearanceMedium" />
-
-                        <ImageView
-                            android:id="@+id/imageEditarDataNasc"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:contentDescription="Editar"
-                            android:src="@drawable/ic_editarperfil" />
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="5dp"
-                        android:text="Genero"
-                        android:textStyle="bold" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:orientation="horizontal">
-
-                        <RadioGroup
-                            android:id="@+id/radioGroupGenero"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_horizontal"
-                            android:orientation="horizontal">
-
-                            <RadioButton
-                                android:id="@+id/radioButtonMasc"
-                                android:layout_width="100dp"
-                                android:layout_height="wrap_content"
-                                android:text="Masculino" />
-
-                            <RadioButton
-                                android:id="@+id/radioButtonFem"
-                                android:layout_width="100dp"
-                                android:layout_height="wrap_content"
-                                android:text="Feminino" />
-
-                            <RadioButton
-                                android:id="@+id/radioButtonOutros"
-                                android:layout_width="100dp"
-                                android:layout_height="wrap_content"
-                                android:text="Outros" />
-                        </RadioGroup>
-                    </LinearLayout>
-
+                    <ImageView
+                        android:id="@+id/imageEditarNome"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:contentDescription="Editar"
+                        android:src="@drawable/ic_editarperfil" />
                 </LinearLayout>
+
                 <TextView
-                    android:id="@+id/msgErro"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center"
-                    android:text=""
-                    android:textColor="#EDFF0000"
+                    android:text="Celular"
                     android:textStyle="bold" />
 
-                <Button
-                    android:id="@+id/buttonSalvar"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:backgroundTint="#4C5C43"
-                    android:text="Salvar"
-                    android:textColor="@color/white" />
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/editTextCel"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:gravity="left|center_vertical"
+                        android:hint="Celular"
+                        android:fontFamily="@font/outfit_r"
+                        android:textAppearance="?android:textAppearanceMedium" />
+
+                    <ImageView
+                        android:id="@+id/imageEditarTel"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:contentDescription="Editar"
+                        android:src="@drawable/ic_editarperfil" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:text="Data de Nascimento"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/editTextDataNasc"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:gravity="left|center_vertical"
+                        android:hint="Data Nascimento"
+                        android:fontFamily="@font/outfit_r"
+                        android:focusable="false"
+                        android:textAppearance="?android:textAppearanceMedium" />
+
+                    <ImageView
+                        android:id="@+id/imageEditarDataNasc"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:contentDescription="Editar"
+                        android:src="@drawable/ic_editarperfil" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:text="Gênero"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <RadioGroup
+                        android:id="@+id/radioGroupGenero"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/radioButtonMasc"
+                            android:layout_width="100dp"
+                            android:layout_height="48dp"
+                            android:text="Masculino"
+                            android:fontFamily="@font/outfit_r"
+                            android:textColor="@color/teal_700"/>
+
+                        <RadioButton
+                            android:id="@+id/radioButtonFem"
+                            android:layout_width="100dp"
+                            android:layout_height="48dp"
+                            android:text="Feminino"
+                            android:fontFamily="@font/outfit_r"
+                            android:textColor="@color/teal_700"/>
+
+                        <RadioButton
+                            android:id="@+id/radioButtonOutros"
+                            android:layout_width="100dp"
+                            android:layout_height="48dp"
+                            android:text="Outros"
+                            android:fontFamily="@font/outfit_r"
+                            android:textColor="@color/teal_700"/>
+                    </RadioGroup>
+                </LinearLayout>
+
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
+            <TextView
+                android:id="@+id/msgErro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text=""
+                android:textColor="#EDFF0000"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/buttonSalvar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Salvar"
+                android:fontFamily="@font/outfit_r"
+                android:background="@drawable/card_view_bg"
+                android:textColor="@color/white"
+                android:layout_marginRight="50dp"
+                android:layout_marginLeft="50dp"
+                android:backgroundTint="#4C5C43" /> />
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>

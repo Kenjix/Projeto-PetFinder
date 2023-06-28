@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/card_view_bg"
-    app:cardBackgroundColor="#D0E4CD">
+    android:layout_height="wrap_content">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -57,7 +55,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="400dp"
                     android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/cachorro" />
+                    app:srcCompat="@drawable/semfoto" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -86,12 +84,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="48dp"
                         android:text="Ver detalhes"
-                        android:textSize="10sp"
-                        android:layout_margin="5dp"
+                        android:textSize="14sp"
                         android:fontFamily="@font/outfit_r"
                         android:textColor="@color/black"
-                        android:backgroundTint="#C7C8C7"
-                        android:background="@drawable/card_view_bg"/>
+                        android:background="@android:color/transparent" />
+
 
 
                 </LinearLayout>
@@ -143,12 +140,12 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginLeft="15dp"
                         android:text="Descrição"
+                        android:ellipsize="marquee"
+                        android:maxLines="3"
                         android:fontFamily="@font/outfit_r"
                         android:textColor="@color/black" />
 
                 </LinearLayout>
-
-
 
             </LinearLayout>
 
@@ -156,4 +153,4 @@
 
     </RelativeLayout>
 
-</androidx.cardview.widget.CardView>
+</LinearLayout>
