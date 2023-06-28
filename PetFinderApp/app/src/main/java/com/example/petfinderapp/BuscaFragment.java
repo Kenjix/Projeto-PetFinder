@@ -1,8 +1,12 @@
 package com.example.petfinderapp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,13 +14,15 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.SearchView;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.petfinderapp.model.Publicacao;
+import com.example.petfinderapp.model.PublicacaoAdapter;
 import com.example.petfinderapp.model.Usuario;
 
 import org.json.JSONArray;
@@ -30,7 +36,9 @@ import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class BuscaFragment extends Fragment {
 
@@ -40,6 +48,8 @@ public class BuscaFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private SharedPreferences preferences;
+    private PublicacaoAdapter adapter;
     public BuscaFragment() {
         // Required empty public constructor
     }
@@ -94,7 +104,7 @@ public class BuscaFragment extends Fragment {
                 boolean isNaoSelected = checkBoxNao.isChecked();
 
                 // Monta a url com os filtros selecionados
-                String baseUrl = getResources().getString(R.string.base_url) + "/api/publicacao/buscar?";
+                String baseUrl = getResources().getString(R.string.base_url) + "/api/publicacao/buscar/lista?";
                 String urlParameters = "especie";
                 urlParameters += (isCachorroSelected ? "=cachorro" : "");
                 urlParameters += (isGatoSelected ? "=gato" : "");
@@ -112,17 +122,25 @@ public class BuscaFragment extends Fragment {
 
                 String apiUrl = baseUrl + urlParameters;
 
+                preferences = requireContext().getSharedPreferences("sessao", Context.MODE_PRIVATE);
+                String authToken = preferences.getString("auth_token", null);
                 List<Publicacao> publicacoes = new ArrayList<>();
+                adapter = new PublicacaoAdapter(publicacoes,null);
                 RequestQueue requestQueue = Volley.newRequestQueue(requireContext());
-                //cria uma solicitação GET para a URL da API
-                JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, apiUrl, null,
-                        new Response.Listener<JSONArray>() {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Content-Type", "application/json");
+                headers.put("Authorization", "Bearer " + authToken);
+                //cria uma solicitacao GET para a URL da API
+                JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, apiUrl, null,
+                        new Response.Listener<JSONObject>() {
                             @Override
-                            public void onResponse(JSONArray response) {
+                            public void onResponse(JSONObject response) {
                                 //processar a resposta JSON e cria objeto Publicacao
                                 try {
-                                    for (int i = 0; i < response.length(); i++) {
-                                        JSONObject jsonPublicacao = response.getJSONObject(i);
+                                    JSONArray publicacoesArray = response.getJSONArray("data");
+                                    for (int i = 0; i < publicacoesArray.length(); i++) {
+                                        JSONObject jsonData = publicacoesArray.getJSONObject(i);
+                                        JSONObject jsonPublicacao = jsonData.getJSONObject("publicacao");
                                         long id = jsonPublicacao.getLong("id");
                                         String descricao = jsonPublicacao.getString("descricao");
                                         String nomePet = jsonPublicacao.getString("nomePet");
@@ -132,12 +150,12 @@ public class BuscaFragment extends Fragment {
                                         String idade = jsonPublicacao.getString("idade");
                                         String vacinas = jsonPublicacao.getString("vacinas");
                                         String castradoStr = jsonPublicacao.getString("castrado");
-                                        boolean castrado = castradoStr.equals("1") ? true : false;
+                                        boolean castrado = castradoStr.equals("1");
                                         String imagem = jsonPublicacao.getString("image_link");
-                                        long userId = jsonPublicacao.getLong("user_id");
-                                        String userAvatar = jsonPublicacao.getString("avatar");
 
-                                        JSONObject jsonUser = jsonPublicacao.getJSONObject("user");
+                                        JSONObject jsonUser = jsonData.getJSONObject("user");
+                                        long userId = jsonUser.getLong("id");
+                                        String userAvatar = jsonUser.getString("avatar_link");
                                         String userName = jsonUser.getString("name");
                                         Usuario user = new Usuario(userId, userName, userAvatar);
 
@@ -145,67 +163,41 @@ public class BuscaFragment extends Fragment {
                                         publicacoes.add(publicacao);
                                     }
 
+//                                    Intent intent = new Intent(getActivity(), ResultadoBuscarFragment.class);
+//                                    intent.putExtra("publicacoes", (Serializable) publicacoes);
+//                                    startActivity(intent);
+
                                     Intent intent = new Intent(getActivity(), ResultadoBuscarFragment.class);
                                     intent.putExtra("publicacoes", (Serializable) publicacoes);
-                                    startActivity(intent);
+
+                                    FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+                                    fragmentManager.beginTransaction()
+                                            .replace(R.id.fragment_container, new ResultadoBuscarFragment())
+                                            .commit();
                                     //atualiza o adaptador com a lista de publicações obtida
-                                    //adapter.notifyDataSetChanged();
+                                    adapter.notifyDataSetChanged();
                                 } catch (JSONException e) {
+                                    System.out.println("deu ruim");
                                     e.printStackTrace();
                                 }
+
                             }
                         },
                         new Response.ErrorListener() {
                             @Override
                             public void onErrorResponse(VolleyError error) {
-                                error.printStackTrace();
+                                System.out.println("deu ruim 2");
                             }
-                        });
-
-                // Adicione a solicitação à RequestQueue
-                requestQueue.add(jsonArrayRequest);
+                        }
+                ) {
+                    public Map<String, String> getHeaders() throws AuthFailureError {
+                        return headers;
+                    }
+                };
+                //adiciona a solicitacao a fila
+                requestQueue.add(request);
             }
         });
-
         return view;
     }
 }
-
-/*
-try {
-                    URL url = new URL(apiUrl);
-                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                    connection.setRequestMethod("GET");
-
-                    int responseCode = connection.getResponseCode();
-                    if (responseCode == HttpURLConnection.HTTP_OK) {
-                        BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                        StringBuilder response = new StringBuilder();
-                        String line;
-                        while ((line = reader.readLine()) != null) {
-                            response.append(line);
-                        }
-                        reader.close();
-
-                        String jsonResponse = response.toString();
-
-                        Intent intent = new Intent(getActivity(), ResultadoBuscarFragment.class);
-                        intent.putExtra("jsonResponse", jsonResponse);
-                        startActivity(intent);
-
-                        Intent intent = new Intent(activity, NovaAtividade.class);
-                        intent.putExtra("publicacoes", new ArrayList<>(publicacoes));
-                        activity.startActivity(intent);
-
-                    } else {
-                        // Tratar erro na resposta da API
-                        // Direcionar para página de erro(?)
-                    }
-
-                    connection.disconnect();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    // Tratar falha na solicitação HTTP
-                    // Direcionar para página de erro(?)
-                }
- */

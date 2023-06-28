@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import com.example.petfinderapp.model.Publicacao;
 import com.example.petfinderapp.model.PublicacaoAdapter;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -45,11 +46,19 @@ public class ResultadoBuscarFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static ResultadoBuscarFragment newInstance(String param1, String param2) {
+//    public static ResultadoBuscarFragment newInstance(String param1, String param2) {
+//        ResultadoBuscarFragment fragment = new ResultadoBuscarFragment();
+//        Bundle args = new Bundle();
+//        args.putString(ARG_PARAM1, param1);
+//        args.putString(ARG_PARAM2, param2);
+//        fragment.setArguments(args);
+//        return fragment;
+//    }
+
+    public static ResultadoBuscarFragment newInstance(List<Publicacao> publicacoes) {
         ResultadoBuscarFragment fragment = new ResultadoBuscarFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putSerializable("publicacoes", (Serializable) publicacoes);
         fragment.setArguments(args);
         return fragment;
     }

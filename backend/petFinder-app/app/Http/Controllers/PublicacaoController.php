@@ -182,6 +182,6 @@ class PublicacaoController extends Controller
             })
             ->get();
 
-        return response()->json($publicacao);
+        return PublicacaoResource::collection($publicacao);
 	}
 }
